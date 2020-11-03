@@ -58,7 +58,22 @@
         {
         	text-align:center;
         }
+        #check:hover
+        {
+        	background: lightgray;
+        }
     </style>
+    <script>
+    	function check() {
+    		var str = document.getElementById('search').value;
+    		
+    		if(str == "" || str == null || str == " ") {
+    			alert("검색 내용을 입력해주세요.");
+    			return false;
+    		}
+    		return true;
+    	}
+    </script>
 </head>
     <body>
         <header>
@@ -66,7 +81,7 @@
         </header>
         <section>
             <article>
-                <h1 style="font-size: 30px;">공지사항</h1>
+                <h1 onClick="location.href='/notice/list'" style="font-size: 30px;">공지사항</h1>
             </article>
             <article>
                 <table id="notice">
@@ -77,10 +92,10 @@
                         <th>작성일</th>
                         <th>조회수</th>
                     </tr>
-                    <c:forEach items="${ nList }" var="notice">
-	                    <tr>
-	                        <td>${ notice.notice_No }</td>
-	                        <td><a href="/notice/select?notice_No=${ notice.notice_No }">${ notice.notice_Subject }</a></td>
+                    <c:forEach items="${ nList }" var="notice" varStatus="status">
+	                    <tr id="check" onClick="location.href='/notice/plusHits?notice_No=${ notice.notice_No }'">
+	                        <td>${ pageNum-status.index }</td>
+	                        <td>${ notice.notice_Subject }</td>
 	                        <td>${ notice.customer_Id }</td>
 	                        <td>${ notice.notice_Date }</td>
 	                        <td>${ notice.notice_Hits }</td>
@@ -92,18 +107,18 @@
             	<form class="pagination">
             		${ pageNavi }
             	</form>
-	            	<c:if test="${ sessionScope.customer.adminCheck == 1 }">
-		            	<a href="/notice/writeform"><input id="noticeWrite" type="submit" value="글쓰기" name="글쓰기"></a>
-			        </c:if>
+            	<c:if test="${ sessionScope.customer.adminCheck == 1 }">
+	            	<a href="/notice/writeform"><input id="noticeWrite" type="submit" value="글쓰기" name="글쓰기"></a>
+		        </c:if>
             </article>
             <br><br>
             <article>
-            	<form action="/notice/search" method="post">
-            		<select>
-	                    <option>제목</option>
-	                    <option>내용</option>
-                	</select>
-            		<input type="text" name="search" size="50" placeholder="검색어를 입력하세요">
+            	<form action="/notice/search" method="get" onSubmit="return check()">
+            		<select name="type">
+            			<option value="NOTICE_SUBJECT">제목</option>
+            			<option value="NOTICE_CONTENTS">내용</option>
+            		</select>
+            		<input type="text" id="search" name="search" size="50" placeholder="검색어를 입력하세요">
             		<input type="submit" value="검색">
             	</form>
             </article>

@@ -1,6 +1,7 @@
 package notice.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -36,6 +37,8 @@ public class NoticeInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
 		String notice_Subject = request.getParameter("notice_Subject");
 		String notice_Contents = request.getParameter("notice_Contents");
 		HttpSession session = request.getSession();
@@ -49,14 +52,18 @@ public class NoticeInsertServlet extends HttpServlet {
 			}
 			else
 			{
-				RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/notice/noticeError.html");
-				view.forward(request, response);
+				out.println("<script>alert('업로드 실패');");
+				out.println("history.back();</script>");
+//				RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/notice/noticeError.html");
+//				view.forward(request, response);
 			}
 		}
 		else
 		{
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/notice/serviceFailed.html");
-			view.forward(request, response);
+			out.println("<script>alert('관리자만 작성할 수 있습니다.');");
+			out.println("history.back();</script>");
+//			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/notice/serviceFailed.html");
+//			view.forward(request, response);
 		}
 	}
 
