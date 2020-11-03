@@ -10,18 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import qna.model.service.QnaService;
+import qna.model.vo.Answer;
 
 /**
- * Servlet implementation class QnaDeleteServlet
+ * Servlet implementation class QnaReplyUpdateFormServlet
  */
-@WebServlet("/qna/delete")
-public class QnaDeleteServlet extends HttpServlet {
+@WebServlet("/qna/replyupdateform")
+public class QnaReplyUpdateFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QnaDeleteServlet() {
+    public QnaReplyUpdateFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,15 +31,15 @@ public class QnaDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
 		int qnaNo = Integer.parseInt(request.getParameter("qnaNo"));
-		int result = new QnaService().deleteQna(qnaNo);
+		Answer answer = new QnaService().selectAnswer(qnaNo);
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
-		if (result > 0) {
-			response.sendRedirect("/qna/list");
+		if (answer != null) {
+			request.setAttribute("answer", answer);
+			request.getRequestDispatcher("/qna/qnaReplyUpdate.jsp").forward(request, response);
 		}else {
-			out.println("<script>alert('질문 삭제에 실패하였습니다. 잠시 후 다시 시도해 주시기 바랍니다')");
+			out.println("<script>alert('답변 수정에 실패하였습니다. 잠시 후 다시 시도해 주시기 바랍니다')");
 			out.println("history.back();</script>");
 		}
 	}

@@ -1,6 +1,8 @@
 package qna.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,10 +35,13 @@ public class QnaUpdateServlet extends HttpServlet {
 		String content = request.getParameter("content");
 		int qnaNo = Integer.parseInt(request.getParameter("qnaNo"));
 		int result = new QnaService().updateQna(subject, content, qnaNo);
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
 		if (result > 0) {
 			response.sendRedirect("/qna/detail?qnaNoticeNo="+qnaNo);
 		}else {
-			request.getRequestDispatcher("/qna/qnaError.html");
+			out.println("<script>alert('질문 수정에 실패하였습니다. 잠시 후 다시 시도해 주시기 바랍니다')");
+			out.println("history.back();</script>");
 		}
 	}
 

@@ -1,6 +1,7 @@
 package qna.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -37,6 +38,8 @@ public class QnaWriteServlet extends HttpServlet {
 		String subject = request.getParameter("subject");
 		String content = request.getParameter("content");
 		HttpSession session = request.getSession();
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
 		// 고객이 QnA 등록했을때 코드
 		if (session != null && (session.getAttribute("customer") != null)) {
 			String userId = ((Customer)session.getAttribute("customer")).getCustomer_Id();
@@ -45,9 +48,8 @@ public class QnaWriteServlet extends HttpServlet {
 				response.sendRedirect("/qna/list");
 			}
 			else {
-				// insert가 되지 않았을 때 출력하는 메시지
-				RequestDispatcher view = request.getRequestDispatcher("/qna/qnaError.html");
-				view.forward(request, response);
+				out.println("<script>alert('질문 등록에 실패하였습니다. 잠시 후 다시 시도해 주시기 바랍니다')");
+				out.println("history.back();</script>");
 			}
 			// 기사가 QnA 등록했을때 코드
 		}else if(session != null && (session.getAttribute("driver") != null)) {
@@ -55,6 +57,9 @@ public class QnaWriteServlet extends HttpServlet {
 			int result = new QnaService().insertQnaa(subject, content, driverId);
 			if (result > 0) {
 				response.sendRedirect("/qna/list");
+			}else {
+				out.println("<script>alert('질문 등록에 실패하였습니다. 잠시 후 다시 시도해 주시기 바랍니다')");
+				out.println("history.back();</script>");
 			}
 		}
 	}

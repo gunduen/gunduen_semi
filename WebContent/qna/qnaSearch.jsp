@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 <head>
 <meta charset="UTF-8">
 <title>근두운 QnA - 목록</title>
@@ -43,6 +45,16 @@
 	    height : 50px;
 	    }
 	</style>
+	<script>
+	function check() {
+		var test = document.getElementById('search').value;
+		if(test == "" || test == null || test == " ") {
+			alert("검색어를 입력해주세요.");
+			return false;
+		}
+		else return true;
+	}
+    </script>
 </head>
 	<body>
 	<header>
@@ -58,18 +70,24 @@
                 <tr>
                     <th>글번호</th>
                     <th>제목</th>
-                    <th>작성자(고객)</th>
-                    <th>작성자(기사)</th>
+                    <th>작성자</th>
                     <th>작성일</th>
                     <th>조회수</th>
                     <th>답변여부</th>
                 </tr>
-                <c:forEach items="${qList }" var="qna"  >
+                <c:forEach items="${qList }" var="qna"  varStatus="status" >
                 	<tr id="qna" onClick="location.href='/qna/detail?qnaNoticeNo=${qna.qnaNoticeNo }'">
-                		<td>${qna.qnaNoticeNo }</td>
+                		<%-- <td>${qna.qnaNoticeNo }</td> --%>
+                		<td>${pageNum - status.index }</td>
                 		<td>${qna.qnaNoticeSubject }</td>
-                		<td>${qna.customerId }</td>
-						<td>${qna.driverId }</td>
+                		<c:choose>
+                			<c:when test="${qna.customerId ne null }">
+                				<td>${qna.customerId }</td>
+                			</c:when>
+                			<c:otherwise>
+                				<td>${qna.driverId }</td>
+                			</c:otherwise>
+                		</c:choose>
                 		<td>${qna.qnaNoticeDate }</td>
                 		<td>${qna.qnaNoticeHits }</td>
                 		<td>${qna.qnaNoticeCheck }</td>
@@ -84,26 +102,19 @@
         </tr>
         <br><br>
         <article>
-            <a href="qnaWrite.html"><input type="button" id="write" value="글쓰기" name="글쓰기"></a>
+            <c:if test="${ sessionScope.customer.customer_Id ne null || sessionScope.driver.driverId ne null }">
+        		<a href="qnaWrite.html"><input type="button" id="write" value="글쓰기" name="글쓰기"></a><br>
+        	</c:if>
         </article>
         <article>
-        <form action="/qna/search" method="get">
+        <form action="/qna/search" method="get" onsubmit="return check()">
             <select id="type" name="type">
-<!--                 <option value="QNANOTICE_SUBJECTS">제목</option>
+           		<option value="QNANOTICE_SUBJECTS">제목</option>
                 <option value="QNANOTICE_CONTENTS">내용</option>
-                <option value="CUSTOMER_ID">작성자</option>
-                <option value="QNANOTICE_NO">글번호</option> -->
-                <option>제목</option>
-                <option>내용</option>
-                <option>작성자</option>
-                <option>글번호</option>
+                <option value="CUSTOMER_ID">작성자(고객)</option>
+                <option value="DRIVER_ID">작성자(기사)</option>
              </select>
-             <!--<c:forEach items="qList">
-             	<select>
-             		<option value="${qna}">${qna}</option>
-             	</select>
-              </c:forEach>-->
-            <input type="text" name="search" size="50" placeholder="검색어를 입력하세요">
+            <input type="text" id="search" name="search" size="50" placeholder="검색어를 입력하세요">
             <input type="submit" value="검색">
             </form>
             </article>
@@ -114,11 +125,5 @@
     <footer>
     
     </footer>
-    <script>
-//	   $("#type").change(function(data){
-//		   alert("변경");
-//		   location.href="/qna/search?type"+data.type;
-//	   });
-    </script>
 	</body>
 </html>

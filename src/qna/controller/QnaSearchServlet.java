@@ -1,6 +1,7 @@
 package qna.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -41,15 +42,21 @@ public class QnaSearchServlet extends HttpServlet {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		String search = request.getParameter("search");
-		PageData pageData = new QnaService().selectSearch(search, currentPage);
+		String type = request.getParameter("type");
+		PageData pageData = new QnaService().selectSearch(search, currentPage, type);
 		ArrayList<QnaNotice> qList = pageData.getPageList();
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		int pageNum = pageData.getTotalCount() - (currentPage -1) * pageData.getRecordCountPerPage();
 		if (!qList.isEmpty()) {
 			request.setAttribute("qList", qList);
 			request.setAttribute("pageNavi", pageData.getPageNavi());
+			request.setAttribute("pageNum", pageNum);
 			RequestDispatcher view = request.getRequestDispatcher("/qna/qnaSearch.jsp");
 			view.forward(request, response);
 		}else {
-			request.getRequestDispatcher("/qna/qnaError.html").forward(request, response);
+			out.println("<script>alert('검색된 결과가 없습니다.')");
+			out.println("history.back();</script>");
 		}
 	}
 
