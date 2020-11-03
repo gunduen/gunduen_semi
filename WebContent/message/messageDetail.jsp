@@ -175,7 +175,9 @@
 			<h3>${ detail.message_Contents }</h3>
 		</article>
 		<br><br><br><br><br>
+		<c:if test="${ detail.receiver eq sessionScope.customer.customer_Id }">
 		<div><button id="btn1" onclick="location.href='/message/delete?messageNo=${detail.message_No}'">삭제</button></div>
+		</c:if>
 	</section>
 
 	<footer>

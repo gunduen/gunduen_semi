@@ -47,9 +47,9 @@ public class MessageSendServlet extends HttpServlet {
 			int result = new MessageService().insertMessage(message, userId);
 			System.out.println(result);
 			if (result > 0) {
-				response.sendRedirect("/message/sendSuccess.html");
+				response.sendRedirect("/message/sendSuccess.jsp");
 			} else {
-				request.getRequestDispatcher("/message/sendError.html");
+				request.getRequestDispatcher("/message/sendError.jsp");
 			}
 		}
 		if (session != null && (session.getAttribute("driver") != null)) {
@@ -57,9 +57,9 @@ public class MessageSendServlet extends HttpServlet {
 			int result = new MessageService().insertMessage(message, userId);
 			System.out.println(result);
 			if (result > 0) {
-				response.sendRedirect("/message/sendSuccess.html");
+				response.sendRedirect("/message/sendSuccess.jsp");
 			} else {
-				request.getRequestDispatcher("/message/sendError.html");
+				request.getRequestDispatcher("/message/sendError.jsp");
 			}
 		}
 	}

@@ -40,17 +40,17 @@ public class MessageListServlet extends HttpServlet {
 		} else {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
-		PageData pageData = new MessageService().messageList(currentPage);
-		ArrayList<Message> mList = pageData.getPageList();
-		
-		if(!mList.isEmpty()) {
-			request.setAttribute("mList", mList);
-			request.setAttribute("pageNavi", pageData.getPageNavi());
-			RequestDispatcher view = request.getRequestDispatcher("/message/messageList.jsp");
-			view.forward(request, response);
-		} else {
-			response.sendRedirect("/message/messageList.jsp");
-		}
+//		PageData pageData = new MessageService().messageList(currentPage);
+//		ArrayList<Message> mList = pageData.getPageList();
+//		
+//		if(!mList.isEmpty()) {
+//			request.setAttribute("mList", mList);
+//			request.setAttribute("pageNavi", pageData.getPageNavi());
+//			RequestDispatcher view = request.getRequestDispatcher("/message/messageList.jsp");
+//			view.forward(request, response);
+//		} else {
+//			response.sendRedirect("/message/messageList.jsp");
+//		}
 	}
 
 	/**

@@ -44,7 +44,7 @@ public class MessageReceiverListServlet extends HttpServlet {
 		}
 		PageData pageData = new MessageService().messageReceiverList(currentPage, receiver);
 		ArrayList<Message> receiverList = pageData.getPageList();
-		
+		System.out.println(pageData.getPageNavi());
 		if(!receiverList.isEmpty()) {
 			request.setAttribute("receiverList", receiverList);
 			request.setAttribute("pageNavi", pageData.getPageNavi());

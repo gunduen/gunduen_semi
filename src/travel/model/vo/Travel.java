@@ -16,16 +16,16 @@ public class Travel {
 	private String driver_Id;
 	private String coordx;
 	private String coordy;
-	private String reviewYN;
+	private String review_Check;
 	
 	
 	public String getReviewYN() {
-		return reviewYN;
+		return review_Check;
 	}
 
 
-	public void setReviewYN(String reviewYN) {
-		this.reviewYN = reviewYN;
+	public void setReviewYN(String review_Check) {
+		this.review_Check = review_Check;
 	}
 
 

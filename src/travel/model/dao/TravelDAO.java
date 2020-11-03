@@ -109,7 +109,7 @@ public class TravelDAO {
 				travel.setDriver_Id(rset.getString("DRIVER_ID"));
 				travel.setCoordx(rset.getString("COORDX"));
 				travel.setCoordy(rset.getString("COORDY"));
-				travel.setReviewYN(rset.getString("REVIEWYN"));
+				travel.setReviewYN(rset.getString("REVIEW_CHECK"));
 				rList.add(travel);
 			}
 		}catch(SQLException e) {
@@ -147,7 +147,7 @@ public class TravelDAO {
 				travel.setDriver_Id(rset.getString("DRIVER_ID"));
 				travel.setCoordx(rset.getString("COORDX"));
 				travel.setCoordy(rset.getString("COORDY"));
-				travel.setReviewYN(rset.getString("REVIEWYN"));
+				travel.setReviewYN(rset.getString("REVIEW_CHECK"));
 				rList.add(travel);
 			}
 		}catch(SQLException e) {
@@ -186,7 +186,7 @@ public class TravelDAO {
 				travelOne.setDriver_Id(rset.getString("DRIVER_ID"));
 				travelOne.setCoordx(rset.getString("COORDX"));
 				travelOne.setCoordy(rset.getString("COORDY"));
-				travelOne.setReviewYN(rset.getString("REVIEWYN"));
+				travelOne.setReviewYN(rset.getString("REVIEW_CHECK"));
 				TList.add(travelOne);
 			}
 		} catch (SQLException e) {
@@ -331,7 +331,7 @@ public class TravelDAO {
 	public int updateTravel(Connection conn, int packageCode) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "UPDATE TRAVEL SET REVIEWYN = 'Y' WHERE PACKAGE_CODE = ?";
+		String query = "UPDATE TRAVEL SET REVIEW_CHECK = 'Y' WHERE PACKAGE_CODE = ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, packageCode);

@@ -18,23 +18,23 @@ public class MessageService {
 	}
 	
 	//1. messageList
-	public PageData messageList(int currentPage) {
-		Connection conn = null;
-		ArrayList<Message> mList = null;
-		int recordCountPerPage = 10;
-		int naviCountPerPage = 10;
-		PageData pd = new PageData();
-		try {
-			conn = factory.createConnection();
-			pd.setPageList(new MessageDAO().messageList(conn, currentPage, recordCountPerPage));
-			pd.setPageNavi(new MessageDAO().getPageNavi(conn, currentPage, recordCountPerPage, naviCountPerPage));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(conn);
-		}
-		return pd;
-	}
+//	public PageData messageList(int currentPage) {
+//		Connection conn = null;
+//		ArrayList<Message> mList = null;
+//		int recordCountPerPage = 10;
+//		int naviCountPerPage = 10;
+//		PageData pd = new PageData();
+//		try {
+//			conn = factory.createConnection();
+//			pd.setPageList(new MessageDAO().messageList(conn, currentPage, recordCountPerPage));
+//			pd.setPageNavi(new MessageDAO().getPageNavi(conn, currentPage, recordCountPerPage, naviCountPerPage));
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			JDBCTemplate.close(conn);
+//		}
+//		return pd;
+//	}
 	
 	//1. messageSenderList()
 	public PageData messageSenderList(int currentPage, String sender) {
@@ -46,7 +46,7 @@ public class MessageService {
 		try {
 			conn = factory.createConnection();
 			pd.setPageList(new MessageDAO().messageSenderList(conn, currentPage, recordCountPerPage, sender));
-			pd.setPageNavi(new MessageDAO().getPageNaviSender(conn, currentPage, recordCountPerPage, naviCountPerPage));
+			pd.setPageNavi(new MessageDAO().getPageNaviSender(conn, currentPage, recordCountPerPage, naviCountPerPage, sender));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -65,7 +65,7 @@ public class MessageService {
 			try {
 				conn = factory.createConnection();
 				pd.setPageList(new MessageDAO().messageReceiverList(conn, currentPage, recordCountPerPage, receiver));
-				pd.setPageNavi(new MessageDAO().getPageNaviReceiver(conn, currentPage, recordCountPerPage, naviCountPerPage));
+				pd.setPageNavi(new MessageDAO().getPageNaviReceiver(conn, currentPage, recordCountPerPage, naviCountPerPage, receiver));
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
