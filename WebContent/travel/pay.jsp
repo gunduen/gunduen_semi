@@ -20,7 +20,7 @@
 	<input type="hidden" name="driverId" value="${param.driverId }">
 	<input type="hidden" name = "coordx" value="${param.coordx }">
 	<input type="hidden" name = "coordy" value="${param.coordy }">
-	<input type="submit" value="예약완료">
+	<input id="submit" type="submit" value="예약완료">
 	</form>
 <script>
 	var IMP = window.IMP;
@@ -58,6 +58,7 @@
 	    			msg += '카드 승인번호 : ' + rsp.apply_num;
 
 	    			alert(msg);
+	    			$("#submit").last().trigger('click');
 	    		} else {
 	    			//[3] 아직 제대로 결제가 되지 않았습니다.
 	    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
@@ -68,6 +69,7 @@
 	        msg += '에러내용 : ' + rsp.error_msg;
 
 	        alert(msg);
+	        location.href = "/index.jsp";
 	    }
 	});
 </script>

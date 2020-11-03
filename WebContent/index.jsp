@@ -101,23 +101,20 @@
                 </script>
             </div>
             <div id="header3">
-            <c:if
-					test="${sessionScope.customer.adminCheck == 0 }">
-					<a href="/admin/driverList"><input type="button" value="마이페이지"></a>
-				</c:if>
-				<c:if
-					test="${sessionScope.customer.adminCheck > 0}">
-					<a href="/myPage/CustomerMyPage.jsp"><input type="button" value="마이페이지"></a>
-				</c:if>
-				
-				<%-- <a
-						href="/mypage/travel?customerId=${sessionScope.customer.customer_Id }"><input
-						type="button" value="마이페이지"></a>
- --%>
-
-
-				<c:if test="${sessionScope.driver ne null}">
-            	<a href="/myPage/DriverMyPage.jsp"><input type="button" value="마이페이지"></a>
+            <c:if test="${sessionScope.customer ne null }">
+            <c:choose>
+            	<c:when test="${sessionScope.customer.adminCheck eq 1 }">
+            		<a href="/admin/driverList"><input type="button" value="마이페이지"></a>
+            	</c:when>
+            	<c:otherwise>
+            		<a href="/mypage/travel?customerId=${sessionScope.customer.customer_Id }"><input type="button" value="마이페이지"></a>
+            	</c:otherwise>
+            </c:choose>
+        	    <!-- <a href="/myPage/MyPage.jsp"><input type="button" value="마이페이지"></a> -->
+                <!-- <a href="/mypage/travel?customerId=${sessionScope.customer.customer_Id }"><input type="button" value="마이페이지"></a> -->
+            </c:if>
+            <c:if test="${sessionScope.driver ne null}">
+            	<a href="/DriverTravel/List?driverId=${sessionScope.driver.driverId }"><input type="button" value="마이페이지"></a>
             </c:if>
             </div>
         </header>

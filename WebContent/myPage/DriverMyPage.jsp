@@ -157,9 +157,21 @@
             li:hover{
                 background-color: cornsilk;
             }
+            #travel:hover {
+	background : yellow;
+}
         </style>
     </head>
     <body>
+    
+    	<c:choose>	
+		<c:when test="${sessionScope.customer eq null && sessionScope.driver eq null }">
+    		<script>
+    			alert('로그인 하신 후에 이용 가능한 페이지입니다. \n 로그인 후 이용해주세요.');
+    			location.href='/index.jsp';
+    		</script>
+    	</c:when>
+		<c:otherwise>
         <header>
             <div id="main">
             <div id="title">
@@ -196,8 +208,8 @@
             <section id="navi">
                 <nav id="navigator">
                     <!-- if문으로 li 개수 조절 -->
-                    <li><a href="travelCheck.html">예약확인/ 예약취소</a></li>
-                    <li><a href="/message/receiverList?receiver=${ sessionScope.driver.driverId }">쪽지함</a></li>
+                    <li><a href="/DriverTravel/List?driverId=${sessionScope.driver.driverId }">예약확인/ 예약취소</a></li>
+                    <li><a href="messageList.html">쪽지함</a></li>
                     <li><a href="/login/driverMyInfo.jsp">회원정보 수정</a></li> 
                     <li><a href="/driver/delete?driverId=${sessionScope.driver.driverId }">회원 탈퇴</a></li>
                     <li><a href="selectHoliday.html">My 일정관리</a></li>
@@ -219,6 +231,15 @@
                            <th>담당 기사</th>
                            <th>예약 상태</th>
                        </tr>
+                       <c:forEach items="${dList }" var="travel">
+						<tr id="travel" onClick="location.href='/select/DriverTravel?package_Code=${travel.package_Code}'">
+							<td>${travel.package_TravelDate }</td>
+							<td>${travel.package_Area }</td>
+							<td>${travel.package_Utilization }</td>
+							<td>${travel.driver_Name } 기사님</td>
+							<td>${travel.customer_Id }</td>
+						</tr>
+					</c:forEach>
                      </thead>
                      <tbody>
 
@@ -232,7 +253,8 @@
         <footer>
             <span id="copyright">Copyright 2020 CLOUD All rights reserved</span>
         </footer>
-       
+       </c:otherwise>
+       </c:choose>
     </body>
 
 </html>

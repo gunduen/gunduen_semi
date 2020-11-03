@@ -10,32 +10,33 @@ public class Travel {
 	private String package_Pickup;
 	private String package_TravelDate;
 	private String customer_Id;
-	private int pakcage_Confirm;
 	private String driver_Name;
 	private Date package_Date;
 	private String driver_Id;
 	private String coordx;
 	private String coordy;
-	private String reviewYN;
+	private String review_Check;
+	private int Pakcage_Confirm;
 	
 	
-	public String getReviewYN() {
-		return reviewYN;
-	}
-
-
-	public void setReviewYN(String reviewYN) {
-		this.reviewYN = reviewYN;
-	}
-
-
+	
 	public int getPakcage_Confirm() {
-		return pakcage_Confirm;
+		return Pakcage_Confirm;
 	}
 
 
 	public void setPakcage_Confirm(int pakcage_Confirm) {
-		this.pakcage_Confirm = pakcage_Confirm;
+		Pakcage_Confirm = pakcage_Confirm;
+	}
+
+
+	public String getReview_Check() {
+		return review_Check;
+	}
+
+
+	public void setReview_Check(String review_Check) {
+		this.review_Check = review_Check;
 	}
 
 
