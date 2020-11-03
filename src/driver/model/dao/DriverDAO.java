@@ -430,7 +430,7 @@ public class DriverDAO {
 	      //태그를 StringBuilder의 append() 메소드를 이용해서 붙인 후에
 	      //toString() 메소드를 이용하여 String으로 만들어서 리턴
 	      return sb.toString();
-	   };
+	   }
 	   
 	   public int totalCount(Connection conn) {
 	      PreparedStatement pstmt = null;
@@ -450,6 +450,163 @@ public class DriverDAO {
 	         JDBCTemplate.close(pstmt);
 	      }
 	      return recordTotalCount;
+	   }
+	   public int approveDriver(Connection conn, String userId) {
+		   int result=0;
+		   PreparedStatement pstmt = null;
+		   String query = "UPDATE DRIVER SET DRIVER_CHECK=1 WHERE DRIVER_ID=?";
+		   
+		   try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			result = pstmt.executeUpdate();
+		   } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		   }finally {
+			   JDBCTemplate.close(pstmt);
+		   }
+		   return result;
+	   }
+	   
+	   public int kickOut(Connection conn, String userId) {
+		   int result = 0;
+		   PreparedStatement pstmt = null;
+		   String query = "DELETE FROM DRIVER WHERE DRIVER_ID=?";
+		   try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		   
+		   return result;
+	   }
+	   
+	   public ArrayList<Driver> autoMyInfo(Connection conn, String area, int currentPage, int recordCountPerPage){
+		   ArrayList<Driver> list = null;
+		   Driver driver = null;
+		   PreparedStatement pstmt = null;
+		   ResultSet rset = null;
+		   String query = "SELECT * FROM (SELECT DRIVER.*, ROW_NUMBER() OVER(ORDER BY DRIVER_ID ASC) AS NUM FROM DRIVER) WHERE DRIVER_AREA=? AND NUM BETWEEN ? AND ?";
+		   
+		   int start = currentPage*recordCountPerPage-(recordCountPerPage-1);
+		   int end = currentPage*recordCountPerPage;
+		   try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, area);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			rset = pstmt.executeQuery();
+			if(rset!=null) {
+				list = new ArrayList<Driver>();
+				while(rset.next()) {
+					driver = new Driver();
+					driver.setDriverId(rset.getString("driver_Id"));
+					driver.setDriverPwd(rset.getString("driver_Pwd"));
+					driver.setDriverName(rset.getString("driver_Name"));
+					driver.setDriverPhone(rset.getString("driver_Phone"));
+					driver.setDriverEmail(rset.getString("driver_Email"));
+					driver.setDriverHome(rset.getString("driver_Home"));
+					driver.setDriverRrn(rset.getString("driver_Rrn"));
+					driver.setDriverCheck(rset.getString("driver_Check").charAt(0));
+					driver.setDriverSelfInfo(rset.getString("driver_SelfIntro"));
+					driver.setDriverLicense(rset.getString("driver_License"));
+					driver.setDriverLicense_path(rset.getString("driver_License_Path"));
+					driver.setDriverBLicense(rset.getString("driver_bLicense"));
+					driver.setDriverBLicense_path(rset.getString("driver_bLicense_Path"));
+					driver.setDriverInfoImage(rset.getString("driver_InfoImage"));
+					driver.setDriverInfoImage_path(rset.getString("driver_InfoImage_Path"));
+					driver.setDriverArea(rset.getString("driver_Area"));
+					list.add(driver);
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		   
+		   return list;
+	   }
+	   
+	   public String getPageNaviDriver(Connection conn, String area, int currentPage, int recordCountPerPage, int naviCountPerPage) {
+		   int recordTotalCount = totalCount(conn, area); //5
+		   
+		   int pageTotalCount=0; 
+		   
+		   if(recordTotalCount%recordCountPerPage>0) { // 5/4 
+				pageTotalCount = recordTotalCount/recordCountPerPage +1; //2;
+			} else {
+				pageTotalCount = recordTotalCount/recordCountPerPage;
+			}
+		   System.out.println("pageTotalCount = "+pageTotalCount);
+		   if(currentPage<1) {
+				currentPage=1;
+			}else if(currentPage>pageTotalCount) {
+				currentPage=pageTotalCount;
+			}
+		   int startNavi = ((currentPage-1)/naviCountPerPage)*naviCountPerPage+1;
+		   System.out.println(startNavi);
+		   int endNavi = startNavi+naviCountPerPage-1;
+		   System.out.println(endNavi);
+		   boolean needPrev = true;
+		   boolean needNext = true;
+		   
+		   if(endNavi>pageTotalCount) {
+			   endNavi = pageTotalCount;
+		   }
+		   
+		   if(startNavi==1) {
+				needPrev=false;
+			}
+			if(endNavi==pageTotalCount) {
+				needNext=false;
+			}
+		   StringBuilder sb = new StringBuilder();
+		   if(needPrev) {
+			   sb.append("<a href='/driver/autoMyinfo?currentPage="+(startNavi-1)+"&area="+area+"'>prev</a>");
+			   
+		   }
+		   for(int i=startNavi; i<=endNavi; i++) {
+			   if(i==currentPage) {
+				   sb.append("<a href='/driver/autoMyinfo?currentPage="+i+"&area="+area+"'><b>"+i+"</b></a>");
+			   }else {
+				   sb.append("<a href='/driver/autoMyinfo?currentPage="+i+"&area="+area+"'>"+i+"</a>");
+			   }
+		   }
+		   if(needNext) {
+			   sb.append("<a href='/driver/autoMyinfo?currentPage="+(endNavi+1)+"&area="+area+"'>next</a>");
+		   }
+		   return sb.toString();
+	   }
+	   public int totalCount(Connection conn, String area) {
+		   PreparedStatement pstmt = null;
+		   ResultSet rset = null;
+		   String query = "SELECT COUNT(*) TOTALCOUNT FROM DRIVER WHERE DRIVER_AREA=?";
+		   int recordTotalCount = 0;
+		   
+		   try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, area);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				recordTotalCount  = rset.getInt("TOTALCOUNT");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		   return recordTotalCount;
 	   }
 	
 }

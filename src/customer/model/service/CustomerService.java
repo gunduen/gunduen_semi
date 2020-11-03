@@ -206,16 +206,24 @@ public class CustomerService {
 		}
 		return pd;
 	}
-	
-//	public int adminDeleteCustomer(String customerId, String customerName) {
-//		int result = 0;
-//		try {
-//			Connection conn = factory.createConnection();
-//			
-//			result = new CustomerDAO().adminDeleteCustomer(conn,customerId, customerName);
-//		}catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return result;
-//	}
+	public int kickOut(String userId) {
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = factory.createConnection();
+			result = new CustomerDAO().kickOut(conn, userId);
+			if(result>0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
+	}
 }

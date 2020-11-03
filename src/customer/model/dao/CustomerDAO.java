@@ -400,21 +400,21 @@ public class CustomerDAO {
 	      return recordTotalCount;
 	   }
 	   
-	   
-//	   public int adminDeleteCustomer(Connection conn, String customerId, String customerName) {
-//		   int result = 0;
-//			  PreparedStatement pstmt = null;
-//			  String query = "DELETE FROM CUSTOMER WHERE CUSTOMER_ID = ? AND CUSTOMER_NAME = ?";
-//			  try {
-//				  pstmt = conn.prepareStatement(query);
-//				  pstmt.setString(1, customerId);
-//				  pstmt.setString(2, customerName);
-//				  result = pstmt.executeUpdate();
-//			  } catch (Exception e) {
-//				  e.printStackTrace();
-//			  } finally {
-//				  JDBCTemplate.close(pstmt);
-//			  }
-//			  return result;
-//	   }
+	   public int kickOut(Connection conn, String userId) {
+		   PreparedStatement pstmt = null;
+		   String query = "DELETE FROM CUSTOMER WHERE CUSTOMER_ID=?";
+		   
+		   int result = 0;
+		   try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		   return result;
+	   }
 }

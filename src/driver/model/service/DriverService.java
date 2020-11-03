@@ -8,6 +8,7 @@ import admin.model.vo.PageData;
 import common.JDBCTemplate;
 import driver.model.dao.DriverDAO;
 import driver.model.vo.Driver;
+import driver.model.vo.DriverPageData;
 
 public class DriverService {
 	private JDBCTemplate factory;
@@ -196,6 +197,69 @@ public class DriverService {
 			conn=factory.createConnection();
 			pd.setDpageList(new DriverDAO().adminDriverList(conn, currentPage,recordCountPerPage));
 			pd.setPageNavi(new DriverDAO().getPageNavi(conn, currentPage, recordCountPerPage, naviCountPerPage));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return pd;
+	}
+	
+	public int approveDriver(String userId) {
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = factory.createConnection();
+			result = new DriverDAO().approveDriver(conn, userId);
+			if(result>0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
+	}
+	
+	public int kickOut(String userId) {
+		int result = 0;
+		Connection conn = null;
+		
+		try {
+			conn = factory.createConnection();
+			result = new DriverDAO().kickOut(conn, userId);
+			if(result>0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
+	}
+	
+	public DriverPageData autoMyInfo(int currentPage, String area){
+		ArrayList<Driver> list = null;
+		Connection conn = null;
+		int recordCountPerPage = 4;
+		int naviCountPerPage = 5;
+		
+		DriverPageData pd = new DriverPageData();
+		
+		try {
+			conn = factory.createConnection();
+			pd.setPageList(new DriverDAO().autoMyInfo(conn, area, currentPage, recordCountPerPage));
+			pd.setPageNavi(new DriverDAO().getPageNaviDriver(conn,area, currentPage, recordCountPerPage, naviCountPerPage));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
