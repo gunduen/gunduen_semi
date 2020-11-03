@@ -3,27 +3,28 @@ package travel.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import driver.model.vo.Driver;
 import travel.model.service.TravelService;
-import travel.model.vo.Travel;
 
 /**
- * Servlet implementation class BaseServlet
+ * Servlet implementation class BaseDeleteServlet
  */
-@WebServlet("/travel/base")
-
-public class BaseServlet extends HttpServlet {
+@WebServlet("/base/delete")
+public class BaseDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BaseServlet() {
+    public BaseDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,29 +33,27 @@ public class BaseServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		request.setCharacterEncoding("utf-8");
-		PrintWriter out = response.getWriter();
 		
-		String Driver_Id = (String)request.getAttribute("Driver_Id");
-		String Driver_Name = (String)request.getAttribute("Driver_Name");
+		HttpSession session = request.getSession();
+		String Driver_Id = ((Driver)session.getAttribute("driver")).getDriverId();
 		
-	
 		System.out.println(Driver_Id);
-		System.out.println(Driver_Name);
 		
-		int result = new TravelService().insertBaseTravel(Driver_Id,Driver_Name);
+		int result = new TravelService().deleteBaseTravel(Driver_Id);
+		
+		
 		
 		if(result>0) {
-			out.println("<script>alert('회원가입에 성공하였습니다.'); document.location.href='/index.jsp';</script>");
+			System.out.println(Driver_Id);
+			session.invalidate();
+			request.setAttribute("Driver_Id", Driver_Id);
+			RequestDispatcher view = request.getRequestDispatcher("/driver/delete");
+		    view.forward(request, response);
 		}else {
-			out.println("<script>alert('회원가입에 실패하셨어요');");
-	    	out.println("history.back();</script>");
+			response.sendRedirect("/#error");
 		}
-		
-		
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

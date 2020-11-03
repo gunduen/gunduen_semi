@@ -240,9 +240,7 @@ li:hover {
 				<li><a href="/mypage/travel?customerId=${sessionScope.customer.customer_Id }">예약확인/ 예약취소</a></li>
 				<li><a href="/message/messageList.jsp">쪽지함</a></li>
 				<li><a href="/customer/myInfo?customerId=${sessionScope.customer.customer_Id }">회원정보 수정</a></li>
-				<li><a
-					href="/customer/delete?customerId=${sessionScope.customer.customer_Id }">회원
-						탈퇴</a></li>
+				<li><a href="/customer/delete?customerId=${sessionScope.customer.customer_Id }" onclick="return question();">회원 탈퇴</a></li>
 				<li><a href="selectHoliday.html">My 일정관리</a></li>
 			</nav>
 
@@ -290,7 +288,11 @@ li:hover {
 	</footer>
 	</c:otherwise>
 	</c:choose>
-	
+	<script>
+	function question() {
+		 return confirm("정말로 탈퇴하시겠습니까?");
+	 }
+	</script>
 </body>
 
 </html>

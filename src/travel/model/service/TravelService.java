@@ -70,6 +70,25 @@ public class TravelService {
 		}
 		return result;
 	}
+	public int deleteBaseTravel(String Driver_Id) {
+		Connection conn = null;
+		int result = 0;
+		try {
+			conn = factory.createConnection();
+			result = new TravelDAO().deleteBaseTravel(conn,Driver_Id);
+		}catch(SQLException e) {
+			e.printStackTrace();
+			
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		}finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
+	}
 	
 	//jimin
 	public ArrayList<Travel> selectTravelList(String customerId) {

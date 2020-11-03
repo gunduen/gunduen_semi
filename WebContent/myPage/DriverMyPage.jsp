@@ -211,7 +211,7 @@
                     <li><a href="/DriverTravel/List?driverId=${sessionScope.driver.driverId }">예약확인/ 예약취소</a></li>
                     <li><a href="messageList.html">쪽지함</a></li>
                     <li><a href="/login/driverMyInfo.jsp">회원정보 수정</a></li> 
-                    <li><a href="/driver/delete?driverId=${sessionScope.driver.driverId }">회원 탈퇴</a></li>
+                    <li><a href="/base/delete?driverId=${sessionScope.driver.driverId }" onclick="return question();">회원 탈퇴</a></li>
                     <li><a href="selectHoliday.html">My 일정관리</a></li>
                 </nav>
                 
@@ -255,6 +255,11 @@
         </footer>
        </c:otherwise>
        </c:choose>
+       <script>
+	function question() {
+		 return confirm("정말로 탈퇴하시겠습니까?");
+	 }
+	</script>
     </body>
 
 </html>

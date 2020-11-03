@@ -1,6 +1,9 @@
 package driver.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,16 +35,24 @@ public class DriverDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
-		HttpSession session = request.getSession();
-		String userId = ((Driver)session.getAttribute("driver")).getDriverId();
 		
+		
+		String userId = (String)request.getAttribute("Driver_Id");
+		System.out.println("hi");
+		System.out.println(userId);
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
 		int result = new DriverService().deleteDriver(userId);
 		
 		if (result >0) {
-			session.invalidate();
-			response.sendRedirect("/index.jsp");
+			// session.invalidate();
+			
+			out.println("<script>alert('회원탈퇴가 완료되었습니다.'); document.location.href='/index.jsp';</script>");
+			
 		}else {
-			response.sendRedirect("/#error");
+			out.println("<script>alert('회원가입에 실패하셨어요');");
+			out.println("history.back();</script>");
+			
 		}
 		
 		

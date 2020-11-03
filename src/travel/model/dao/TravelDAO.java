@@ -55,6 +55,22 @@ public class TravelDAO {
 		return result;
 	}
 	
+	public int deleteBaseTravel(Connection conn,String Driver_Id) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "DELETE FROM TRAVEL WHERE DRIVER_ID= ? ";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, Driver_Id);
+			result = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+	
 	public ArrayList<Driver> selectList(Connection conn,String sido,String packageDate){
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
