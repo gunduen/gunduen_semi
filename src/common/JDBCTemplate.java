@@ -26,8 +26,8 @@ private static JDBCTemplate instance;
 	
 	public Connection createConnection() throws SQLException {
 		String url="jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "gunduen_db";
-		String password = "gunduenadmin";
+		String user = "GUNDUEN";
+		String password = "GUNDUEN";
 		return DriverManager.getConnection(url, user, password);
 	}
 

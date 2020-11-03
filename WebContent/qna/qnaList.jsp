@@ -1,4 +1,6 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@page import="common.JDBCTemplate"%>
+<%@page import="qna.model.dao.QnaDAO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!--  디렉티브(태그라이브러리) 작성 -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -44,6 +46,18 @@
 	    height : 50px;
 	    }
 	</style>
+	<script>
+	function check() {
+		var test = document.getElementById('search').value;
+		if(test == "" || test == null || test == " ") {
+			alert("검색어를 입력해주세요.");
+			return false;
+		}
+		return true;
+	}
+    </script>
+	        
+	
 </head>
 	<body>
 	<header>
@@ -59,21 +73,30 @@
                 <tr>
                     <th>글번호</th>
                     <th>제목</th>
-                    <th>작성자(고객)</th>
-                    <th>작성자(기사)</th>
+                    <th>작성자</th>
                     <th>작성일</th>
                     <th>조회수</th>
                     <th>답변여부</th>
                 </tr>
-                <c:forEach items="${qList }" var="qna" varStatus="" >
-                	<tr id="qna" onClick="location.href='/qna/detail?qnaNoticeNo=${qna.qnaNoticeNo }'">
-                		<td>${qna.qnaNoticeNo }</td>
+                          
+                
+                <c:forEach items="${qList }" var="qna" varStatus="status" >
+                	<tr id="qna" onClick="location.href='/qna/hits?qnaNoticeNo=${qna.qnaNoticeNo }'">
+                	<!-- 전체게시글갯수, 현재페이지, 페이지 사이즈 -->
+               			<td>${pageNum - status.index }</td>
                 		<td>${qna.qnaNoticeSubject }</td>
-                		<td>${qna.customerId }</td>
-                		<td>${qna.driverId }</td>
+                		<c:choose>
+                			<c:when test="${qna.customerId ne null }">
+                				<td>${qna.customerId }</td>
+                			</c:when>
+                			<c:otherwise>
+                				<td>${qna.driverId }</td>
+                			</c:otherwise>
+                		</c:choose>
                 		<td>${qna.qnaNoticeDate }</td>
-                		<td>조회수</td>
+                		<td>${qna.qnaNoticeHits }</td>
                 		<td>${qna.qnaNoticeCheck }</td>
+                		
                 	</tr>
                 </c:forEach>
             </table>
@@ -85,17 +108,20 @@
                 </tr>
         <br>
         <article>
-            <a href="qnaWrite.html"><input type="button" id="write" value="글쓰기" name="글쓰기"></a><br>
+        <c:if test="${ sessionScope.customer.customer_Id ne null || sessionScope.driver.driverId ne null }">
+        		<a href="qnaWrite.html"><input type="button" id="write" value="글쓰기" name="글쓰기"></a><br>
+        	</c:if>
+            
         </article>
         <article>
-        <form action="/qna/search" method="get">
+        <form name="form" action="/qna/search" method="get" onsubmit="return check()">
             <select id="type" name="type">
                 <option value="QNANOTICE_SUBJECTS">제목</option>
                 <option value="QNANOTICE_CONTENTS">내용</option>
-                <option value="CUSTOMER_ID">작성자</option>
-                <option value="QNANOTICE_NO">글번호</option>
+                <option value="CUSTOMER_ID">작성자(고객)</option>
+                <option value="DRIVER_ID">작성자(기사)</option>
              </select>
-            <input type="text" name="search" size="50" placeholder="검색어를 입력하세요">
+            <input id="search" type="text" name="search" size="50" placeholder="검색어를 입력하세요">
             <input type="submit" value="검색">
             </form>
             </article>
@@ -106,11 +132,6 @@
     <footer>
     
     </footer>
-    <script>
-    //	  $("#type").change(function(data){
-	 // 	 alert("변경");
-	//	 location.href="/qna/search?type"+data.type;
-	//    }); 
-    </script>
+    
 	</body>
 </html>

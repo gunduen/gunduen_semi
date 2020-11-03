@@ -1,6 +1,7 @@
 package qna.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,15 +39,18 @@ public class QnaReplyServlet extends HttpServlet {
 		int qnaNo = Integer.parseInt(request.getParameter("qnaNoticeNo"));
 		String subject = request.getParameter("subject");
 		String content = request.getParameter("content");
+		String replyCheck = request.getParameter("replyCheck");
 		HttpSession session = request.getSession();
-		
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
 		if (session != null && (session.getAttribute("customer") != null)) {
 			int result = new QnaService().insertReply(subject, content, qnaNo);
 			if (result > 0) {
-				response.sendRedirect("/qna/detail?qnaNoticeNo="+qnaNo);
+				response.sendRedirect("/qna/detail?qnaNoticeNo="+qnaNo+"&replyCheck="+replyCheck);
 			}
 			else {
-				// 답변 업로드 실패 시 출력하는 메시지
+				out.println("<script>alert('답변 등록에 실패하였습니다. 잠시 후 다시 시도해 주시기 바랍니다')");
+				out.println("history.back();</script>");
 			}
 		}
 	}

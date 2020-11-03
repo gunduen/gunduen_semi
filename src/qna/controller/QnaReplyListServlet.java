@@ -1,6 +1,7 @@
 package qna.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -35,11 +36,13 @@ public class QnaReplyListServlet extends HttpServlet {
 		// 관리자 답변 불러오는 서블릿 (SELECT)
 		request.setCharacterEncoding("utf-8");
 		int qnaNo = Integer.parseInt(request.getParameter("qnaNoticeNo"));
+		String replyCheck = request.getParameter("replyCheck");
 		Answer answer = new QnaService().selectAnswer(qnaNo);
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
 		if (answer != null) {
-			// 밑의 두 줄 오류원인
 			request.setAttribute("answer", answer);
-			RequestDispatcher view = request.getRequestDispatcher("/qna/replyupdate");
+			RequestDispatcher view = request.getRequestDispatcher("/qna/replycheck?check="+replyCheck);
 			view.forward(request, response);
 //			RequestDispatcher views = request.getRequestDispatcher("/qna/qnaDetail.jsp");
 //			views.forward(request, response);
@@ -49,7 +52,8 @@ public class QnaReplyListServlet extends HttpServlet {
 			view.forward(request, response);
 		}
 		else {
-			//오류 페이지
+			out.println("<script>alert('잠시 후 다시 시도해 주시기 바랍니다')");
+			out.println("history.back();</script>");
 		}
 	}
 
