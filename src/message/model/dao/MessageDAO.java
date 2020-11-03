@@ -148,19 +148,19 @@ public class MessageDAO {
 	      
 	      StringBuilder sbS = new StringBuilder();
 	      if(needPrev) {
-	         sbS.append("<a href='/message/senderList?sender="+ sender+ "currentPage="+(startNavi-1) + "'> < </a>");
+	         sbS.append("<a href='/message/senderList?sender="+ sender+ "&currentPage="+(startNavi-1) + "'> < </a>");
 	      }
 	      // 1~ 10까지의 숫자를 for문을 이용해서 생성하고 만들어주는 부분
 	      for (int i = startNavi; i <= endNavi; i++) {
 	         //i가 현재 페이지일 떄, 숫자 굵게만들기 = <b></b>
 	         if(i == currentPage) {
-	            sbS.append("<a href='/message/senderList?sender="+ sender+ "currentPage="+i+"'><b> " + i + " </b></a>");
+	            sbS.append("<a href='/message/senderList?sender="+ sender+ "&currentPage="+i+"'><b> " + i + " </b></a>");
 	         } else {
-	            sbS.append("<a href='/message/senderList?sender="+ sender+ "currentPage="+i+"'> " + i + " </a>");
+	            sbS.append("<a href='/message/senderList?sender="+ sender+ "&currentPage="+i+"'> " + i + " </a>");
 	         }
 	      }// 다음 버튼 누를 수 있을 때, 다음 버튼을 생성하는 부분
 	      if (needNext) {
-	         sbS.append("<a href='/message/senderList?sender="+ sender+ "currentPage=" + (endNavi + 1) + "'> > </a>");
+	         sbS.append("<a href='/message/senderList?sender="+ sender+ "&currentPage=" + (endNavi + 1) + "'> > </a>");
 	      }
 	      //태그를 StringBuilder의 append() 메소드를 이용해서 붙인 후에
 	      //toString() 메소드를 이용하여 String으로 만들어서 리턴
@@ -205,19 +205,19 @@ public class MessageDAO {
 		      
 		      StringBuilder sbR = new StringBuilder();
 		      if(needPrev) {
-		         sbR.append("<a href='/message/receiverList?receiver="+receiver+"currentPage="+(startNavi-1) + "'> < </a>");
+		         sbR.append("<a href='/message/receiverList?receiver="+receiver+"&currentPage="+(startNavi-1) + "'> < </a>");
 		      }
 		      // 1~ 10까지의 숫자를 for문을 이용해서 생성하고 만들어주는 부분
 		      for (int i = startNavi; i <= endNavi; i++) {
 		         //i가 현재 페이지일 떄, 숫자 굵게만들기 = <b></b>
 		         if(i == currentPage) {
-		            sbR.append("<a href='/message/receiverList?receiver="+receiver+"currentPage="+i+"'><b> " + i + " </b></a>");
+		            sbR.append("<a href='/message/receiverList?receiver="+receiver+"&currentPage="+i+"'><b> " + i + " </b></a>");
 		         } else { 
-		            sbR.append("<a href='/message/receiverList?receiver="+receiver+"currentPage="+i+"'> " + i + " </a>");
+		            sbR.append("<a href='/message/receiverList?receiver="+receiver+"&currentPage="+i+"'> " + i + " </a>");
 		         }
 		      }// 다음 버튼 누를 수 있을 때, 다음 버튼을 생성하는 부분
 		      if (needNext) {
-		         sbR.append("<a href='/message/receiverList?receiver="+receiver+"currentPage=" + (endNavi + 1) + "'> > </a>");
+		         sbR.append("<a href='/message/receiverList?receiver="+receiver+"&currentPage=" + (endNavi + 1) + "'> > </a>");
 		      }
 		      //태그를 StringBuilder의 append() 메소드를 이용해서 붙인 후에
 		      //toString() 메소드를 이용하여 String으로 만들어서 리턴

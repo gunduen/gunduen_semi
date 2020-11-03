@@ -27,7 +27,7 @@ public class CommentService {
 		try {
 			conn = factory.createConnection();
 			pd.setPageList(new CommentDAO().commentList(conn, currentPage, recordCountPerPage, reviewNo));
-			pd.setPageNavi(new CommentDAO().getPageNavi(conn, currentPage, recordCountPerPage, naviCountPerPage));
+			pd.setPageNavi(new CommentDAO().getPageNavi(conn, currentPage, recordCountPerPage, naviCountPerPage, reviewNo));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

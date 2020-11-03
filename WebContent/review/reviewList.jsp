@@ -148,6 +148,10 @@
 				</ul>
 			</div>
 			<div>후기 게시판</div>
+			<c:if test="${fn:length(RList) == 0 }">
+				<div> 후기 게시물이 존재하지 않습니다. </div>
+			</c:if>
+			<c:if test="${fn:length(RList) > 0}">
 			<table border="1">
 				<tr>
 					<th>작성자</th>
@@ -156,8 +160,6 @@
 					<th>날짜</th>
 				</tr>
 				<c:forEach items="${ RList }" var="review">
-				
-					<%-- <tr onClick="location.href='/review/select?reviewNo=${ review.reviewNo }'"> --%>
 					<tr onclick="selnumFunc(${review.reviewNo});">
 						<td>${review.customerId }</td>
 						<td>${review.reviewSubject }</td>
@@ -174,8 +176,8 @@
 				<td colspan="4" align="center">${ pageNavi }
 			</tr>
 		</table>
+		</c:if>
 		<!-- 글쓰기 버튼  -->
-		${fn:length(rTravel) }
 			<c:if test="${fn:length(rTravel) == 0 }">
 			<div></div>
 			</c:if>

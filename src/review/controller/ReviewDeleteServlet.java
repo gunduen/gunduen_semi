@@ -28,11 +28,12 @@ public class ReviewDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-		String reviewArea = request.getParameter("reviewArea");
+		String area = request.getParameter("reviewArea");
 		int result = new ReviewService().deleteReview(reviewNo);
 		if (result > 0) {
-			response.sendRedirect("/review/list?reviewArea=서울");
+			response.sendRedirect("/review/list?reviewArea=" + area);
 		} else {
 			request.getRequestDispatcher("/review/reviewError.html");
 		}

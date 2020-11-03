@@ -88,7 +88,7 @@ public class TravelDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Travel> rList = null;
-		String query = "SELECT * FROM TRAVEL WHERE CUSTOMER_ID = ? AND REVIEWYN = 'N' ORDER BY PACKAGE_CODE";
+		String query = "SELECT * FROM TRAVEL WHERE CUSTOMER_ID = ? AND REVIEW_CHECK = 'N' ORDER BY PACKAGE_CODE";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -125,7 +125,7 @@ public class TravelDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Travel> rList = null;
-		String query = "SELECT * FROM TRAVEL WHERE CUSTOMER_ID = ? AND PACKAGE_CODE = ?AND REVIEWYN = 'N' ORDER BY PACKAGE_CODE";
+		String query = "SELECT * FROM TRAVEL WHERE CUSTOMER_ID = ? AND PACKAGE_CODE = ?AND REVIEW_CHECK = 'N' ORDER BY PACKAGE_CODE";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
