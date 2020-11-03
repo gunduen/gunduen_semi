@@ -289,6 +289,7 @@ public class CustomerDAO {
 		return x;
 	}
 	
+	//admin
 	public ArrayList<Customer> adminCustomerList(Connection conn, int currentPage, int recordCountPerPage) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -398,4 +399,22 @@ public class CustomerDAO {
 	      }
 	      return recordTotalCount;
 	   }
+	   
+	   
+//	   public int adminDeleteCustomer(Connection conn, String customerId, String customerName) {
+//		   int result = 0;
+//			  PreparedStatement pstmt = null;
+//			  String query = "DELETE FROM CUSTOMER WHERE CUSTOMER_ID = ? AND CUSTOMER_NAME = ?";
+//			  try {
+//				  pstmt = conn.prepareStatement(query);
+//				  pstmt.setString(1, customerId);
+//				  pstmt.setString(2, customerName);
+//				  result = pstmt.executeUpdate();
+//			  } catch (Exception e) {
+//				  e.printStackTrace();
+//			  } finally {
+//				  JDBCTemplate.close(pstmt);
+//			  }
+//			  return result;
+//	   }
 }

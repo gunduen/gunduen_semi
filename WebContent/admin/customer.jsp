@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>admin - 고객 관리</title>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 </head>
 <body>
 <ul style="border:1px solid black;width:100px;list-style:none;padding:0;margin:0;">
@@ -32,8 +33,18 @@
 	 	<td>${ customerList.customer_Phone }</td>
 	 	<td>${ customerList.customer_Email }</td>
 	 	<td>${ customerList.customer_Rrn }</td>
-	 	<td><button onclick="#">탈퇴시키기</button></td>
+	 	<td><button onClick="location.href='/admin/customerdelete?customerId=${customerList.customer_Id}'">탈퇴시키기</button></td>
+	 	
 	 </c:forEach>
+	 <!-- <script>
+	 	function delCustomerfunc(cusId) {
+	 		var real = confirm("정말로 탈퇴시키겠습니까?");
+	 		if (real){
+	 			location.href="/admin/customerdelete?customerId="+ cusId;
+	 		} 
+	 	}
+	 </script> -->
 </table>
+	
 </body>
 </html>

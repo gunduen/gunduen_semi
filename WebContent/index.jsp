@@ -11,7 +11,7 @@
 <title>메인페이지</title>
     <style>
         div{
-            border: 1px solid white;
+            border: 1px solid black;
             box-sizing: border-box;
         }
         header {
@@ -50,6 +50,7 @@
             float: left;
             text-align: center;
             list-style: none;
+            border: 1px solid black;
         }
         #left{
             float: left;
@@ -79,6 +80,25 @@
             font-size: 30px;
             
         }
+        
+        <!-- -->
+        *{margin:0;padding:0;}
+	    ul,li{list-style:none;}
+	    .slide{height:300px;overflow:hidden;}
+	    .slide ul{width:calc(100% * 4);display:flex;animation:slide 8s infinite;} /* slide를 8초동안 진행하며 무한반복 함 */
+	    .slide li{width:calc(100% / 4);height:300px;}
+	    
+	    @keyframes slide {
+	      0% {margin-left:0;} /* 0 ~ 10  : 정지 */
+	      10% {margin-left:0;} /* 10 ~ 25 : 변이 */
+	      25% {margin-left:-100%;} /* 25 ~ 35 : 정지 */
+	      35% {margin-left:-100%;} /* 35 ~ 50 : 변이 */
+	      50% {margin-left:-200%;}
+	      60% {margin-left:-200%;}
+	      75% {margin-left:-300%;}
+	      85% {margin-left:-300%;}
+	      100% {margin-left:0;}
+	      }
     </style>
 </head>
 <body>
@@ -139,10 +159,20 @@
             </article>
             <article>
                 <div id="contents">
-                    <div id="left">
-                        <img src="img/MainPageImg/mainMap.PNG">
-                    </div>
-                    <div id="right">
+					<div id="left">
+						<div class="slide">
+							<ul>
+								<li><img
+									src="../Day_07_JS_JQuery/WebContent/img/DOM%EA%B5%AC%EC%A1%B0.JPG"></li>
+								<li><img
+									src="../Day_07_JS_JQuery/WebContent/img/KakaoTalk_Photo_2020-11-03-16-37-19.png"></li>
+								<li><img
+									src="../Day_07_JS_JQuery/WebContent/img/secure_coding.jpg"></li>
+								<li></li>
+							</ul>
+						</div>
+					</div>
+					<div id="right">
                         <div id="right_top">행복한 택시여행 떠나 보실라우?</div>
                         <div id="right_bottom">근두운: 손오공이 근두운을 타고 팔도유람하듯 택시를 타고 자유롭게 여행할 수 있게 해주는 서비스, 어디든 떠날 수 있는 국내 자유여행</div>
                     </div>
@@ -179,10 +209,20 @@
             </article>
             <article>
                 <div id="contents">
-                    <div id="left">
-                        <img src="img/MainPageImg/mainMap.PNG">
-                    </div>
-                    <div id="right">
+					<div id="left">
+						<div class="slide">
+							<ul>
+								<li><img
+									src="https://t1.daumcdn.net/cfile/blog/216CB83A54295C1C0E?original" width="500px;" height="300px;"></li>
+								<li><img
+									src="https://i.pinimg.com/originals/b7/2f/0b/b72f0b16f4a84cc8e649f6bce9048bc8.jpg"  width="500px;" height="300px;"></li>
+								<li><img
+									src="https://dispatch.cdnser.be/cms-content/uploads/2019/09/09/50e20ad4-f940-4f93-830b-8501146b4488.jpg"  width="500px;" height="300px;"></li>
+								<li><img src="https://dispatch.cdnser.be/cms-content/uploads/2019/09/09/4657b750-ce06-4136-91af-40d922a327c6.jpg" width="500px;" height="300px;"></li>
+							</ul>
+						</div>
+					</div>
+					<div id="right">
                         <div id="right_top">행복한 택시여행 떠나 보실라우?</div>
                         <div id="right_bottom">근두운: 손오공이 근두운을 타고 팔도유람하듯 택시를 타고 자유롭게 여행할 수 있게 해주는 서비스, 어디든 떠날 수 있는 국내 자유여행</div>
                     </div>

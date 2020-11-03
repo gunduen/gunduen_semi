@@ -206,4 +206,16 @@ public class CustomerService {
 		}
 		return pd;
 	}
+	
+//	public int adminDeleteCustomer(String customerId, String customerName) {
+//		int result = 0;
+//		try {
+//			Connection conn = factory.createConnection();
+//			
+//			result = new CustomerDAO().adminDeleteCustomer(conn,customerId, customerName);
+//		}catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return result;
+//	}
 }

@@ -163,7 +163,7 @@ public class TravelDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Travel> TList = null;
-		String query = "SELECT * FROM (SELECT TRAVEL.*, ROW_NUMBER() OVER(ORDER BY PACKAGE_CODE DESC) AS NUM FROM TRAVEL) WHERE NUM BETWEEN ? AND ?";
+		String query = "SELECT * FROM (SELECT TRAVEL.*, ROW_NUMBER() OVER(ORDER BY PACKAGE_CODE DESC) AS NUM FROM TRAVEL WHERE PACKAGE_CONFIRM = '0') WHERE NUM BETWEEN ? AND ?";
 		int start = currentPage*recordCountPerPage - (recordCountPerPage -1);
 		int end = currentPage*recordCountPerPage;
 		try {

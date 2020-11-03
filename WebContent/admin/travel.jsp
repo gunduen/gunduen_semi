@@ -28,7 +28,6 @@
 		<th>여행 완료 여부</th>
 		<th>고객 아이디</th>
 		<th>기사 이름</th>
-		<th>Button</th>
 	</tr>
 	<c:forEach items="${ travelList}" var="travelList">
 	 <tr>
@@ -46,7 +45,6 @@
 	 	</c:if>
 	 	<td>${ travelList.customer_Id }</td>
 	 	<td>${ travelList.driver_Name }</td>
-	 	<td><button onclick="#">취소한 여행 목록에서 삭제하기</button></td>
 	 </c:forEach>
 </table>
 </body>

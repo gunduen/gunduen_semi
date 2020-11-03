@@ -105,7 +105,7 @@ public class CommentDAO {
 	   public int totalCount(Connection conn, int reviewNo) {
 	      PreparedStatement pstmt = null;
 	      ResultSet rset = null;
-	      String query = "SELECT COUNT(*) AS TOTALCOUNT FROM COMMENTS WHERE REVIEWNO = ?";
+	      String query = "SELECT COUNT(*) AS TOTALCOUNT FROM COMMENTS WHERE REVIEW_NO = ?";
 	      int recordTotalCount = 0;
 	      try {
 	         pstmt = conn.prepareStatement(query);

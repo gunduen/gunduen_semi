@@ -305,7 +305,7 @@ public class MessageDAO {
 	   public int totalCountSender(Connection conn, String sender) {
 		      PreparedStatement pstmt = null;
 		      ResultSet rset = null;
-		      String query = "SELECT COUNT(*) AS TOTALCOUNT FROM MESSAGE WHERE RECEIVER = sender";
+		      String query = "SELECT COUNT(*) AS TOTALCOUNT FROM MESSAGE WHERE RECEIVER = ?";
 		      int recordTotalCount = 0;
 		      try {
 		         pstmt = conn.prepareStatement(query);

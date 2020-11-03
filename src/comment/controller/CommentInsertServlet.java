@@ -52,11 +52,9 @@ public class CommentInsertServlet extends HttpServlet {
 //			String customerId = ((Comment)session.getAttribute("comment")).getCustomerId();
 //			String driverId = ((Comment)session.getAttribute("comment")).getDriverId();
 			int result = new CommentService().insertComment(commentContents, customerId, driverId, reviewNo);
-			
+			System.out.println(reviewNo);
 			if (result > 0) {
-				request.setAttribute("review", review);
-				RequestDispatcher reviewView = request.getRequestDispatcher("/review/reviewDetail.jsp");
-				reviewView.forward(request, response);
+				response.sendRedirect("/review/select?reviewNo="+ reviewNo);
 			} else {
 				request.getRequestDispatcher("/review/reviewError.html");
 			}
