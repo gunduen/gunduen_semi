@@ -15,7 +15,7 @@ public class TravelDAO {
 	public int insertTravel(Connection conn, Travel travel, String customerId) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "INSERT INTO TRAVEL VALUES(SEQ_TRAVEL.NEXTVAL,?,?,?,SYSDATE,?,1,?,?,?,?,?)";
+		String query = "INSERT INTO TRAVEL VALUES(SEQ_TRAVEL.NEXTVAL,?,?,?,SYSDATE,?,1,?,?,?,?,?,'N')";
 		
 		try {
 			
@@ -41,7 +41,7 @@ public class TravelDAO {
 	public int insertBaseTravel(Connection conn,String Driver_Id,String Driver_Name) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "INSERT INTO TRAVEL VALUES(SEQ_TRAVEL.NEXTVAL,'1','1','1',SYSDATE,'1','1','admin',?,?,'1','1')";
+		String query = "INSERT INTO TRAVEL VALUES(SEQ_TRAVEL.NEXTVAL,'1','1','1',SYSDATE,'1','1','admin',?,?,'1','1','N')";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, Driver_Name);
