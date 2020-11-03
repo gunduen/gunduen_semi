@@ -194,7 +194,7 @@
         <section>
             <nav>
                 <ul id="menu">
-                    <li><a href="#">공지사항</a></li>
+                    <li><a href="/notice/list">공지사항</a></li>
                     <li><a href="#">기사소개</a></li>
                     <li><a href="/review/list?reviewArea=서울">사용자 후기</a></li>
                     <li><a href="#">Q&A</a></li>
