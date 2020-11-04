@@ -84,9 +84,9 @@ footer {
 	<footer></footer>
 
 	<script>
-		var coords;
-		var sido;
-		var roadAddr;
+		var coords = '${coords }';
+		var sido = '${sido }';
+		var roadAddr = '${address }';
 		function addSearch() {
 			new daum.Postcode({
 				// 주소 찾기  API가 한 일은 주소검색창 팝업 띄어주고
@@ -214,20 +214,16 @@ footer {
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		$("#package_Date").on("change keyup paste",function() {
 					var packageDate = $("#package_Date").val();
-					location.href = "/travel/travelList?package_Date="
+					if ( roadAddr != null && sido != null && coords != null) {
+						location.href = "/travel/travelList?package_Date="
 							+ packageDate + "&address=" + roadAddr + "&sido="
-							+ sido+"&coords="+coords;
+							+ sido+"&coords="+coords;	
+					}else{
+						alert("주소 검색을 해주세요");
+					}
+					
 				});
 		
 		
