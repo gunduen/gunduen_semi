@@ -34,7 +34,7 @@ public class ReviewDAO {
 				reviewOne.setReviewDate(rset.getDate("REVIEW_DATE"));
 				reviewOne.setCustomerId(rset.getString("CUSTOMER_ID"));
 				reviewOne.setReviewArea(rset.getString("REVIEW_AREA"));
-				reviewOne.setPackageCode(rset.getInt("PACKAGE_CODE"));
+				reviewOne.setPackage_Code(rset.getInt("PACKAGE_CODE"));
 				RList.add(reviewOne);
 			}
 		} catch(SQLException e) {
@@ -141,7 +141,7 @@ public class ReviewDAO {
 				   reviewOne.setReviewDate(rset.getDate("REVIEW_DATE"));
 				   reviewOne.setCustomerId(rset.getString("CUSTOMER_ID"));
 				   reviewOne.setReviewArea(rset.getString("REVIEW_AREA"));
-				   reviewOne.setPackageCode(rset.getInt("PACKAGE_CODE"));
+				   reviewOne.setPackage_Code(rset.getInt("PACKAGE_CODE"));
 			   }
 		   }catch (SQLException e) {
 			   e.printStackTrace();
@@ -206,6 +206,22 @@ public class ReviewDAO {
 		   return result;
 	   }
 	   
+	   public int updateReviewCheck(Connection conn, int package_Code) {
+		   PreparedStatement pstmt = null;
+		   int result = 0;
+		   String query="UPDATE REVIEW SET REVIEW_CHECK = 'N' WHERE PACKAGE_CODE";
+		   try {
+			   pstmt = conn.prepareStatement(query);
+			   pstmt.setInt(1, package_Code);
+			   result = pstmt.executeUpdate();
+		   } catch (SQLException e) {
+			   e.printStackTrace();
+		   } finally {
+			   JDBCTemplate.close(conn);
+		   }
+		   return result;
+	   }
+	   
 	   public ArrayList<Review> reviewBeList(Connection conn, String customerId, int num) {
 		   PreparedStatement pstmt = null;
 			ResultSet rset = null;
@@ -226,7 +242,7 @@ public class ReviewDAO {
 					reviewOne.setReviewDate(rset.getDate("REVIEW_DATE"));
 					reviewOne.setCustomerId(rset.getString("CUSTOMER_ID"));
 					reviewOne.setReviewArea(rset.getString("REVIEW_AREA"));
-					reviewOne.setPackageCode(rset.getInt("PACKAGE_CODE"));
+					reviewOne.setPackage_Code(rset.getInt("PACKAGE_CODE"));
 					RList.add(reviewOne);
 				}
 			} catch(SQLException e) {
@@ -258,7 +274,7 @@ public class ReviewDAO {
 					reviewOne.setReviewDate(rset.getDate("REVIEW_DATE"));
 					reviewOne.setCustomerId(rset.getString("CUSTOMER_ID"));
 					reviewOne.setReviewArea(rset.getString("REVIEW_AREA"));
-					reviewOne.setPackageCode(rset.getInt("PACKAGE_CODE"));
+					reviewOne.setPackage_Code(rset.getInt("PACKAGE_CODE"));
 					RList.add(reviewOne);
 				}
 			} catch(SQLException e) {

@@ -79,8 +79,8 @@ public class TravelDAO {
 		
 		try {
 			pstmt=conn.prepareStatement(query);
-			pstmt.setString(1, sido);
-			pstmt.setString(2, packageDate);
+			pstmt.setString(1, packageDate);
+			pstmt.setString(2, sido);
 			rset=pstmt.executeQuery();
 			tList = new ArrayList<Driver>();
 			while(rset.next()) {

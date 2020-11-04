@@ -144,7 +144,7 @@
 					<c:if test="${fn:length(travelList) == 0 }">
 					</c:if>
 					<input type="hidden" name="reviewNo" value="${review.reviewNo }">
-					<input type="hidden" name="packageCode" value="${review.packageCode }">
+					<input type="hidden" name="packageCode" value="${review.package_Code }">
 					<div class="message contents">
 						<textarea style="width: 1030px; height: 200px" name="contents">${review.reviewContents }</textarea>
 					</div>

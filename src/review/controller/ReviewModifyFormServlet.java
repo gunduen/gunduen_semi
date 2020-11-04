@@ -52,7 +52,7 @@ public class ReviewModifyFormServlet extends HttpServlet {
 		}
 		
 		Review review = new ReviewService().selectReview(reviewNo);
-		int packageCode = review.getPackageCode();
+		int packageCode = review.getPackage_Code();
 		ArrayList<Travel> travelList = new TravelService().selectUpdateTravelList(customerId,packageCode);
 		
 		if ( review != null ) {

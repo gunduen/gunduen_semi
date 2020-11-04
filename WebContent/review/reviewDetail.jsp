@@ -20,7 +20,7 @@
 </head>
 <body>
 	<!-- 후기 상세 -->
-	<div> 예약번호 : ${review.packageCode }</div>
+	<div> 예약번호 : ${review.package_Code }</div>
 	<div>제목 : ${ review.reviewSubject }</div>
 	<div>내용 : ${ review.reviewContents }</div>
 	<div>작성자 : ${ review.customerId}</div>
@@ -125,7 +125,8 @@
 		function delfunc() {
 			var con = confirm("정말로 삭제하시겠습니까?");
 			if (con) {
-				location.href="/review/delete?reviewNo="+${review.reviewNo};
+				location.href="/review/delete?reviewNo="+${review.reviewNo}+"&package_Code="+${review.package_Code};
+				
 			}
 		}
 		

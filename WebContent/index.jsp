@@ -139,7 +139,7 @@
             <nav>
                 <ul id="menu">
                     <li><a href="/notice/list">공지사항</a></li>
-                    <li><a href="#">기사소개</a></li>
+                    <li><a href="/driverInfoPage/DriverInfoPage.jsp">기사소개</a></li>
                     <li><a href="/review/list?reviewArea=서울">사용자 후기</a></li>
                     <li><a href="/qna/list">Q&A</a></li>
                 </ul>
@@ -157,12 +157,12 @@
 						<div class="slide">
 							<ul>
 								<li><img
-									src="../Day_07_JS_JQuery/WebContent/img/DOM%EA%B5%AC%EC%A1%B0.JPG"></li>
+									src="https://t1.daumcdn.net/cfile/blog/216CB83A54295C1C0E?original" width="500px;" height="300px;"></li>
 								<li><img
-									src="../Day_07_JS_JQuery/WebContent/img/KakaoTalk_Photo_2020-11-03-16-37-19.png"></li>
+									src="https://i.pinimg.com/originals/b7/2f/0b/b72f0b16f4a84cc8e649f6bce9048bc8.jpg"  width="500px;" height="300px;"></li>
 								<li><img
-									src="../Day_07_JS_JQuery/WebContent/img/secure_coding.jpg"></li>
-								<li></li>
+									src="https://dispatch.cdnser.be/cms-content/uploads/2019/09/09/50e20ad4-f940-4f93-830b-8501146b4488.jpg"  width="500px;" height="300px;"></li>
+								<li><img src="https://dispatch.cdnser.be/cms-content/uploads/2019/09/09/4657b750-ce06-4136-91af-40d922a327c6.jpg" width="500px;" height="300px;"></li>
 							</ul>
 						</div>
 					</div>
@@ -189,9 +189,9 @@
             <nav>
                 <ul id="menu">
                     <li><a href="/notice/list">공지사항</a></li>
-                    <li><a href="#">기사소개</a></li>
+                    <li><a href="/driverInfoPage/DriverInfoPage.jsp">기사소개</a></li>
                     <li><a href="/review/list?reviewArea=서울">사용자 후기</a></li>
-                    <li><a href="#">Q&A</a></li>
+                    <li><a href="/qna/list">Q&A</a></li>
                 </ul>
             </nav>
             <article>
