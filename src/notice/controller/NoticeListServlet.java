@@ -54,8 +54,12 @@ public class NoticeListServlet extends HttpServlet {
 			view.forward(request, response);
 		}
 		else
-		{	// 서비스 요청이 실패했을 때
-			request.getRequestDispatcher("/WEB-INF/views/notice/noticeError.html").forward(request, response);
+		{	request.setAttribute("nList", nList);
+			request.setAttribute("pageNavi", pageData.getPageNavi());
+			request.setAttribute("pageNum", pageNum);
+			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/notice/noticeList.jsp");
+			view.forward(request, response);
+//			request.getRequestDispatcher("/WEB-INF/views/notice/noticeError.html").forward(request, response);
 		}
 	}
 

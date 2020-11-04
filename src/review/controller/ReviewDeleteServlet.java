@@ -31,7 +31,9 @@ public class ReviewDeleteServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
 		String area = request.getParameter("reviewArea");
+		int package_Code = Integer.parseInt(request.getParameter("package_Code"));
 		int result = new ReviewService().deleteReview(reviewNo);
+		int resulta = new ReviewService().updateReviewCheck(package_Code);
 		if (result > 0) {
 			response.sendRedirect("/review/list?reviewArea=" + area);
 		} else {

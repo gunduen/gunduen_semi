@@ -51,13 +51,13 @@ public class ReviewInsertServlet extends HttpServlet {
 		if (session != null && (session.getAttribute("customer") != null)) {
 			String customerId = ((Customer)session.getAttribute("customer")).getCustomer_Id();
 			System.out.println(customerId);
-
 			int result = new ReviewService().insertReview(subject, contents, customerId, area, packageCode);
 			System.out.println(result);
 			if (result > 0) {
 				int resulta = new TravelService().updateTravel(packageCode); // traveldao (reviewCheck) = y/n 추가 해서 와이이면 리뷰작성 , 엔이면 리뷰 안작성
 				if (resulta >0) {
 					System.out.println(area);
+					response.setContentType("text/html; charset=utf-8");
 					response.sendRedirect("/review/list?reviewArea=서울");
 				}
 			} else {

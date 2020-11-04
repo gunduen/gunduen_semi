@@ -55,8 +55,12 @@ public class QnaListServlet extends HttpServlet {
 			RequestDispatcher qna = request.getRequestDispatcher("/qna/qnaList.jsp");
 			qna.forward(request, response);
 		}else {
-			out.println("<script>alert('관리자에게 문의 부탁드립니다.')");
-			out.println("history.back();</script>");
+			request.setAttribute("qList", qList);
+			request.setAttribute("pageNavi", pageData.getPageNavi());
+			request.setAttribute("pageNum", pageNum);
+			// 전체게시글갯수, 현재페이지, 페이지당 보여줄 게시글 갯수
+			RequestDispatcher qna = request.getRequestDispatcher("/qna/qnaList.jsp");
+			qna.forward(request, response);
 		}
 	}
 

@@ -49,6 +49,25 @@ public class ReviewService {
 		return review;
 	}
 	
+	public int updateReviewCheck(int package_Code) {
+		int result = 0;
+		Connection conn = null;
+		try {
+			conn = factory.createConnection();
+			result = new ReviewDAO().updateReviewCheck(conn, package_Code);
+			if (result >0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
+	}
+	
 	public int insertReview(String subject, String contents, String customerId, String area, int packageCode) {
 		Connection conn = null;
 		int result = 0;

@@ -177,6 +177,7 @@
 			</tr>
 		</table>
 		</c:if>
+		${fn:length(rTravel) }
 		<!-- 글쓰기 버튼  -->
 			<c:if test="${fn:length(rTravel) == 0 }">
 			<div></div>
