@@ -264,7 +264,7 @@ li:hover {
 						</tr>
 					
 					<c:forEach items="${rList }" var="travel">
-						<tr id="travel" onClick="location.href='/select/MyTravel?package_Code=${travel.package_Code}'">
+						<tr id="travel" onClick="location.href='/select/MyTravel?packageCode=${travel.package_Code}'">
 							<td>${travel.package_TravelDate }</td>
 							<td>${travel.package_Area }</td>
 							<td>${travel.package_Utilization }</td>

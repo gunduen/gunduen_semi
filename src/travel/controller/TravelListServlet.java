@@ -63,16 +63,15 @@ public class TravelListServlet extends HttpServlet {
 			request.setAttribute("coordy", coordy);
 			RequestDispatcher view = request.getRequestDispatcher("/travel/Travel.jsp");
 			view.forward(request, response);
-		}if(tList.isEmpty()) {
-			request.setAttribute("tList", tList);
-			request.setAttribute("sido", sido);
-			request.setAttribute("address", address);
-			request.setAttribute("packageDate", packageDate);
-			request.setAttribute("coordx", coordx);
-			request.setAttribute("coordy", coordy);
-			RequestDispatcher view = request.getRequestDispatcher("/travel/Travel.jsp");
-			view.forward(request, response);
-		}
+		} /*
+			 * if(tList.isEmpty()) { request.setAttribute("tList", tList);
+			 * request.setAttribute("sido", sido); request.setAttribute("address", address);
+			 * request.setAttribute("packageDate", packageDate);
+			 * request.setAttribute("coordx", coordx); request.setAttribute("coordy",
+			 * coordy); RequestDispatcher view =
+			 * request.getRequestDispatcher("/travel/Travel.jsp"); view.forward(request,
+			 * response); }
+			 */
 		else {
 			request.getRequestDispatcher("error");
 		}

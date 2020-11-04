@@ -1,6 +1,8 @@
 package travel.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,10 +33,14 @@ public class TravelConfirmServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		int packageCode = Integer.parseInt(request.getParameter("package_Code"));
+		String driverId = request.getParameter("driverId");
 		int result = new TravelService().confirmTravel(packageCode);
 		if(result > 0) {
+			request.setAttribute("packageCode", packageCode);
+			request.setAttribute("driverId", driverId);
+			RequestDispatcher travel = request.getRequestDispatcher("/DriverTravel/List");
+			travel.forward(request, response);
 			
-			response.sendRedirect("/DriverTravel/List");
 		}else
 		{
 			request.getRequestDispatcher("error");

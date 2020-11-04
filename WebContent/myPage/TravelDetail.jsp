@@ -307,11 +307,22 @@ li:hover {
                     <td>${travel.package_Date.getYear()+1900 }년${travel.package_Date.getMonth() }월 ${travel.package_Date.getDay()}일</td>
                     <td>${travel.package_Code }</td>
                 </tr>
-               
-                <input type="button" value="예약취소" name="cancle" onClick="location.href='/travel/delete?package_Code=${travel.package_Code}'">
+               	
+               	<a href="/travel/delete?package_Code=${travel.package_Code}" onclick="return cancle()" style="color:red;">예약취소</a>
                 <c:if test="${sessionScope.driver ne null }">
-                <input type="button" value="예약확정" name="cancle" onClick="location.href='/travel/confirm?package_Code=${travel.package_Code}'">
+                <a href="/travel/confirm?package_Code=${travel.package_Code}&driverId=${sessionScope.driver.driverId }" onclick="return question();" style="color:red;">예약확정</a>
+                <script>
+				function question() {
+					 return confirm("예약확정을 하시겠습니까?");
+				 }
+				
+				</script>
                 </c:if>
+                <script>
+                function cancle(){
+					return confirm("예약을 취소하시겠습니까?");
+				}
+                </script>
                 </c:forEach>
             </table>
              
