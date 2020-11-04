@@ -38,7 +38,6 @@ public class TravelDeleteServlet extends HttpServlet {
 		{
 			request.getRequestDispatcher("error");
 		}
-		
 	}
 
 	/**

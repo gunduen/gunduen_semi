@@ -102,6 +102,7 @@ public class DriverEnrollServlet extends HttpServlet {
 		      request.setAttribute("Driver_Id", Driver_Id);
 		      RequestDispatcher view = request.getRequestDispatcher("/travel/base");
 		      view.forward(request, response);
+			
 	      }else {
 	    	  out.println("<script>alert('회원가입에 실패하셨어요');");
 	    	  out.println("history.back();</script>");

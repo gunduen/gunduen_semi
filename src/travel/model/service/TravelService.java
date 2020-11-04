@@ -70,6 +70,25 @@ public class TravelService {
 		}
 		return result;
 	}
+	public int deleteBaseTravel(String Driver_Id) {
+		Connection conn = null;
+		int result = 0;
+		try {
+			conn = factory.createConnection();
+			result = new TravelDAO().deleteBaseTravel(conn,Driver_Id);
+		}catch(SQLException e) {
+			e.printStackTrace();
+			
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		}finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
+	}
 	
 	//jimin
 	public ArrayList<Travel> selectTravelList(String customerId) {
@@ -171,4 +190,37 @@ public class TravelService {
 		}
 		return result;
 	}
+	public ArrayList<Travel> selectDriverTravelList(String driverId) {
+		Connection conn = null;
+		ArrayList<Travel> dList = null;
+		try {
+			conn = factory.createConnection();
+			dList = new TravelDAO().selectDriverTravelList(conn,driverId);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(conn);
+		}
+		return dList;
+	}
+	public int confirmTravel(int package_Code) {
+		int result = 0;
+		Connection conn = null;
+		try {
+			conn=factory.createConnection();
+			result=new TravelDAO().confirmTravel(conn,package_Code);
+			if(result>0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
+	}
+
+
 }

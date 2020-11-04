@@ -199,6 +199,15 @@ li:hover {
 </style>
 </head>
 <body>
+	<c:choose>	
+		<c:when test="${sessionScope.customer eq null && sessionScope.driver eq null }">
+    		<script>
+    			alert('로그인 하신 후에 이용 가능한 페이지입니다. \n 로그인 후 이용해주세요.');
+    			location.href='/index.jsp';
+    		</script>
+    	</c:when>
+		<c:otherwise>
+		
 	<header>
 		<div id="main">
 			<div id="title"></div>
@@ -206,7 +215,10 @@ li:hover {
 			<div id="rightBanner">
 
 				<div id="welcome">
-					<p style="line-height: 130px; text-align: right;">${sessionScope.customer.customer_Id}님</p>
+		<c:if test="${sessionScope.driver ne null || sessionScope.customer ne null}">
+		 	<c:if test="${sessionScope.customer ne null }"> [고객 : ${sessionScope.customer.customer_Id }]님</c:if>
+		 	<c:if test="${sessionScope.driver ne null }">[기사 : ${sessionScope.driver.driverId }]님</c:if>
+		 	</c:if>
 				</div>
 				<div id="logout">
 					<form action="/mypage/logout">
@@ -297,6 +309,9 @@ li:hover {
                 </tr>
                
                 <input type="button" value="예약취소" name="cancle" onClick="location.href='/travel/delete?package_Code=${travel.package_Code}'">
+                <c:if test="${sessionScope.driver ne null }">
+                <input type="button" value="예약확정" name="cancle" onClick="location.href='/travel/confirm?package_Code=${travel.package_Code}'">
+                </c:if>
                 </c:forEach>
             </table>
              
@@ -307,6 +322,7 @@ li:hover {
 	<footer>
 		<span id="copyright">Copyright 2020 CLOUD All rights reserved</span>
 	</footer>
+	
 	<c:forEach items="${tdList }" var="travel">
 		<script>
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div
@@ -332,6 +348,8 @@ li:hover {
 			
 		</script>
 	</c:forEach>
+	</c:otherwise>
+	</c:choose>
 </body>
 
 </html>

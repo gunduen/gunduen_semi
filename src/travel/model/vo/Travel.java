@@ -19,12 +19,12 @@ public class Travel {
 	private String review_Check;
 	
 	
-	public String getReviewYN() {
+	public String getReview_Check() {
 		return review_Check;
 	}
 
 
-	public void setReviewYN(String review_Check) {
+	public void setReview_Check(String review_Check) {
 		this.review_Check = review_Check;
 	}
 

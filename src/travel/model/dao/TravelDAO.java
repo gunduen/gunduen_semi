@@ -15,7 +15,7 @@ public class TravelDAO {
 	public int insertTravel(Connection conn, Travel travel, String customerId) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "INSERT INTO TRAVEL VALUES(SEQ_TRAVEL.NEXTVAL,?,?,?,SYSDATE,?,1,?,?,?,?,?)";
+		String query = "INSERT INTO TRAVEL VALUES(SEQ_TRAVEL.NEXTVAL,?,?,?,SYSDATE,?,1,?,?,?,?,?,'N')";
 		
 		try {
 			
@@ -41,11 +41,27 @@ public class TravelDAO {
 	public int insertBaseTravel(Connection conn,String Driver_Id,String Driver_Name) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "INSERT INTO TRAVEL VALUES(SEQ_TRAVEL.NEXTVAL,'1','1','1',SYSDATE,'1','1','admin',?,?,'1','1')";
+		String query = "INSERT INTO TRAVEL VALUES(SEQ_TRAVEL.NEXTVAL,'1','1','1',SYSDATE,'1','1','admin',?,?,'1','1','N')";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, Driver_Name);
 			pstmt.setString(2, Driver_Id);
+			result = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+	
+	public int deleteBaseTravel(Connection conn,String Driver_Id) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "DELETE FROM TRAVEL WHERE DRIVER_ID= ? ";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, Driver_Id);
 			result = pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -109,7 +125,7 @@ public class TravelDAO {
 				travel.setDriver_Id(rset.getString("DRIVER_ID"));
 				travel.setCoordx(rset.getString("COORDX"));
 				travel.setCoordy(rset.getString("COORDY"));
-				travel.setReviewYN(rset.getString("REVIEW_CHECK"));
+				travel.setReview_Check(rset.getString("REVIEW_CHECK"));
 				rList.add(travel);
 			}
 		}catch(SQLException e) {
@@ -147,7 +163,7 @@ public class TravelDAO {
 				travel.setDriver_Id(rset.getString("DRIVER_ID"));
 				travel.setCoordx(rset.getString("COORDX"));
 				travel.setCoordy(rset.getString("COORDY"));
-				travel.setReviewYN(rset.getString("REVIEW_CHECK"));
+				travel.setReview_Check(rset.getString("REVIEWYN"));
 				rList.add(travel);
 			}
 		}catch(SQLException e) {
@@ -186,7 +202,7 @@ public class TravelDAO {
 				travelOne.setDriver_Id(rset.getString("DRIVER_ID"));
 				travelOne.setCoordx(rset.getString("COORDX"));
 				travelOne.setCoordy(rset.getString("COORDY"));
-				travelOne.setReviewYN(rset.getString("REVIEW_CHECK"));
+				travelOne.setReview_Check(rset.getString("REVIEWYN"));
 				TList.add(travelOne);
 			}
 		} catch (SQLException e) {
@@ -335,6 +351,54 @@ public class TravelDAO {
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, packageCode);
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+	public ArrayList<Travel> selectDriverTravelList(Connection conn,String driverId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Travel> dList = null;
+		String query = "SELECT * FROM TRAVEL WHERE Driver_Id = ? ORDER BY PACKAGE_CODE";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, driverId);
+			rset= pstmt.executeQuery();
+			dList = new ArrayList<Travel>();
+			while(rset.next()) {
+				Travel travel = new Travel();
+				travel.setPackage_Area(rset.getString("package_Area"));
+				travel.setPackage_Pickup(rset.getString("package_Pickup"));
+				travel.setPackage_TravelDate(rset.getString("package_TravelDate"));
+				travel.setPackage_Utilization(rset.getString("package_Utilization"));
+				travel.setDriver_Name(rset.getString("driver_Name"));
+				travel.setPackage_Code(rset.getInt("package_Code"));
+				travel.setCustomer_Id(rset.getString("customer_Id"));
+				travel.setDriver_Id(rset.getString("driver_Id"));
+				travel.setCoordx(rset.getString("coordx"));
+				travel.setCoordy(rset.getString("coordy"));
+				dList.add(travel);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return dList;
+	}
+	public int confirmTravel(Connection conn, int package_Code) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "UPDATE TRAVEL SET PACKAGE_CONFIRM = '2' WHERE PACKAGE_CODE = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, package_Code);
 			result = pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();

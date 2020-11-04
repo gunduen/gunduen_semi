@@ -191,6 +191,14 @@ li:hover {
 </style>
 </head>
 <body>
+	<c:choose>	
+		<c:when test="${sessionScope.customer eq null && sessionScope.driver eq null }">
+    		<script>
+    			alert('로그인 하신 후에 이용 가능한 페이지입니다. \n 로그인 후 이용해주세요.');
+    			location.href='/index.jsp';
+    		</script>
+    	</c:when>
+		<c:otherwise>
 	<header>
 		<div id="main">
 			<div id="title"></div>
@@ -230,13 +238,9 @@ li:hover {
 			<nav id="navigator">
 				<!-- if문으로 li 개수 조절 -->
 				<li><a href="/mypage/travel?customerId=${sessionScope.customer.customer_Id }">예약확인/ 예약취소</a></li>
-				<li><a href="/message/receiverList?receiver=${ sessionScope.customer.customer_Id }">쪽지함</a></li>
-				<li><a
-					href="/customer/myInfo?customerId=${sessionScope.customer.customer_Id }">회원정보
-						수정</a></li>
-				<li><a
-					href="/customer/delete?customerId=${sessionScope.customer.customer_Id }">회원
-						탈퇴</a></li>
+				<li><a href="/message/messageList.jsp">쪽지함</a></li>
+				<li><a href="/customer/myInfo?customerId=${sessionScope.customer.customer_Id }">회원정보 수정</a></li>
+				<li><a href="/customer/delete?customerId=${sessionScope.customer.customer_Id }" onclick="return question();">회원 탈퇴</a></li>
 				<li><a href="selectHoliday.html">My 일정관리</a></li>
 			</nav>
 
@@ -282,7 +286,13 @@ li:hover {
 	<footer>
 		<span id="copyright">Copyright 2020 CLOUD All rights reserved</span>
 	</footer>
-
+	</c:otherwise>
+	</c:choose>
+	<script>
+	function question() {
+		 return confirm("정말로 탈퇴하시겠습니까?");
+	 }
+	</script>
 </body>
 
 </html>

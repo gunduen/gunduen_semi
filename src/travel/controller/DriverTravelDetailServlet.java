@@ -1,8 +1,9 @@
 package travel.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,17 +14,16 @@ import travel.model.service.TravelService;
 import travel.model.vo.Travel;
 
 /**
- * Servlet implementation class BaseServlet
+ * Servlet implementation class DriverTravelDetailServlet
  */
-@WebServlet("/travel/base")
-
-public class BaseServlet extends HttpServlet {
+@WebServlet("/select/DriverTravel")
+public class DriverTravelDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BaseServlet() {
+    public DriverTravelDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,27 +32,19 @@ public class BaseServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		request.setCharacterEncoding("utf-8");
-		PrintWriter out = response.getWriter();
 		
-		String Driver_Id = (String)request.getAttribute("Driver_Id");
-		String Driver_Name = (String)request.getAttribute("Driver_Name");
-		
-	
-		System.out.println(Driver_Id);
-		System.out.println(Driver_Name);
-		
-		int result = new TravelService().insertBaseTravel(Driver_Id,Driver_Name);
-		
-		if(result>0) {
-			out.println("<script>alert('회원가입에 성공하였습니다.'); document.location.href='/index.jsp';</script>");
+		int packageCode = Integer.parseInt(request.getParameter("package_Code"));
+		String driverId = request.getParameter("driverId");
+		ArrayList<Travel> tdList = new TravelService().selctMyTravel(packageCode);
+		if(!tdList.isEmpty()) {
+			request.setAttribute("tdList", tdList);
+			request.setAttribute("packageCode", packageCode);
+			RequestDispatcher travel = request.getRequestDispatcher("/myPage/TravelDetail.jsp");
+			travel.forward(request, response);
 		}else {
-			out.println("<script>alert('회원가입에 실패하셨어요');");
-	    	out.println("history.back();</script>");
+			request.getRequestDispatcher("error");
 		}
-		
-		
 	}
 
 	/**

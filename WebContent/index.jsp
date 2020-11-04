@@ -127,17 +127,11 @@
 				</c:if>
 				<c:if
 					test="${sessionScope.customer.adminCheck eq 0}">
-					<a href="/myPage/CustomerMyPage.jsp"><input type="button" value="마이페이지"></a>
+					<a href="/mypage/travel?customerId=${sessionScope.customer.customer_Id }"><input type="button" value="마이페이지"></a>
 				</c:if>
-				
-				<%-- <a
-						href="/mypage/travel?customerId=${sessionScope.customer.customer_Id }"><input
-						type="button" value="마이페이지"></a>
- --%>
-
 
 				<c:if test="${sessionScope.driver ne null}">
-            	<a href="/myPage/DriverMyPage.jsp"><input type="button" value="마이페이지"></a>
+            	<a href="/DriverTravel/List?driverId=${sessionScope.driver.driverId }"><input type="button" value="마이페이지"></a>
             </c:if>
             </div>
         </header>
