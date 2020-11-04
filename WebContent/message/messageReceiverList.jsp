@@ -75,12 +75,12 @@
 			<th>받는 이</th>
 		</tr>
 		<c:forEach items="${ receiverList }" var="Rmessage" varStatus="index">
-			<tr onClick="location.href='/message/select?messageNo=${Smessage.message_No}'">
+			<tr onClick="location.href='/message/select?messageNo=${Rmessage.message_No}'">
 				<td>${ Rmessage.sender }</td>
 				<td>${ Rmessage.message_Subject}</td>
 				<td>${ Rmessage.message_Date }</td>
 				<td>${ Rmessage.receiver }</td>
-				<td><button id="btn1" onclick="click1(${Rmessage.message_No})">삭제</button></td>
+				
 			</tr>
 		</c:forEach>
 		<tr>
