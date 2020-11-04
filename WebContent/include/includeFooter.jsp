@@ -43,7 +43,7 @@
    <script src="../assets/js/main.js"></script>
 </head>
 <body>
-   <footer>
+   <footer id="footer">
       <div class="footer-top">
             <div class="container">
                <div class="row">
