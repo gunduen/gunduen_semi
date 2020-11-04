@@ -31,11 +31,12 @@ public class UpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		Customer customer = new Customer();
-		customer.setCustomer_Id(request.getParameter("customerId"));
-		customer.setCustomer_Pwd(request.getParameter("customerPwd"));
-		customer.setCustomer_Name(request.getParameter("customerName"));
-		customer.setCustomer_Phone(request.getParameter("customerPhone"));
-		customer.setCustomer_Email(request.getParameter("customerEmail"));
+		customer.setCustomer_Id(request.getParameter("userId"));
+		customer.setCustomer_Pwd(request.getParameter("userPwd"));
+		customer.setCustomer_Name(request.getParameter("userName"));
+		customer.setCustomer_Phone(request.getParameter("firstPhone")+"-"+request.getParameter("secondPhone")+"-"+request.getParameter("thirdPhone"));
+		customer.setCustomer_Email(request.getParameter("emailId")+request.getParameter("emailTag"));
+		customer.setCustomer_Rrn(request.getParameter("userRrnFirst")+"-"+request.getParameter("userRrnSecond"));
 		
 		int result = new CustomerService().updateCustomer(customer);
 		

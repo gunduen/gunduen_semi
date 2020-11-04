@@ -41,7 +41,7 @@ public class MyinfoServlet extends HttpServlet {
 			request.setAttribute("customer", customer);
 			request.getRequestDispatcher("/login/customerMyinfo.jsp").forward(request, response);
 		} else {
-			request.getRequestDispatcher("/login/customerError.jsp");
+			response.sendRedirect("/login/customerError.jsp");
 		}
 	}
 

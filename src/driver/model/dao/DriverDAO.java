@@ -309,22 +309,28 @@ public class DriverDAO {
 	public int updateDriver(Connection conn, Driver driver) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = "UPDATE DRIVER SET DRIVER_PWD = ?, DRIVER_NAME = ?, DRIVER_PHONE = ?, DRIVER_EMAIL = ?, DRIVER_HOME = ?, DRIVER_AREA = ?, DRIVER_SELFINTRO = ?, DRIVER_LICENSE = ?, DRIVER_BLICENSE = ?, DRIVER_INFOIMAGE = ? WHERE DRIVER_ID = ? ";
+		String query = "UPDATE DRIVER SET DRIVER_PWD=?, DRIVER_NAME=?, DRIVER_PHONE = ?, DRIVER_EMAIL=?, DRIVER_HOME = ?, DRIVER_RRN=?, "
+				+ "DRIVER_SELFINTRO = ?, DRIVER_LICENSE = ?,DRIVER_LICENSE_PATH=? , DRIVER_BLICENSE = ?, DRIVER_BLICENSE_PATH=?, DRIVER_INFOIMAGE = ?, "
+				+ "DRIVER_INFOIMAGE_PATH=?, DRIVER_AREA = ? WHERE DRIVER_ID = ? ";
 	    try {
 	    	pstmt = conn.prepareStatement(query);
-	    	pstmt.setString(1, driver.getDriverPwd());
-	    	pstmt.setString(2, driver.getDriverName());
-	    	pstmt.setString(3, driver.getDriverPhone());
-	    	pstmt.setString(4, driver.getDriverEmail());
-	    	pstmt.setString(5, driver.getDriverHome());
-	    	pstmt.setString(6, driver.getDriverArea());
-	    	pstmt.setString(7, driver.getDriverSelfInfo());
-	    	pstmt.setString(8, driver.getDriverLicense());
-	    	pstmt.setString(9, driver.getDriverBLicense());
-	    	pstmt.setString(10,driver.getDriverInfoImage());
-	    	pstmt.setString(11,driver.getDriverId());
-	    	
-	    	result = pstmt.executeUpdate();
+			
+			pstmt.setString(1, driver.getDriverPwd());
+			pstmt.setString(2, driver.getDriverName());
+			pstmt.setString(3, driver.getDriverPhone());
+			pstmt.setString(4, driver.getDriverEmail());
+			pstmt.setString(5, driver.getDriverHome());
+			pstmt.setString(6, driver.getDriverRrn());
+			pstmt.setString(7, driver.getDriverSelfInfo());
+			pstmt.setString(8, driver.getDriverLicense());
+			pstmt.setString(9, driver.getDriverLicense_path());
+			pstmt.setString(10, driver.getDriverBLicense());
+			pstmt.setString(11, driver.getDriverBLicense_path());
+			pstmt.setString(12, driver.getDriverInfoImage());
+			pstmt.setString(13, driver.getDriverInfoImage_path());
+			pstmt.setString(14, driver.getDriverArea());
+			pstmt.setString(15, driver.getDriverId());
+			result = pstmt.executeUpdate();
 	    	
 	    } catch (SQLException e) {
 	    	e.printStackTrace();

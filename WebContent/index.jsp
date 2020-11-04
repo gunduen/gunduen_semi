@@ -35,6 +35,36 @@
   * Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
+  ======================================================== --> <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <!-- <title>Mentor Bootstrap Template - Index</title> -->
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Mentor - v2.1.0
+  * Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
   ======================================================== -->
 
 <title>Welcome to the Cloud</title>
@@ -62,6 +92,8 @@
 	      85% {margin-left:-300%;}
 	      100% {margin-left:0;}
 	      }
+	      
+	      div
     </style>
 </head>
 <body>
@@ -290,7 +322,7 @@
 			class="d-flex justify-content-center align-items-center">
 			<div class="container position-relative" data-aos="zoom-in"
 				data-aos-delay="100"
-				style="border: 1px solid black; text-align: center;">
+				style="border: 1px solid black; ">
 				<div class="slide" style="border: 1px solid black; float : left;">
 					<ul>
 						<li><img
@@ -308,8 +340,8 @@
 					</ul>
 
 				</div>
-				<div id="right" style="border: 1px solid black; width : 500px; height:300px; float : left; text-align:center;">
-					<div id ="intro"style="border: 1px solid black;  float : left;">
+				<div id="right" style="border: 1px solid black; height:300px; float : left; text-align:center;">
+					<div id ="intro"style="border: 1px solid black;  width : 100%; float : left;">
 					<div id="right_top">행복한 택시여행 떠나 보실라우?</div>
 					<div id="right_bottom">근두운: 손오공이 근두운을 타고 팔도유람하듯 택시를 타고<br> 자유롭게
 						여행할 수 있게 해주는 서비스, <br>어디든 떠날 수 있는 국내 자유여행</div>

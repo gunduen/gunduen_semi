@@ -207,14 +207,15 @@ public class CustomerDAO {
 	public int updateCustomer(Connection conn, Customer customer) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = "UPDATE CUSTOMER SET CUSTOMER_NAME = ?, CUSTOMER_PWD = ?, CUSTOMER_PHONE = ?, CUSTOMER_EMAIL = ? WHERE CUSTOMER_ID = ?";
+		String query = "UPDATE CUSTOMER SET CUSTOMER_PWD = ?, CUSTOMER_NAME = ?,CUSTOMER_PHONE = ?, CUSTOMER_EMAIL = ?, CUSTOMER_RRN = ? WHERE CUSTOMER_ID = ?";
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, customer.getCustomer_Name());
-			pstmt.setString(2, customer.getCustomer_Pwd());
+			pstmt.setString(1, customer.getCustomer_Pwd());
+			pstmt.setString(2, customer.getCustomer_Name());
 			pstmt.setString(3, customer.getCustomer_Phone());
 			pstmt.setString(4, customer.getCustomer_Email());
-			pstmt.setString(5, customer.getCustomer_Id());
+			pstmt.setString(5, customer.getCustomer_Rrn());
+			pstmt.setString(6, customer.getCustomer_Id());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
