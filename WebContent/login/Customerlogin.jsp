@@ -101,7 +101,7 @@
                          <input type="password" name="userPwd" style="margin-top: -10px;" class="form-control" id="userPwd" placeholder="비밀번호를 입력하세요.">
                          <br>
                          <input type="submit" class="btn btn-outline-primary btn-lg btn-block" style="margin-top: -10px; font-family: 'Do Hyeon', sans-serif;" value="로그인" ><br>
-                          <a href="/login/CustomerEnroll.html"><input type="button" class="btn btn-outline-primary btn-lg btn-block" style="margin-top: -10px; font-family: 'Do Hyeon', sans-serif;" value="회원가입"></a><br>
+                          <a href="/login/CustomerEnroll.jsp"><input type="button" class="btn btn-outline-primary btn-lg btn-block" style="margin-top: -10px; font-family: 'Do Hyeon', sans-serif;" value="회원가입"></a><br>
                           <a href="CustomerFindId.jsp" style="color: #a3d4f7;" id="hoverA">아이디 찾기</a> / 
                           <a href="CustomerFindPw.jsp" style="color: #a3d4f7;" id="hoverA">비밀번호 찾기</a>
                    </form>

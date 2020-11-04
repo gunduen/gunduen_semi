@@ -46,17 +46,18 @@
         <!-- -->
         *{margin:0;padding:0;}
 	    ul,li{list-style:none;}
-	    .slide{height:300px;overflow:hidden;}
+	    .slide{width : 500px; height:300px;overflow:hidden;}
 	    .slide ul{width:calc(100% * 4);display:flex;animation:slide 8s infinite;} /* slide를 8초동안 진행하며 무한반복 함 */
 	    .slide li{width:calc(100% / 4);height:300px;}
 	    
 	    @keyframes slide {
-	      0% {margin-left:0;} /* 0 ~ 10  : 정지 */
-	      10% {margin-left:0;} /* 10 ~ 25 : 변이 */
-	      25% {margin-left:-100%;} /* 25 ~ 35 : 정지 */
-	      35% {margin-left:-100%;} /* 35 ~ 50 : 변이 */
-	      50% {margin-left:-200%;}
-	      60% {margin-left:-200%;}
+	      0% {margin-left:0;} /* 0 ~ 15  : 정지 */ 
+	      13% {margin-left:0;}
+	      15% {margin-left:0;} /* 15 ~ 25 : 변이 */
+	      25% {margin-left:-100%;} /* 25 ~ 40 : 정지 */
+	      40% {margin-left:-100%;} /* 40 ~ 50 : 변이 */ 
+	      50% {margin-left:-200%;} /* 50 ~ 65 : 정지 */ 
+	      60% {margin-left:-200%;} /* 65 ~ 75 */
 	      75% {margin-left:-300%;}
 	      85% {margin-left:-300%;}
 	      100% {margin-left:0;}
@@ -186,7 +187,7 @@
 						</ul>
 					</div>
 				</div>
-				<div id="right">
+				<div id="right" >
 					<div id="right_top">행복한 택시여행 떠나 보실라우?</div>
 					<div id="right_bottom">근두운: 손오공이 근두운을 타고 팔도유람하듯 택시를 타고 자유롭게
 						여행할 수 있게 해주는 서비스, 어디든 떠날 수 있는 국내 자유여행</div>
@@ -285,30 +286,34 @@
 		<!-- End Hero -->
         
         <!-- ======= Main ======= -->
-		<section id="main" class="d-flex justify-content-center align-items-center">
-		    <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
-				<div id="left">
-					<div class="slide">
-						<ul>
-							<li><img
-								src="https://t1.daumcdn.net/cfile/blog/216CB83A54295C1C0E?original"
-								width="500px;" height="300px;"></li>
-							<li><img
-								src="https://i.pinimg.com/originals/b7/2f/0b/b72f0b16f4a84cc8e649f6bce9048bc8.jpg"
-								width="500px;" height="300px;"></li>
-							<li><img
-								src="https://dispatch.cdnser.be/cms-content/uploads/2019/09/09/50e20ad4-f940-4f93-830b-8501146b4488.jpg"
-								width="500px;" height="300px;"></li>
-							<li><img
-								src="https://dispatch.cdnser.be/cms-content/uploads/2019/09/09/4657b750-ce06-4136-91af-40d922a327c6.jpg"
-								width="500px;" height="300px;"></li>
-						</ul>
-					</div>
+		<section id="main"
+			class="d-flex justify-content-center align-items-center">
+			<div class="container position-relative" data-aos="zoom-in"
+				data-aos-delay="100"
+				style="border: 1px solid black; text-align: center;">
+				<div class="slide" style="border: 1px solid black; float : left;">
+					<ul>
+						<li><img
+							src="https://t1.daumcdn.net/cfile/blog/216CB83A54295C1C0E?original"
+							width="500px;" height="300px;"></li>
+						<li><img
+							src="https://i.pinimg.com/originals/b7/2f/0b/b72f0b16f4a84cc8e649f6bce9048bc8.jpg"
+							width="500px;" height="300px;"></li>
+						<li><img
+							src="https://dispatch.cdnser.be/cms-content/uploads/2019/09/09/50e20ad4-f940-4f93-830b-8501146b4488.jpg"
+							width="500px;" height="300px;"></li>
+						<li><img
+							src="https://dispatch.cdnser.be/cms-content/uploads/2019/09/09/4657b750-ce06-4136-91af-40d922a327c6.jpg"
+							width="500px;" height="300px;"></li>
+					</ul>
+
 				</div>
-				<div id="right">
+				<div id="right" style="border: 1px solid black; width : 500px; height:300px; float : left; text-align:center;">
+					<div id ="intro"style="border: 1px solid black;  float : left;">
 					<div id="right_top">행복한 택시여행 떠나 보실라우?</div>
-					<div id="right_bottom">근두운: 손오공이 근두운을 타고 팔도유람하듯 택시를 타고 자유롭게
-						여행할 수 있게 해주는 서비스, 어디든 떠날 수 있는 국내 자유여행</div>
+					<div id="right_bottom">근두운: 손오공이 근두운을 타고 팔도유람하듯 택시를 타고<br> 자유롭게
+						여행할 수 있게 해주는 서비스, <br>어디든 떠날 수 있는 국내 자유여행</div>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -366,6 +371,8 @@
 	
 	<!-- Template Main JS File -->
 	<script src="assets/js/main.js"></script>
+	
+	
 </body>
 </html>
 
