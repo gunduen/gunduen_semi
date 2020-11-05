@@ -272,7 +272,7 @@
 					Welcome to the Cloud<br>
 				</h1>
 				<h2>근두운에 오신걸 환영합니다^^</h2>
-				<a href="/travel/Travel.jsp" class="btn-get-started">예약하기 
+				<a href="/travel/Travel.jsp" class="btn-get-started" onclick="return loginCheck();">예약하기 
 					<svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-cloud"
 					fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 			            <path fill-rule="evenodd"
@@ -366,6 +366,9 @@
 	
 	<!-- Template Main JS File -->
 	<script src="assets/js/main.js"></script>
+	
+	<script>
+	</script>
 </body>
 </html>
 

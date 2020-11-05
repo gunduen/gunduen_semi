@@ -6,6 +6,43 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <!-- <title>Mentor Bootstrap Template - Index</title> -->
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="../assets/css/style.css" rel="stylesheet">
+  
+   <!-- Vendor JS Files -->
+   <script src="../assets/vendor/jquery/jquery.min.js"></script>
+   <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script src="../assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+   <script src="../assets/vendor/php-email-form/validate.js"></script>
+   <script src="../assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+   <script src="../assets/vendor/counterup/counterup.min.js"></script>
+   <script src="../assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+   <script src="../assets/vendor/aos/aos.js"></script>
+   
+   <!-- Template Main JS File -->
+   <script src="../assets/js/main.js"></script>
 <title>근두운 QnA - 상세보기</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -26,103 +63,157 @@
     {
         text-decoration-line: none;
     }
-    .left
-    {
-        float: right;
-    }
-/*
-    h3
-    {
-        text-align: left;
-    }
-*/
-    #question
-    {
-        border: 1px solid black;
-        width: 1000px;
-        height: 100%;
-        margin: auto;
-    }
-    #answer
-    {
-        border: 1px solid black;
-        width: 1000px;
-        height: 100%;
-        margin: auto;
-    }
 </style>
 </head>
 <body>
     <header>
-        <nav>
+        <header id="header" class="fixed-top">
+         <div class="container d-flex align-items-center">
+
+            <h1 class="logo mr-auto">
+               <a href="/index.jsp">GUNDUEN</a>
+            </h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+            <nav class="nav-menu d-none d-lg-block">
+               <ul>
+                  <li><a href="/index.jsp">Home</a></li>
+                  <li><a href="/notice/list">Notice</a></li>
+                  <li><a href="/driverInfoPage/DriverInfoPage.jsp">Driver</a></li>
+                  <li class="active"><a href="/qna/list">Q&A</a></li>
+                  <li><a href="/review/list?reviewArea=서울">Review</a></li>
+                  <li></li>
+               </ul>
+            </nav><!-- .nav-menu -->
             
-        </nav>
+            <!-- admin 로그인시 header -->
+            <c:if
+            test="${sessionScope.customer.adminCheck == 1 }">
+            <a href="/admin/driverList" class="get-started-btn">마이페이지</a>
+            <a href="/member/logout" class="logout-btn" onclick="return warning();">로그아웃</a>
+                <script>
+                   function warning(){
+                      var question = confirm('정말 로그아웃하시겠어요?');
+                      if(question){
+                         return true;
+                      }else{
+                      return false;
+                      }
+                   }
+                </script>
+                &nbsp;&nbsp; <img src="../assets/img/happy.png" style="height: 40px">
+         </c:if>
+         
+         <!-- 고객/기사 로그인시 header -->
+         <c:if
+            test="${sessionScope.customer.adminCheck < 1 }">
+            <a href="/mypage/travel?customerId=${sessionScope.customer.customer_Id }" class="get-started-btn">마이페이지</a>
+            <a href="/member/logout" class="logout-btn" onclick="return warning();">로그아웃</a>
+                <script>
+                   function warning(){
+                      var question = confirm('정말 로그아웃하시겠어요?');
+                      if(question){
+                         return true;
+                      }else{
+                      return false;
+                      }
+                   }
+                </script>
+         </c:if>
+            
+            <c:if test="${sessionScope.driver ne null}">
+               <a href="/DriverTravel/List?driverId=${sessionScope.driver.driverId }" class="get-started-btn">마이페이지</a>
+            <a href="/member/logout" class="logout-btn" onclick="return warning();">로그아웃</a>
+                <script>
+                   function warning(){
+                      var question = confirm('정말 로그아웃하시겠어요?');
+                      if(question){
+                         return true;
+                      }else{
+                      return false;
+                      }
+                   }
+                </script>
+            </c:if>
+         <c:if test="${sessionScope.driver eq null && sessionScope.customer eq null}">
+            <a href="/login/Customerlogin.jsp" class="get-started-btn">고객로그인</a>
+            <a href="/login/DriverLogin.jsp" class="get-started-btn">기사로그인</a>
+            &nbsp;&nbsp; <img src="../assets/img/smile.png" style="height: 40px">
+         </c:if>
+      </div>
+   </header>
+   <!-- End Header -->
     </header>
+    <br><br>
     <section>
         <h1>근두운 Q&amp;A</h1>
         <h5>빠른 시일내에 답변드리도록 노력하겠습니다.</h5>
         <article>
+        <br>
             <h3>Question</h3>
-            <form id="question">
-                <h3>Q : ${content.qnaNoticeSubject }</h3>
-                <br>
-                <div>
-                    내용 : ${content.qnaNoticeContent }
+            <div id="div_content">
+                <div style="font-size:20px;word-break:break-all; margin: 0px auto; width:60%; border:5px solid #d9efff">
+                	<b>Q : ${content.qnaNoticeSubject }</b>
                 </div>
                 <br>
-            </form>
+                <textarea style="font-size:20px; resize:none; word-break:break-all; margin: 0px auto; width: 60%; height: 270px; background-color:#d9efff; border:none" readonly>${content.qnaNoticeContent }</textarea>
+                <br>
+            </div>
             <h3>Answer</h3>
-            <form id="answer">
-                <h3>A : ${answer.answerTitle }</h3>
+            <div id="div_answer">
+                <div id="answer_title" style="font-size:20px;word-break:break-all; margin: 0px auto; width:60%; border:5px solid #d9efff">
+                	<b>A : ${answer.answerTitle }</b>
+                	</div>
                 <br>
-                <div>
-                    답변 내용 : ${answer.answerContents } 
-                </div>
+                <textarea style="font-size:20px; resize:none; word-break:break-all; margin: 0px auto; width: 60%; height: 270px; background-color:#d9efff; border:none" readonly>${answer.answerContents }</textarea>
                 <br>
-            </form>
+            </div>
         </article>
         <br>
         <article>
         
 	        <!-- 로그인 아이디와 게시글 아이디 확인  -->
         	<c:if test="${ sessionScope.customer.customer_Id == content.customerId }">
-        		<a href="/qna/updateform?qnaNo=${content.qnaNoticeNo }"><input type="button" value="수정"></a>
-        		<a href="/qna/delete?qnaNo=${content.qnaNoticeNo }"><input type="button" value="삭제" onclick="return del();"></a>
+        		<a href="/qna/updateform?qnaNo=${content.qnaNoticeNo }"><input class="get-started-btn" style="border:none" type="button" value="수정"></a>
+        		<a href="/qna/delete?qnaNo=${content.qnaNoticeNo }"><input class="get-started-btn" style="border:none; margin-left:10px" type="button" value="삭제" onclick="return del();"></a>
         		
         	</c:if>
         	<!-- 관리자인지 확인  -->
         	<c:if test="${ sessionScope.customer.adminCheck == 1 }">
-        	<form action="/qna/qnaReplyWrite.jsp" method="post">
+        	<form action="/qna/qnaReplyWrite.jsp" method="post" style="display:inline">
         		<input name = qnaNoticeNo type="hidden" value=${content.qnaNoticeNo }>
         		<input name ="replyCheck" type="hidden" value="complete">
-        		<input type="submit" value="답변등록">
+        		<input type="submit" class="get-started-btn" style="border:none" value="답변등록">
         		</form>
         		
-        		<form action="/qna/replyupdateform?qnaNo=${content.qnaNoticeNo }" method="post">
+        		<form action="/qna/replyupdateform?qnaNo=${content.qnaNoticeNo }" method="post" style="display:inline">
         		<input name = qnaNoticeNo type="hidden" value=${content.qnaNoticeNo }>
-        		<input type="submit" value="답변수정">
+        		<input type="submit" class="get-started-btn" style="border:none; margin-left:10px" value="답변수정">
         		</form>
         		
-        		<form action="/qna/replydelete?qnaNo=${content.qnaNoticeNo }" method="post">
+        		<form action="/qna/replydelete?qnaNo=${content.qnaNoticeNo }" method="post" style="display:inline" onsubmit="return replydel();">
         		<input name = qnaNoticeNo type="hidden" value=${content.qnaNoticeNo }>
         		<input name ="replyCheck" type="hidden" value="wait">
-        		<input type="submit" value="답변삭제">
-        		</form>
-        		
-        		<a href="/qna/updateform?qnaNo=${content.qnaNoticeNo }"><input type="button" value="수정"></a>
-        		<a href="/qna/delete?qnaNo=${content.qnaNoticeNo }"><input type="button" value="삭제" onclick="return del();"></a>
+        		<input type="submit" class="get-started-btn" style="border:none; margin-left:10px" value="답변삭제" >
+        		</form><br><br>
+        		<a href="/qna/updateform?qnaNo=${content.qnaNoticeNo }"><input class="get-started-btn" style="border:none" type="button" value="수정"></a>
+        		<a href="/qna/delete?qnaNo=${content.qnaNoticeNo }"><input class="get-started-btn" style="border:none; margin-left:10px;" type="button" value="삭제" onclick="return del();"></a>
         	</c:if>
-            <a href="/qna/list"><input type="button" value="목록으로"></a>
+            <a href="/qna/list"><input class="get-started-btn" style="border:none; margin-left:10px;" type="button" value="목록으로"></a>
         </article>
     </section>
     <aside>
     
     </aside>
     <footer>
-    
+    	<%@include file="../include/includeFooter.jsp" %>
     </footer>
     <script>
 		function del() {
+			return confirm("정말로 삭제하시겠습니까?")
+			}
+		
+		function replydel() {
 			return confirm("정말로 삭제하시겠습니까?")
 			}
 	</script>
