@@ -39,7 +39,7 @@ public class MyTravelListServlet extends HttpServlet {
 		ArrayList<Travel> rList = new TravelService().selectTravelList(customerId);
 		if(!rList.isEmpty()) {
 			request.setAttribute("rList", rList);
-			request.setAttribute("customerId", customerId);
+			request.setAttribute("customer_Id", customerId);
 			RequestDispatcher travel = request.getRequestDispatcher("/myPage/CustomerMyPage.jsp");
 			travel.forward(request, response);
 		}if(rList.isEmpty()){

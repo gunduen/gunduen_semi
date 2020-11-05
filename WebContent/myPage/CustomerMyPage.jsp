@@ -65,7 +65,7 @@
 
 section {
 	width: 90%;
-	height: 75%;
+	height: 100%;
 	border: 1px solid white;
 	box-sizing: border-box;
 }
@@ -74,7 +74,7 @@ section {
 
 #navi {
 	width: 15%;
-	height: 40%;
+	height: 100%;
 	border: 1px solid white;
 	box-sizing: border-box;
 	float: left;
@@ -214,7 +214,7 @@ section {
 
          <!-- 고객/기사 로그인시 header -->
          <c:if test="${sessionScope.customer.adminCheck < 1 }">
-            <a href="/myPage/CustomerMyPage.jsp" class="get-started-btn">마이페이지</a>
+            <a href="/mypage/travel?customerId=${sessionScope.customer.customer_Id }" class="get-started-btn">마이페이지</a>
             <a href="/member/logout" class="logout-btn" onclick="return warning();">로그아웃</a>
             <script>
                function warning() {
@@ -230,7 +230,7 @@ section {
          </c:if>
 
          <c:if test="${sessionScope.driver ne null}">
-            <a href="/myPage/DriverMyPage.jsp" class="get-started-btn">마이페이지</a>
+            <a href="/DriverTravel/List?driverId=${sessionScope.driver.driverId }" class="get-started-btn">마이페이지</a>
             <a href="/member/logout" class="logout-btn"
                onclick="return warning();">로그아웃</a>
             <script>
@@ -263,9 +263,9 @@ section {
 				<ul>
 				<!-- if문으로 li 개수 조절 -->
 				<li class="active"><a href="/mypage/travel?customerId=${sessionScope.customer.customer_Id }">예약확인/ 예약취소</a></li>
-				<li><a href="/message/messageList.jsp">쪽지함</a></li>
+				<li><a href="/message/receiverList?receiver=${sessionScope.customer.customer_Id }">쪽지함</a></li>
 				<li><a href="/customer/myInfo?customerId=${sessionScope.customer.customer_Id }">회원정보 수정</a></li>
-				<li><a href="/customer/delete?customerId=${sessionScope.customer.customer_Id }" onclick="return question();">회원 탈퇴</a></li>
+				<li><a href="/customer/delete?customerId=${sessionScope.customer.customer_Id }" onclick="return delete1();">회원 탈퇴</a></li>
 				</ul>
 			</nav>
 			</nav>
@@ -289,7 +289,7 @@ section {
 						</tr>
 					
 					<c:forEach items="${rList }" var="travel">
-						<tr id="travel" onClick="location.href='/select/MyTravel?packageCode=${travel.package_Code}'">
+						<tr id="travel" onClick="location.href='/select/MyTravel?packageCode=${travel.package_Code}&customerId=${sessionScope.customer.customer_Id }'">
 							<td>${travel.package_TravelDate }</td>
 							<td>${travel.package_Area }</td>
 							<td>${travel.package_Utilization }</td>
@@ -313,7 +313,7 @@ section {
 	</footer>
 
 	<script>
-	function question() {
+	function delete1() {
 		 return confirm("정말로 탈퇴하시겠습니까?");
 	 }
 	</script>

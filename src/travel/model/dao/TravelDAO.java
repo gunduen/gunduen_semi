@@ -119,7 +119,7 @@ public class TravelDAO {
 				travel.setPackage_Pickup(rset.getString("PACKAGE_PICKUP"));
 				travel.setPackage_Date(rset.getDate("PACKAGE_DATE"));
 				travel.setPackage_TravelDate(rset.getString("PACKAGE_TRAVELDATE"));
-				travel.setPakcage_Confirm(rset.getInt("PACKAGE_CONFIRM"));
+				travel.setPackage_Confirm(rset.getInt("PACKAGE_CONFIRM"));
 				travel.setCustomer_Id(rset.getString("CUSTOMER_ID"));
 				travel.setDriver_Name(rset.getString("DRIVER_NAME"));
 				travel.setDriver_Id(rset.getString("DRIVER_ID"));
@@ -157,7 +157,7 @@ public class TravelDAO {
 				travel.setPackage_Pickup(rset.getString("PACKAGE_PICKUP"));
 				travel.setPackage_Date(rset.getDate("PACKAGE_DATE"));
 				travel.setPackage_TravelDate(rset.getString("PACKAGE_TRAVELDATE"));
-				travel.setPakcage_Confirm(rset.getInt("PACKAGE_CONFIRM"));
+				travel.setPackage_Confirm(rset.getInt("PACKAGE_CONFIRM"));
 				travel.setCustomer_Id(rset.getString("CUSTOMER_ID"));
 				travel.setDriver_Name(rset.getString("DRIVER_NAME"));
 				travel.setDriver_Id(rset.getString("DRIVER_ID"));
@@ -196,7 +196,7 @@ public class TravelDAO {
 				travelOne.setPackage_Pickup(rset.getString("PACKAGE_PICKUP"));
 				travelOne.setPackage_Date(rset.getDate("PACKAGE_DATE"));
 				travelOne.setPackage_TravelDate(rset.getString("PACKAGE_TRAVELDATE"));
-				travelOne.setPakcage_Confirm(rset.getInt("PACKAGE_CONFIRM"));
+				travelOne.setPackage_Confirm(rset.getInt("PACKAGE_CONFIRM"));
 				travelOne.setCustomer_Id(rset.getString("CUSTOMER_ID"));
 				travelOne.setDriver_Name(rset.getString("DRIVER_NAME"));
 				travelOne.setDriver_Id(rset.getString("DRIVER_ID"));
@@ -314,6 +314,7 @@ public class TravelDAO {
 				travel.setPackage_Code(rset.getInt("package_Code"));
 				travel.setCustomer_Id(rset.getString("customer_Id"));
 				travel.setPackage_Date(rset.getDate("package_Date"));
+				travel.setPackage_Confirm(rset.getInt("package_Confirm"));
 				travel.setDriver_Id(rset.getString("driver_Id"));
 				travel.setCoordx(rset.getString("coordx"));
 				travel.setCoordy(rset.getString("coordy"));

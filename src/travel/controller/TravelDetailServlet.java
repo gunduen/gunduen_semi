@@ -35,12 +35,14 @@ public class TravelDetailServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		int packageCode = Integer.parseInt(request.getParameter("packageCode"));
-		String driverId = request.getParameter("driverId");
+		String customerId = request.getParameter("customerId");
+		System.out.println(customerId);
+		
 		ArrayList<Travel> tdList = new TravelService().selctMyTravel(packageCode);
 		if(!tdList.isEmpty()) {
 			request.setAttribute("tdList", tdList);
 			request.setAttribute("packageCode", packageCode);
-			request.setAttribute("driverId", driverId);
+			request.setAttribute("customer_Id", customerId);
 			RequestDispatcher travel = request.getRequestDispatcher("/myPage/TravelDetail.jsp");
 			travel.forward(request, response);
 		}else {

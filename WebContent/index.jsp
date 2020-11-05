@@ -97,7 +97,7 @@
     </style>
 </head>
 <body>
-    <c:if test="${sessionScope.driver ne null || sessionScope.customer ne null}">
+    	<c:if test="${sessionScope.driver ne null || sessionScope.customer ne null}">
 		 <c:if test="${sessionScope.customer ne null }"> [고객 : ${sessionScope.customer.customer_Id }]님 환영합니다.</c:if>
 		 <c:if test="${sessionScope.driver ne null }">[기사 : ${sessionScope.driver.driverId }]님 환영합니다.</c:if>
         <!-- ======= Header ======= -->
@@ -155,7 +155,7 @@
 			</c:if>
 				
 				<c:if test="${sessionScope.driver ne null}">
-            	<a href="DriverTravel/List?driverId=${sessionScope.driver.driverId }" class="get-started-btn">마이페이지</a>
+            	<a href="/DriverTravel/List?driverId=${sessionScope.driver.driverId }" class="get-started-btn">마이페이지</a>
 				<a href="/member/logout" class="logout-btn" onclick="return warning();">로그아웃</a>
                 <script>
                 	function warning(){
@@ -305,7 +305,7 @@
 					Welcome to the Cloud<br>
 				</h1>
 				<h2>근두운에 오신걸 환영합니다^^</h2>
-				<a href="/travel/Travel.jsp" class="btn-get-started">예약하기 
+				<a href="/travel/Travel.jsp" class="btn-get-started" onclick="return loginCheck();">예약하기
 					<svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-cloud"
 					fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 			            <path fill-rule="evenodd"
@@ -349,6 +349,16 @@
 				</div>
 			</div>
 		</section>
+		<script>
+		function loginCheck() {
+         var userId = '${sessionScope.customer.customerId }';
+         if(userId == "") {
+            alert("로그인후 이용해주세요!");
+            return false;
+         }
+         
+      }
+		</script>
 		<!-- End Main -->
 		
         <!-- ======= Footer ======= -->
@@ -637,5 +647,6 @@
         <footer>
         </footer>
     </c:if>
+
 </body>
 </html> --%>

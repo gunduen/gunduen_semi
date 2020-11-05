@@ -36,6 +36,8 @@ public class TravelListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		Travel travel = new Travel();
 //		travel.setPackage_Area(request.getParameter("sido"));
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
 		
 		String sido = request.getParameter("sido");
 		String address = request.getParameter("address");
@@ -70,6 +72,8 @@ public class TravelListServlet extends HttpServlet {
 			request.setAttribute("coords", coords);
 			RequestDispatcher view = request.getRequestDispatcher("/travel/Travel.jsp");
 			view.forward(request, response);
+		}if(tList.isEmpty()) {
+			out.println("<script>alert('입력하신 예약일정에 예약가능한 기사가 없습니다.'); document.location.href='/travel/Travel.jsp';</script>");
 		}
 		else {
 			request.getRequestDispatcher("error");

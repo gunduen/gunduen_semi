@@ -9,8 +9,8 @@ public class Travel {
 	private String package_Utilization;
 	private String package_Pickup;
 	private String package_TravelDate;
+	private int package_Confirm;
 	private String customer_Id;
-	private int pakcage_Confirm;
 	private String driver_Name;
 	private Date package_Date;
 	private String driver_Id;
@@ -19,6 +19,16 @@ public class Travel {
 	private String review_Check;
 	
 	
+	public int getPackage_Confirm() {
+		return package_Confirm;
+	}
+
+
+	public void setPackage_Confirm(int package_Confirm) {
+		this.package_Confirm = package_Confirm;
+	}
+
+
 	public String getReview_Check() {
 		return review_Check;
 	}
@@ -29,14 +39,7 @@ public class Travel {
 	}
 
 
-	public int getPakcage_Confirm() {
-		return pakcage_Confirm;
-	}
-
-
-	public void setPakcage_Confirm(int pakcage_Confirm) {
-		this.pakcage_Confirm = pakcage_Confirm;
-	}
+	
 
 
 	public int getPackage_Code() {
