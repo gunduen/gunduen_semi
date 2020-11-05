@@ -35,36 +35,6 @@
   * Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
-  ======================================================== --> <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <!-- <title>Mentor Bootstrap Template - Index</title> -->
-  <meta content="" name="descriptison">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: Mentor - v2.1.0
-  * Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
   ======================================================== -->
 
 <title>Welcome to the Cloud</title>
@@ -76,24 +46,21 @@
         <!-- -->
         *{margin:0;padding:0;}
 	    ul,li{list-style:none;}
-	    .slide{width : 500px; height:300px;overflow:hidden;}
+	    .slide{height:300px;overflow:hidden;}
 	    .slide ul{width:calc(100% * 4);display:flex;animation:slide 8s infinite;} /* slide를 8초동안 진행하며 무한반복 함 */
 	    .slide li{width:calc(100% / 4);height:300px;}
 	    
 	    @keyframes slide {
-	      0% {margin-left:0;} /* 0 ~ 15  : 정지 */ 
-	      13% {margin-left:0;}
-	      15% {margin-left:0;} /* 15 ~ 25 : 변이 */
-	      25% {margin-left:-100%;} /* 25 ~ 40 : 정지 */
-	      40% {margin-left:-100%;} /* 40 ~ 50 : 변이 */ 
-	      50% {margin-left:-200%;} /* 50 ~ 65 : 정지 */ 
-	      60% {margin-left:-200%;} /* 65 ~ 75 */
+	      0% {margin-left:0;} /* 0 ~ 10  : 정지 */
+	      10% {margin-left:0;} /* 10 ~ 25 : 변이 */
+	      25% {margin-left:-100%;} /* 25 ~ 35 : 정지 */
+	      35% {margin-left:-100%;} /* 35 ~ 50 : 변이 */
+	      50% {margin-left:-200%;}
+	      60% {margin-left:-200%;}
 	      75% {margin-left:-300%;}
 	      85% {margin-left:-300%;}
 	      100% {margin-left:0;}
 	      }
-	      
-	      div
     </style>
 </head>
 <body>
@@ -140,7 +107,7 @@
 			<!-- 고객/기사 로그인시 header -->
 			<c:if
 				test="${sessionScope.customer.adminCheck < 1 }">
-				<a href="/mypage/travel?customerId=${sessionScope.customer.customer_Id }" class="get-started-btn">마이페이지</a>
+				<a href="/myPage/CustomerMyPage.jsp" class="get-started-btn">마이페이지</a>
 				<a href="/member/logout" class="logout-btn" onclick="return warning();">로그아웃</a>
                 <script>
                 	function warning(){
@@ -155,7 +122,7 @@
 			</c:if>
 				
 				<c:if test="${sessionScope.driver ne null}">
-            	<a href="DriverTravel/List?driverId=${sessionScope.driver.driverId }" class="get-started-btn">마이페이지</a>
+            	<a href="/myPage/DriverMyPage.jsp" class="get-started-btn">마이페이지</a>
 				<a href="/member/logout" class="logout-btn" onclick="return warning();">로그아웃</a>
                 <script>
                 	function warning(){
@@ -219,7 +186,7 @@
 						</ul>
 					</div>
 				</div>
-				<div id="right" >
+				<div id="right">
 					<div id="right_top">행복한 택시여행 떠나 보실라우?</div>
 					<div id="right_bottom">근두운: 손오공이 근두운을 타고 팔도유람하듯 택시를 타고 자유롭게
 						여행할 수 있게 해주는 서비스, 어디든 떠날 수 있는 국내 자유여행</div>
@@ -305,7 +272,7 @@
 					Welcome to the Cloud<br>
 				</h1>
 				<h2>근두운에 오신걸 환영합니다^^</h2>
-				<a href="/travel/Travel.jsp" class="btn-get-started">예약하기 
+				<a href="/travel/Travel.jsp" class="btn-get-started" onclick="return loginCheck();">예약하기 
 					<svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-cloud"
 					fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 			            <path fill-rule="evenodd"
@@ -318,34 +285,30 @@
 		<!-- End Hero -->
         
         <!-- ======= Main ======= -->
-		<section id="main"
-			class="d-flex justify-content-center align-items-center">
-			<div class="container position-relative" data-aos="zoom-in"
-				data-aos-delay="100"
-				style="border: 1px solid black; ">
-				<div class="slide" style="border: 1px solid black; float : left;">
-					<ul>
-						<li><img
-							src="https://t1.daumcdn.net/cfile/blog/216CB83A54295C1C0E?original"
-							width="500px;" height="300px;"></li>
-						<li><img
-							src="https://i.pinimg.com/originals/b7/2f/0b/b72f0b16f4a84cc8e649f6bce9048bc8.jpg"
-							width="500px;" height="300px;"></li>
-						<li><img
-							src="https://dispatch.cdnser.be/cms-content/uploads/2019/09/09/50e20ad4-f940-4f93-830b-8501146b4488.jpg"
-							width="500px;" height="300px;"></li>
-						<li><img
-							src="https://dispatch.cdnser.be/cms-content/uploads/2019/09/09/4657b750-ce06-4136-91af-40d922a327c6.jpg"
-							width="500px;" height="300px;"></li>
-					</ul>
-
-				</div>
-				<div id="right" style="border: 1px solid black; height:300px; float : left; text-align:center;">
-					<div id ="intro"style="border: 1px solid black;  width : 100%; float : left;">
-					<div id="right_top">행복한 택시여행 떠나 보실라우?</div>
-					<div id="right_bottom">근두운: 손오공이 근두운을 타고 팔도유람하듯 택시를 타고<br> 자유롭게
-						여행할 수 있게 해주는 서비스, <br>어디든 떠날 수 있는 국내 자유여행</div>
+		<section id="main" class="d-flex justify-content-center align-items-center">
+		    <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+				<div id="left">
+					<div class="slide">
+						<ul>
+							<li><img
+								src="https://t1.daumcdn.net/cfile/blog/216CB83A54295C1C0E?original"
+								width="500px;" height="300px;"></li>
+							<li><img
+								src="https://i.pinimg.com/originals/b7/2f/0b/b72f0b16f4a84cc8e649f6bce9048bc8.jpg"
+								width="500px;" height="300px;"></li>
+							<li><img
+								src="https://dispatch.cdnser.be/cms-content/uploads/2019/09/09/50e20ad4-f940-4f93-830b-8501146b4488.jpg"
+								width="500px;" height="300px;"></li>
+							<li><img
+								src="https://dispatch.cdnser.be/cms-content/uploads/2019/09/09/4657b750-ce06-4136-91af-40d922a327c6.jpg"
+								width="500px;" height="300px;"></li>
+						</ul>
 					</div>
+				</div>
+				<div id="right">
+					<div id="right_top">행복한 택시여행 떠나 보실라우?</div>
+					<div id="right_bottom">근두운: 손오공이 근두운을 타고 팔도유람하듯 택시를 타고 자유롭게
+						여행할 수 있게 해주는 서비스, 어디든 떠날 수 있는 국내 자유여행</div>
 				</div>
 			</div>
 		</section>
@@ -404,7 +367,8 @@
 	<!-- Template Main JS File -->
 	<script src="assets/js/main.js"></script>
 	
-	
+	<script>
+	</script>
 </body>
 </html>
 

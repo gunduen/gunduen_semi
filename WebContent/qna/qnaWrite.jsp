@@ -1,12 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!--  디렉티브(태그라이브러리) 작성 -->
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <head>
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -46,56 +42,32 @@
    
    <!-- Template Main JS File -->
    <script src="../assets/js/main.js"></script>
-<title>근두운 QnA - 목록</title>
-	<style>
-	    section
-	    {
-	        text-align: center;
-	    }
-	    article>table
-	    {
-            border: 1px solid white;
-            width: 60%;
-            margin: auto;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-	    a
-	    {
-	        text-decoration-line: none;
-	    }
-	    th
-	    {
-	        background-color: #a3d4f7;
-	        height: 40px;
-	    }
-	    #dfdf{
-	    text-align : center;
-	    }
-	    #qna:hover{
-	    background : #d9efff;
-	    }
-	    tr {
-	    height : 50px;
-	    }
-	    #title_th {
-	    	width: 50%;
-	    }
-	</style>
-	<script>
-	function check() {
-		var test = document.getElementById('search').value;
-		if(test == "" || test == null || test == " ") {
-			alert("검색어를 입력해주세요.");
-			return false;
-		}
-		return true;
-	}
-    </script>
+<title>근두운 QnA - 질문등록 </title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+<style>
+    section
+    {
+        text-align: center;
+    }
+    article>table
+    {
+        width: 100%;
+        border: 1px solid black;
+        box-sizing: border-box;
+    }
+    a
+    {
+        text-decoration-line: none;
+    }
+</style>
 </head>
-	<body>
-	<header>
-		<header id="header" class="fixed-top">
+<body>
+    <header>
+    	<header id="header" class="fixed-top">
          <div class="container d-flex align-items-center">
 
             <h1 class="logo mr-auto">
@@ -178,73 +150,24 @@
         <h5>빠른 시일내에 답변드리도록 노력하겠습니다.</h5>
         <article>
         <br>
-            <table class="table" style="width:60%;">
-                <tr>
-                    <th>글번호</th>
-                   	<th id="title_th">제목</th>
-                    <th>작성자</th>
-                    <th>작성일</th>
-                    <th>조회수</th>
-                    <th>답변여부</th>
-                </tr>
-                <c:forEach items="${qList }" var="qna"  varStatus="status" >
-                	<tr id="qna" onClick="location.href='/qna/detail?qnaNoticeNo=${qna.qnaNoticeNo }'">
-                		<%-- <td>${qna.qnaNoticeNo }</td> --%>
-                		<td>${pageNum - status.index }</td>
-                		<c:choose>
-                           <c:when test="${fn:length(qna.qnaNoticeSubject) > 25}">
-                              <td>
-                                 <c:out value="${fn:substring(qna.qnaNoticeSubject,0,25)}" />
-                                 <c:out value="..." />
-                              </td>
-                           </c:when>
-                           <c:otherwise>
-                              <td><c:out value="${ qna.qnaNoticeSubject }" /></td>
-                           </c:otherwise>
-                        </c:choose>
-                		<c:choose>
-                			<c:when test="${qna.customerId ne null }">
-                				<td>${qna.customerId }</td>
-                			</c:when>
-                			<c:otherwise>
-                				<td>${qna.driverId }</td>
-                			</c:otherwise>
-                		</c:choose>
-                		<td>${qna.qnaNoticeDate }</td>
-                		<td>${qna.qnaNoticeHits }</td>
-                		<td>${qna.qnaNoticeCheck }</td>
-                	</tr>
-                </c:forEach>
-            </table>
-        </article>
-        <tr id="dfdf">
-                	<td colspan="4" align="center">
-                	${pageNavi }
-                	</td>
-                </tr>
-                <article style="margin-left:880px;">
-        <c:if test="${ sessionScope.customer.customer_Id ne null || sessionScope.driver.driverId ne null }">
-        		<a href="qnaWrite.jsp"><input class="get-started-btn" style="border:none; align:center;" type="button" id="write" value="질문등록" name="질문등록"></a>
-        	</c:if>
-        </article>
-        <article>
-        <form action="/qna/search" method="get" onsubmit="return check()">
-            <select id="type" name="type" style="height:30px;">
-           		<option value="QNANOTICE_SUBJECTS">제목</option>
-                <option value="QNANOTICE_CONTENTS">내용</option>
-                <option value="CUSTOMER_ID">작성자(고객)</option>
-                <option value="DRIVER_ID">작성자(기사)</option>
-             </select>
-            <input type="text" id="search" name="search" size="50" placeholder="검색어를 입력하세요">
-            <input type="submit" style="border:none;  margin-left:10px;" class="get-started-btn" value="검색">
+            <h2>질문등록</h2>
+            <form action="/qna/write" method="post">
+                <textarea name="subject" style="resize:none" cols="130" rows="1" placeholder="제목을 입력하세요" required></textarea>
+                <br>
+                <textarea name="content" style="resize:none" cols="130" rows="15" placeholder="질문내용을 입력하세요" required></textarea>
+                <br><br>
+       		    <input type="submit" id="upload" value="등록" name="등록" class="get-started-btn" style="border:none">
+            	<a href="/qna/list"><input type="button" id="list" value="목록으로" name="목록으로" class="get-started-btn" style="border:none; margin-left:10px"></a>
             </form>
-            </article>
+        </article>
+        <br>
+            
     </section>
     <aside>
     
     </aside>
     <footer>
-    	 <%@include file="../include/includeFooter.jsp" %>
+    	<%@include file="../include/includeFooter.jsp" %>
     </footer>
-	</body>
+</body>
 </html>
