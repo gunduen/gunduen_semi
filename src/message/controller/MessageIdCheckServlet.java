@@ -1,4 +1,4 @@
-package driver.controller;
+package message.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,16 +13,16 @@ import customer.model.service.CustomerService;
 import driver.model.service.DriverService;
 
 /**
- * Servlet implementation class DriverEnrollCheckServlet
+ * Servlet implementation class MessageCustomerCheckServlet
  */
-@WebServlet("/driver/check")
-public class DriverEnrollCheckServlet extends HttpServlet {
+@WebServlet("/message/idCheck")
+public class MessageIdCheckServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DriverEnrollCheckServlet() {
+    public MessageIdCheckServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,19 +33,30 @@ public class DriverEnrollCheckServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");
+		String field = request.getParameter("field");
+		System.out.println(id); System.out.println(field);
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
-		boolean result = new DriverService().idCheck(id);
-		
-//		String user = 고객?, 기사;
-//		
-		
-		if(result)
-			out.println("0");
-		else 
-			out.println("1");
-		
-		out.close();
+		if (field.equals("driver") ) {
+			
+			boolean result = new DriverService().idCheck(id);
+			System.out.println(result);
+			if (result) {
+				out.println("1");
+			} else {
+				out.println("0");
+			}
+			out.close();
+		} else if (field.equals("customer")) {
+			boolean result = new CustomerService().idCheck(id);
+			System.out.println(result);
+			if (result) {
+				out.println("1");
+			} else {
+				out.println("0");
+			}
+			out.close();
+		}
 	}
 
 	/**

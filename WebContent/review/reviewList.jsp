@@ -21,37 +21,7 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: Mentor - v2.1.0
-  * Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== --> <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <!-- <title>Mentor Bootstrap Template - Index</title> -->
-  <meta content="" name="descriptison">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
@@ -72,7 +42,7 @@
   ======================================================== -->
   <style>
    	section {
-  		border : 1px solid black;
+  		border : 1px solid white;
   	}
   	/*
   	#menu {
@@ -98,7 +68,44 @@
   		color : white;
   		background-color : blue;
   	} */
-  	
+  	#wrap {
+  		margin-top : 20px;
+  	}
+  	#nav-menu {
+  		
+  	}
+  	#left {
+  		margin-top :50px;
+  		padding-top : 0px;
+  		border-radius : 1.1em;
+  	}
+  	#nav-menu ul {
+  		list-style: none; padding-left: 0px; text-align: center; float: left; width:100%;
+  		background-color : #FAFAFA;border-radius : 1.1em;
+	}
+  	#nav-menu a {
+  		color : black;
+  	}
+  	#nav-menu ul li:first-child {
+  		color : white;
+  		background : #a3d4f7;
+  		padding-top : 4px;
+  		height : 30px;
+  	}
+  	#nav-menu ul li {
+  		padding-top : 4px;
+  		height : 30px;
+  	}
+  	#nav-menu li:hover a{
+  		color : #a3d4f7;
+  	}
+  	.table-hover tbody tr:hover td {
+  		background-color : #a3d4f7;
+  		color : white;
+  	}
+  	.table-hover tbody tr:last-child:hover td {
+  		background-color : white;
+  	}
   </style>
 </head>
 <body>
@@ -106,7 +113,7 @@
 	<header id="header" class="fixed-top">
 		<div class="container d-flex align-items-center">
 			<h1 class="logo mr-auto">
-				<a href="index.jsp">GUNDUEN</a>
+				<a href="/index.jsp">GUNDUEN</a>
 			</h1>
 			<!-- Uncomment below if you prefer to use an image logo -->
 			<!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
@@ -183,66 +190,72 @@
 	<!-- End Header -->
 
 	<!-- ======= main ========= -->
-	<section id="wrap" class="col-md-12">
-		<section class="main">
+	<section id="wrap" class="container-fluid" style="padding-left:80px; padding-right:80px;">
+		<section class="main" class="row">
 			<%-- <c:if  test="${ sessionScope.review ne null}"> --%>
-			<div id="left">
-				<nav class="nav-menu d-none d-lg-block">
-					<nav id="navigator">
-						<ul>
-							<li>지역</li>
-							<li><a href="/review/list?reviewArea=서울">서울</a></li>
-							<li><a href="/review/list?reviewArea=부산">부산</a></li>
-							<li><a href="/review/list?reviewArea=대구">대구</a></li>
-							<li><a href="/review/list?reviewArea=인천">인천</a></li>
-							<li><a href="/review/list?reviewArea=광주">광주</a></li>
-							<li><a href="/review/list?reviewArea=대전">대전</a></li>
-							<li><a href="/review/list?reviewArea=울산">울산</a></li>
-							<li><a href="/review/list?reviewArea=세종">세종</a></li>
-							<li><a href="/review/list?reviewArea=경기">경기</a></li>
-							<li><a href="/review/list?reviewArea=강원">강원</a></li>
-							<li><a href="/review/list?reviewArea=충남">충남</a></li>
-							<li><a href="/review/list?reviewArea=충북">충북</a></li>
-							<li><a href="/review/list?reviewArea=전남">전남</a></li>
-							<li><a href="/review/list?reviewArea=전북">전북</a></li>
-							<li><a href="/review/list?reviewArea=경남">경남</a></li>
-							<li><a href="/review/list?reviewArea=경북">경북</a></li>
-							<li><a href="/review/list?reviewArea=제주">제주</a></li>
-					</nav>
+			<section id="left" class="col-sm-auto"
+				style="width: 100px; border: 1px solid white; float: left; padding-left:0px; padding-right:0px; padding-bottom:0px;">
+				<nav id="nav-menu">
+					<ul id="navi">
+						<li>지역</li>
+						<li><a href="/review/list?reviewArea=서울">서울</a></li>
+						<li><a href="/review/list?reviewArea=부산">부산</a></li>
+						<li><a href="/review/list?reviewArea=대구">대구</a></li>
+						<li><a href="/review/list?reviewArea=인천">인천</a></li>
+						<li><a href="/review/list?reviewArea=광주">광주</a></li>
+						<li><a href="/review/list?reviewArea=대전">대전</a></li>
+						<li><a href="/review/list?reviewArea=울산">울산</a></li>
+						<li><a href="/review/list?reviewArea=세종">세종</a></li>
+						<li><a href="/review/list?reviewArea=경기">경기</a></li>
+						<li><a href="/review/list?reviewArea=강원">강원</a></li>
+						<li><a href="/review/list?reviewArea=충남">충남</a></li>
+						<li><a href="/review/list?reviewArea=충북">충북</a></li>
+						<li><a href="/review/list?reviewArea=전남">전남</a></li>
+						<li><a href="/review/list?reviewArea=전북">전북</a></li>
+						<li><a href="/review/list?reviewArea=경남">경남</a></li>
+						<li><a href="/review/list?reviewArea=경북">경북</a></li>
+						<li><a href="/review/list?reviewArea=제주">제주</a></li>
+					</ul>
 				</nav>
-			</div>
-			<div id="right">
-				<div id="title">후기 게시판</div>
+			</section>
+			<section id="right"
+				style="margin: border: 1px solid white; height: 480px; text-align:center;">
+				<div id="title" style="font-family: 'Do Hyeon', sans-serif; font-size:1.7em;">후기 게시판</div>
 				<c:if test="${fn:length(RList) == 0 }">
 					<div>후기 게시물이 존재하지 않습니다.</div>
 				</c:if>
 				<c:if test="${fn:length(RList) > 0}">
-					<table border="1">
-						<tr>
+				<br>
+					<table class="table table-hover"
+						style="text-align: center; width: 90%; margin:0 auto;">
+						<thead>
 							<th>작성자</th>
 							<th>게시글</th>
 							<th>지역</th>
 							<th>날짜</th>
-						</tr>
-						<c:forEach items="${ RList }" var="review">
-							<tr onclick="selnumFunc(${review.reviewNo});">
-								<td>${review.customerId }</td>
-								<td>${review.reviewSubject }</td>
-								<td>${review.reviewArea }</td>
-								<td>${review.reviewDate }</td>
-							</tr>
-							<script>
-					 function selnumFunc(num) {
-						 location.href="/review/select?reviewNo="+ num;
-					 }
-					</script>
-						</c:forEach>
+						</thead>
+						<tbody>
+							<c:forEach items="${ RList }" var="review">
+								<tr onclick="selnumFunc(${review.reviewNo});">
+									<td>${review.customerId }</td>
+									<td>${review.reviewSubject }</td>
+									<td>${review.reviewArea }</td>
+									<td>${review.reviewDate }</td>
+								</tr>
+								<script>
+						 function selnumFunc(num) {
+							 location.href="/review/select?reviewNo="+ num;
+						 }
+						</script>
+							</c:forEach>
+						</tbody>
 						<tr>
 							<td colspan="4" align="center">${ pageNavi }
 						</tr>
 					</table>
 				</c:if>
-				${fn:length(rTravel) }
+			</section>
+			<section id="button" style="padding: 0px; float: right;">
 				<!-- 글쓰기 버튼  -->
 				<c:if test="${fn:length(rTravel) == 0 }">
 					<div></div>
@@ -251,11 +264,12 @@
 					<!-- https://okky.kr/article/187911 -->
 					<c:if
 						test="${ sessionScope.customer ne null || ( sessionScope.driver ne null)}">
-						<button type="button" id="btn1"
-							onclick="location.href='/review/form'">글쓰기</button>
+						<!-- <button type="button" id="btn1"
+							onclick="location.href='/review/form'">글쓰기</button> -->
+						<a href="/review/form" class="get-started-btn">글쓰기</a>
 					</c:if>
 				</c:if>
-			</div>
+			</section>
 		</section>
 	</section>
 	<!-- End Main -->
