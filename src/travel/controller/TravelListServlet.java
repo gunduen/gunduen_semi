@@ -42,8 +42,14 @@ public class TravelListServlet extends HttpServlet {
 		String packageDate = request.getParameter("package_Date");
 		String coords = request.getParameter("coords");
 		
-		String coordx = coords.substring(1,coords.indexOf(","));
+		
+		String coordx = coords.substring(1,coords.indexOf(",")); 
 		String coordy = coords.substring(coords.indexOf(" ")+1,coords.indexOf(")"));
+		 
+		/*
+		 * String coordx = request.getParameter("coordx"); String coordy =
+		 * request.getParameter("coordy");
+		 */
 		
 		System.out.println(sido);
 		System.out.println(address);
@@ -61,15 +67,7 @@ public class TravelListServlet extends HttpServlet {
 			request.setAttribute("packageDate", packageDate);
 			request.setAttribute("coordx", coordx);
 			request.setAttribute("coordy", coordy);
-			RequestDispatcher view = request.getRequestDispatcher("/travel/Travel.jsp");
-			view.forward(request, response);
-		}if(tList.isEmpty()) {
-			request.setAttribute("tList", tList);
-			request.setAttribute("sido", sido);
-			request.setAttribute("address", address);
-			request.setAttribute("packageDate", packageDate);
-			request.setAttribute("coordx", coordx);
-			request.setAttribute("coordy", coordy);
+			request.setAttribute("coords", coords);
 			RequestDispatcher view = request.getRequestDispatcher("/travel/Travel.jsp");
 			view.forward(request, response);
 		}

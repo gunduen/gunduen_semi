@@ -232,7 +232,7 @@
                            <th>예약 상태</th>
                        </tr>
                        <c:forEach items="${dList }" var="travel">
-						<tr id="travel" onClick="location.href='/select/DriverTravel?package_Code=${travel.package_Code}'">
+						<tr id="travel" onClick="location.href='/select/DriverTravel?packageCode=${travel.package_Code}&driverId=${sessionScope.driver.driverId }'">
 							<td>${travel.package_TravelDate }</td>
 							<td>${travel.package_Area }</td>
 							<td>${travel.package_Utilization }</td>

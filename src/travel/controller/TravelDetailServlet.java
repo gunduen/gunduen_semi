@@ -34,12 +34,13 @@ public class TravelDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
-		int packageCode = Integer.parseInt(request.getParameter("package_Code"));
-		
+		int packageCode = Integer.parseInt(request.getParameter("packageCode"));
+		String driverId = request.getParameter("driverId");
 		ArrayList<Travel> tdList = new TravelService().selctMyTravel(packageCode);
 		if(!tdList.isEmpty()) {
 			request.setAttribute("tdList", tdList);
 			request.setAttribute("packageCode", packageCode);
+			request.setAttribute("driverId", driverId);
 			RequestDispatcher travel = request.getRequestDispatcher("/myPage/TravelDetail.jsp");
 			travel.forward(request, response);
 		}else {

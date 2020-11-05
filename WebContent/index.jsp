@@ -140,7 +140,7 @@
 			<!-- 고객/기사 로그인시 header -->
 			<c:if
 				test="${sessionScope.customer.adminCheck < 1 }">
-				<a href="/myPage/CustomerMyPage.jsp" class="get-started-btn">마이페이지</a>
+				<a href="/mypage/travel?customerId=${sessionScope.customer.customer_Id }" class="get-started-btn">마이페이지</a>
 				<a href="/member/logout" class="logout-btn" onclick="return warning();">로그아웃</a>
                 <script>
                 	function warning(){
@@ -155,7 +155,7 @@
 			</c:if>
 				
 				<c:if test="${sessionScope.driver ne null}">
-            	<a href="/myPage/DriverMyPage.jsp" class="get-started-btn">마이페이지</a>
+            	<a href="DriverTravel/List?driverId=${sessionScope.driver.driverId }" class="get-started-btn">마이페이지</a>
 				<a href="/member/logout" class="logout-btn" onclick="return warning();">로그아웃</a>
                 <script>
                 	function warning(){
