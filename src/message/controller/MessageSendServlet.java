@@ -38,8 +38,9 @@ public class MessageSendServlet extends HttpServlet {
 		Message message = new Message();
 		message.setMessage_Subject(request.getParameter("title"));
 		message.setMessage_Contents(request.getParameter("contents"));
-		message.setSender(request.getParameter("sender"));
-		message.setReceiver(request.getParameter("receiver"));
+		/* message.setSender(request.getParameter("sender")); */
+		message.setReceiver(request.getParameter("userId"));
+		System.out.println(message);
 		
 		HttpSession session = request.getSession(); // session에서 userId 가져와야
 		if (session != null && (session.getAttribute("customer") != null)) {

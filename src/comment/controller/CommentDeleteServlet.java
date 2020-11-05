@@ -36,9 +36,9 @@ public class CommentDeleteServlet extends HttpServlet {
 		Review review = new ReviewService().selectReview(reviewNo);
 		System.out.println(review);
 		int commentNo = Integer.parseInt(request.getParameter("commentNo"));
-//		System.out.println(commentNo);
-		int result = new CommentService().deleteComment(commentNo);
-//		System.out.println(result);
+		System.out.println(commentNo);
+		int result = new CommentService().deleteComment(commentNo,reviewNo);
+		System.out.println(result);
 		if (result > 0) {
 			response.sendRedirect("/review/select?reviewNo="+ reviewNo);
 		} else {

@@ -47,6 +47,8 @@ public class MessageService {
 			conn = factory.createConnection();
 			pd.setPageList(new MessageDAO().messageSenderList(conn, currentPage, recordCountPerPage, sender));
 			pd.setPageNavi(new MessageDAO().getPageNaviSender(conn, currentPage, recordCountPerPage, naviCountPerPage, sender));
+			pd.setTotalCount(new MessageDAO().totalCountSender(conn, sender));
+			pd.setRecordCountPerPage(recordCountPerPage);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

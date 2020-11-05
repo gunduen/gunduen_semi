@@ -38,7 +38,7 @@ public class ReviewUpdateServlet extends HttpServlet {
 		if (result > 0) {
 			response.sendRedirect("/review/select?reviewNo=" + reviewNo);
 		} else {
-			response.sendRedirect("/review/reviewError.html");
+			response.sendRedirect("/review/reviewError.jsp");
 		}
 	}
 

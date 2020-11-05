@@ -83,19 +83,19 @@ public class CommentDAO {
 	      
 	      StringBuilder sb = new StringBuilder();
 	      if(needPrev) {
-	         sb.append("<a href='/comment/list?reviewNo="+reviewNo+"&currentPage="+(startNavi-1) + "'> < </a>");
+	         sb.append("<a href='/review/select?reviewNo="+reviewNo+"&currentPage="+(startNavi-1) + "'> < </a>");
 	      }
 	      // 1~ 10까지의 숫자를 for문을 이용해서 생성하고 만들어주는 부분
 	      for (int i = startNavi; i <= endNavi; i++) {
 	         //i가 현재 페이지일 떄, 숫자 굵게만들기 = <b></b>
 	         if(i == currentPage) {
-	            sb.append("<a href='/comment/list?reviewNo="+reviewNo+"&currentPage="+i+"'><b> " + i + " </b></a>");
+	            sb.append("<a href='/review/select?reviewNo="+reviewNo+"&currentPage="+i+"'><b> " + i + " </b></a>");
 	         } else { 
-	            sb.append("<a href='/comment/list?reviewNo="+reviewNo+"&currentPage="+i+"'> " + i + " </a>");
+	            sb.append("<a href='/review/select?reviewNo="+reviewNo+"&currentPage="+i+"'> " + i + " </a>");
 	         }
 	      }// 다음 버튼 누를 수 있을 때, 다음 버튼을 생성하는 부분
 	      if (needNext) {
-	         sb.append("<a href='/comment/list?reviewNo="+reviewNo+"&currentPage=" + (endNavi + 1) + "'> > </a>");
+	         sb.append("<a href='/review/select?reviewNo="+reviewNo+"&currentPage=" + (endNavi + 1) + "'> > </a>");
 	      }
 	      //태그를 StringBuilder의 append() 메소드를 이용해서 붙인 후에
 	      //toString() 메소드를 이용하여 String으로 만들어서 리턴
@@ -126,7 +126,7 @@ public class CommentDAO {
 	public int insertComment(Connection conn, String commentContents, String customerId, String driverId, int reviewNo) {
 		   PreparedStatement pstmt = null;
 		   int result = 0;
-		   String query = "INSERT INTO COMMENTS VALUES(COMMENTS_NUM.NEXTVAL,SYSDATE,?,?,?,?)";
+		   String query = "INSERT INTO COMMENTS VALUES(SEQ_COMMENT.NEXTVAL,SYSDATE,?,?,?,?)";
 		   try {
 			   pstmt = conn.prepareStatement(query);
 			   pstmt.setString(1, commentContents);
@@ -144,13 +144,14 @@ public class CommentDAO {
 
 	
 	
-	public int deleteComment(Connection conn, int commentNo) {
+	public int deleteComment(Connection conn, int commentNo, int reviewNo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "DELETE FROM COMMENTS WHERE COMMENT_NO = ?";
+		String query = "DELETE FROM COMMENTS WHERE COMMENT_NO = ? AND REVIEW_NO = ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, commentNo);
+			pstmt.setInt(2, reviewNo);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

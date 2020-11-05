@@ -209,7 +209,7 @@ public class ReviewDAO {
 	   public int updateReviewCheck(Connection conn, int package_Code) {
 		   PreparedStatement pstmt = null;
 		   int result = 0;
-		   String query="UPDATE REVIEW SET REVIEW_CHECK = 'N' WHERE PACKAGE_CODE";
+		   String query="UPDATE REVIEW SET REVIEW_CHECK = 'N' WHERE PACKAGE_CODE=?";
 		   try {
 			   pstmt = conn.prepareStatement(query);
 			   pstmt.setInt(1, package_Code);

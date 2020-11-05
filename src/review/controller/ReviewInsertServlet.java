@@ -65,7 +65,7 @@ public class ReviewInsertServlet extends HttpServlet {
 				view.forward(request, response);
 			}
 		} else {
-			response.sendRedirect("/review/reviewError.html");
+			response.sendRedirect("/review/reviewError.jsp");
 		}
 //		else {
 //			RequestDispatcher view = request.getRequestDispatcher("/login/loginError.html");

@@ -26,7 +26,7 @@ public class MessageSendFormServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/message/messageForm.html").forward(request, response);
+		request.getRequestDispatcher("/message/messageForm.jsp").forward(request, response);
 	}
 
 	/**

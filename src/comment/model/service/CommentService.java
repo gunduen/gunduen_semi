@@ -52,12 +52,12 @@ public class CommentService {
 	}
 	
 	
-	public int deleteComment(int commentNo) {
+	public int deleteComment(int commentNo, int reviewNo) {
 		Connection conn = null;
 		int result = 0;
 		try {
 			conn = factory.createConnection();
-			result = new CommentDAO().deleteComment(conn, commentNo);
+			result = new CommentDAO().deleteComment(conn, commentNo, reviewNo);
 		}catch(SQLException e) {
 			e.printStackTrace();
 		} finally {

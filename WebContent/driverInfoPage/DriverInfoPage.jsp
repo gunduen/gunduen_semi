@@ -13,7 +13,7 @@
 <meta charset="UTF-8">
 <title>기사 자기소개 게시판</title>
     <style>
-        header{
+       /*  /* header{
             height: 150px;
         }
         section{
@@ -21,7 +21,7 @@
         }
         footer{
             height: 150px;
-        }
+        } */
         .tablinks {
             width: 100px;
             overflow: hidden;
@@ -33,7 +33,7 @@
             padding: 14px 16px;
             font-size: 17px;
         }
-        ul button:hover{
+       /*  ul button:hover{
             background-color: #ddd;
         }
         ul button:active{
@@ -44,7 +44,7 @@
             height: 100%;
             text-align: left;
             list-style: none;
-        }
+        } */
         .tabcontent{
             display: none;
             padding: 6px 12px;
@@ -130,7 +130,7 @@
         	box-sizing: border-box;
        		border: 1px solid black;
        		float:left;
-        }
+        } */
     </style>
     <script>
     $(document).ready(function(){
@@ -144,10 +144,9 @@
     </script>
 </head>
 <body>
-    <header>
-        <h1>HEADER</h1>
-        <input href="#" id="mypage" type="image"  src="img/%EC%BD%94%EB%82%9C%EB%B2%94%EC%9D%B8.PNG">
-    </header>
+     	<section>
+   		<%@include file="../include/includeHeader.jsp" %>
+   		</section>
     <section>
         <div id="content_left">
         <nav>

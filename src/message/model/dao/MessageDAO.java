@@ -305,7 +305,7 @@ public class MessageDAO {
 	   public int totalCountSender(Connection conn, String sender) {
 		      PreparedStatement pstmt = null;
 		      ResultSet rset = null;
-		      String query = "SELECT COUNT(*) AS TOTALCOUNT FROM MESSAGE WHERE RECEIVER = ?";
+		      String query = "SELECT COUNT(*) AS TOTALCOUNT FROM MESSAGE WHERE SENDER = ?";
 		      int recordTotalCount = 0;
 		      try {
 		         pstmt = conn.prepareStatement(query);
@@ -353,7 +353,7 @@ public class MessageDAO {
 	   public int insertMessage(Connection conn, Message message, String userId) {
 		   PreparedStatement pstmt = null;
 		   int result = 0;
-		   String query = "INSERT INTO MESSAGE VALUES(MESSAGE_NUM.NEXTVAL,SYSDATE,?,?,0,?,?)";
+		   String query = "INSERT INTO MESSAGE VALUES(MESSAGE_NUM.NEXTVAL,SYSDATE,?,?,?,?)";
 		   try {
 			   pstmt = conn.prepareStatement(query);
 			   pstmt.setString(1, message.getMessage_Subject());

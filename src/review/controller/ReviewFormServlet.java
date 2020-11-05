@@ -81,7 +81,7 @@ public class ReviewFormServlet extends HttpServlet {
 				request.getRequestDispatcher("/review/reviewForm.jsp").forward(request, response);
 			}
 		} else {
-			request.getRequestDispatcher("/review/reviewError.html");
+			request.getRequestDispatcher("/review/reviewError.jsp");
 		}
 	}
 

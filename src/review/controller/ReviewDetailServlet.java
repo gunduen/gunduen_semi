@@ -58,7 +58,7 @@ public class ReviewDetailServlet extends HttpServlet {
 			RequestDispatcher reviewView = request.getRequestDispatcher("/review/reviewDetail.jsp");
 			reviewView.forward(request, response);
 		} else {
-			request.getRequestDispatcher("/review/reviewError.html");
+			request.getRequestDispatcher("/review/reviewError.jsp");
 		}
 	}
 

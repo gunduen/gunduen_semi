@@ -43,10 +43,13 @@ public class MessageSenderListServlet extends HttpServlet {
 		}
 		PageData pageData = new MessageService().messageSenderList(currentPage, sender);
 		ArrayList<Message> senderList = pageData.getPageList();
-		
+		int pageNum = pageData.getTotalCount() - (currentPage - 1) * pageData.getRecordCountPerPage();
+		response.setContentType("text/html; charset=utf-8");
+		System.out.println(currentPage);
 		if(!senderList.isEmpty()) {
 			request.setAttribute("senderList", senderList);
 			request.setAttribute("pageNavi", pageData.getPageNavi());
+			request.setAttribute("pageNum", pageNum);
 			RequestDispatcher view = request.getRequestDispatcher("/message/messageSenderList.jsp");
 			view.forward(request, response);
 		} else {
