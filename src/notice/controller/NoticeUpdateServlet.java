@@ -1,6 +1,8 @@
 package notice.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,6 +33,8 @@ public class NoticeUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
 		String notice_Subject = request.getParameter("notice_Subject");
 		String notice_Contents = request.getParameter("notice_Contents");
 		int notice_No = Integer.parseInt(request.getParameter("notice_No"));
@@ -41,7 +45,9 @@ public class NoticeUpdateServlet extends HttpServlet {
 		}
 		else
 		{
-			request.getRequestDispatcher("/WEB-INF/views/notice/noticeError.html").forward(request, response);;
+			out.println("<script>alert('수정 실패');");
+			out.println("history.back();</script>");
+//			request.getRequestDispatcher("/WEB-INF/views/notice/noticeError.html").forward(request, response);;
 		}
 		
 	}
