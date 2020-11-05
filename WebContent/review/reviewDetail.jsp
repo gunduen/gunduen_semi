@@ -7,6 +7,37 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <!-- <title>Mentor Bootstrap Template - Index</title> -->
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Mentor - v2.1.0
+  * Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 <title>후기 디테일</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script>
@@ -19,12 +50,96 @@
     </script>
 </head>
 <body>
+
+<!-- ======= Header ======= -->
+	<header id="header" class="fixed-top">
+		<div class="container d-flex align-items-center">
+			<h1 class="logo mr-auto">
+				<a href="/index.jsp">GUNDUEN</a>
+			</h1>
+			<!-- Uncomment below if you prefer to use an image logo -->
+			<!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+			<nav class="nav-menu d-none d-lg-block">
+				<ul>
+					<li class="active"><a href="index.jsp">Home</a></li>
+					<li><a href="/notice/list">Notice</a></li>
+					<li><a href="/driverInfoPage/DriverInfoPage.jsp">Driver</a></li>
+					<li><a href="/qna/list">Q&A</a></li>
+					<li><a href="/review/list?reviewArea=서울">Review</a></li>
+					<li></li>
+				</ul>
+			</nav>
+			<!-- .nav-menu -->
+
+			<!-- admin 로그인시 header -->
+			<c:if test="${sessionScope.customer.adminCheck == 1 }">
+				<a href="/admin/driverList" class="get-started-btn">마이페이지</a>
+				<a href="/member/logout" class="logout-btn"
+					onclick="return warning();">로그아웃</a>
+				<script>
+              	function warning(){
+                		var question = confirm('정말 로그아웃하시겠어요?');
+                		if(question){
+                			return true;
+                		}else{
+                		return false;
+                		}
+                	}
+                </script>
+			</c:if>
+
+			<!-- 고객/기사 로그인시 header -->
+			<c:if test="${sessionScope.customer.adminCheck < 1 }">
+				<a
+					href="/mypage/travel?customerId=${sessionScope.customer.customer_Id }"
+					class="get-started-btn">마이페이지</a>
+				<a href="/member/logout" class="logout-btn"
+					onclick="return warning();">로그아웃</a>
+				<script>
+                	function warning(){
+                		var question = confirm('정말 로그아웃하시겠어요?');
+                		if(question){
+                			return true;
+                		}else{
+                		return false;
+                		}
+                	}
+                </script>
+			</c:if>
+
+			<c:if test="${sessionScope.driver ne null}">
+				<a
+					href="DriverTravel/List?driverId=${sessionScope.driver.driverId }"
+					class="get-started-btn">마이페이지</a>
+				<a href="/member/logout" class="logout-btn"
+					onclick="return warning();">로그아웃</a>
+				<script>
+                	function warning(){
+                		var question = confirm('정말 로그아웃하시겠어요?');
+                		if(question){
+                			return true;
+                		}else{
+                		return false;
+                		}
+                	}
+                </script>
+			</c:if>
+
+			&nbsp;&nbsp; <img src="../assets/img/happy.png" style="height: 40px">
+
+		</div>
+	</header>
+	<!-- End Header -->
 	<!-- 후기 상세 -->
-	<div> 예약번호 : ${review.package_Code }</div>
+	<section id="wrap" class="container-fluid" style="padding-left:80px; padding-right:80px;">
+		<section class="main" class="row">
+	<section id="formwrap"></section>
+	<div>예약번호 : ${review.package_Code }</div>
 	<div>제목 : ${ review.reviewSubject }</div>
 	<div>내용 : ${ review.reviewContents }</div>
 	<div>작성자 : ${ review.customerId}</div>
 	<div>작성날짜 : ${review.reviewDate }</div>
+	<section id="buttonwrap">
 	<c:if
 		test="${sessionScope.customer ne null && (sessionScope.customer.customer_Id eq review.customerId) }">
 		
@@ -36,6 +151,7 @@
 			}
 		</script>
 	</c:if>
+	</section>
 	<hr>
 	<!-- 댓글 -->
 	<!-- 로그인 안했을 때  -->
@@ -117,8 +233,9 @@
 			}
 			</script>
 	</c:forEach>
+	<div>
 	<td colspan="3"align="center">${ pageNavi }</td>
-	<div></div>
+	</div>
 	<div><a href="/review/list?reviewArea=서울">후기게시판으로 이동</a></div>
 	<script>
 	
@@ -131,5 +248,12 @@
 		}
 		
 	</script>
+	</section>
+	</section>
+	
+	<!-- footer -->
+    <%@include file="../include/includeFooter.jsp" %>
+   
+   <div id="preloader"></div>
 </body>
 </html>
