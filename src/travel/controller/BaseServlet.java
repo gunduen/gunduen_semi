@@ -35,7 +35,7 @@ public class BaseServlet extends HttpServlet {
 
 		request.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
-		
+		response.setContentType("text/html; charset=utf-8");
 		String Driver_Id = (String)request.getAttribute("Driver_Id");
 		String Driver_Name = (String)request.getAttribute("Driver_Name");
 		

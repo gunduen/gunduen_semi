@@ -34,6 +34,7 @@ public class TravelConfirmServlet extends HttpServlet {
 		
 		int packageCode = Integer.parseInt(request.getParameter("package_Code"));
 		String driverId = request.getParameter("driverId");
+		System.out.println(driverId);
 		int result = new TravelService().confirmTravel(packageCode);
 		if(result > 0) {
 			request.setAttribute("packageCode", packageCode);
