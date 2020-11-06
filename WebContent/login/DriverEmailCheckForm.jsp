@@ -3,6 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<script src="//code.jquery.com/jquery.min.js"></script>
+		<!-- 부가적인 테마 -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+		
+		<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+		<!-- Font -->
+		<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <title>아이디 중복 체크 페이지</title>
 <style>
@@ -24,7 +33,12 @@
              visibility:hidden;
              
         }
-		
+		#title, #driverEmailId, #driverEmailTag,  #chk , #cancelBtn, #useBtn, #msg{
+		font-family: 'Do Hyeon', sans-serif;
+		}
+		#driverEmailId, #driverEmailTag, #chk , #cancelBtn, #useBtn, #msg{
+			font-size : 1.1em;
+		}
 		
 	
 </style>
@@ -125,18 +139,35 @@
 <body onload="pValue();">
 <div id="wrap">
     <br>
-    <b><font size="4" color="gray">이메일 중복체크</font></b>
+    <b><font id="title" style="font-size: 1.6em;" color="gray">이메일 중복체크</font></b>
     <hr size="1" width="460">
     <br>
     <div id="chk">
         <form id="checkForm">
-            <input type="text" name="emailInput" id="driverEmailId"><input type="text" name="emailInput" id="driverEmailTag">
-            <input type="button" value="중복확인" onclick="emailCheck()">
+        	<div class="col-xs-2">
+        		 
+        	</div>
+        	<div class="col-xs-3">
+        		<input type="text" name="emailInput" class="form-control" id="driverEmailId" style="margin-left: 15px;">
+        		
+        	</div>
+        	<div class="col-xs-4">
+        		<input type="text" name="emailInput" class="form-control" id="driverEmailTag" style="margin-left:-10px;">
+        	</div>
+            <div class="col-xs-3">
+            	<input type="button" value="중복확인" class="btn btn-default" style="margin-left: -60px;" onclick="emailCheck()">
+            </div>
+            
         </form>
+        <br>
         <div id="msg"></div>
         <br>
-        <input id="cancelBtn" type="button" value="취소" onclick="window.close()"><br>
-        <input id="useBtn" type="button" value="사용하기" onclick="sendCheckValue()">
+        <div class="col-xs-12">
+        	<input id="cancelBtn" type="button" value="취소" onclick="window.close()">
+        </div>
+        <div class="col-xs-12">
+        	<input id="useBtn" type="button" value="사용하기" onclick="sendCheckValue()">
+        </div>
     </div>
 </div>    
 </body>

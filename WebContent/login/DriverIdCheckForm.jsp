@@ -5,6 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>아이디 중복 체크 페이지</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<script src="//code.jquery.com/jquery.min.js"></script>
+		<!-- 부가적인 테마 -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+		
+		<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+		<!-- Font -->
+		<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 <style>
 	#wrap {
             width: 490px;
@@ -12,10 +21,11 @@
             margin: 0 auto 0 auto;
         }
         
-        #chk{
+	#chk{
             text-align :center;
-        }
-        
+            width: 100%;
+            height: 100%;
+        }        
         #cancelBtn{
             visibility:visible;
         }
@@ -25,10 +35,16 @@
              
         }
 		
-		
+		#title, #userId, #chk , #cancelBtn, #useBtn , #msg{
+		font-family: 'Do Hyeon', sans-serif;
+		}
+		#userId, #chk , #cancelBtn, #useBtn, #msg{
+			font-size : 1.1em;
+		}
 	
 </style>
 <script>
+
 	var httpRequest = null; //getXMLHttpRequest()함수로 생성한 객체를 저장하기위해 선언한 변수.
 	
 	function getXMLHttpRequest(){
@@ -97,6 +113,7 @@
                 document.getElementById("driverId").style.border = '3px solid red';
             } 
             else if(resultText == 1){ 
+            	$("#driverId").attr('readonly',true);
                 document.getElementById("cancelBtn").style.visibility='hidden';
                 document.getElementById("useBtn").style.visibility='visible';
                 document.getElementById("msg").innerHTML = "사용 가능한 아이디입니다.";
@@ -108,18 +125,30 @@
     // 사용하기 클릭 시 부모창으로 값 전달 
     function sendCheckValue(){
         // 중복체크 결과인 idCheck 값을 전달한다.
-        opener.document.driverEnrollForm.idCheck.value ="idCheck";
-        console.log(opener.document.driverEnrollForm.idCheck.value);
-        console.log(document.getElementById("driverId").value);
-       
-        // 회원가입 화면의 ID입력란에 값을 전달
-        opener.document.driverEnrollForm.userId.value = document.getElementById("driverId").value;
+        var finalChk = document.getElementById("driverId").value;
+        if((finalChk < "0" || finalChk > "9") && (finalChk < "A" || finalChk > "Z") && (finalChk < "a" || finalChk > "z")){
+    		opener.document.driverEnrollForm.idCheck.value = "idUncheck"; 
+    		alert("한글 및 특수문자는 아이디로 사용하실 수 없습니다.");
+    		history.back();
+    		 document.getElementById("cancelBtn").style.visibility='visible';
+             document.getElementById("useBtn").style.visibility='hidden';
+             document.getElementById("msg").innerHTML ="";
+             document.getElementById("driverId").style.border = '3px solid red';
+    	}else{
+    		opener.document.driverEnrollForm.idCheck.value ="idCheck";
+            console.log(opener.document.driverEnrollForm.idCheck.value);
+            console.log(document.getElementById("driverId").value);
+            opener.document.driverEnrollForm.userId.value = document.getElementById("driverId").value;
+            opener.document.driverEnrollForm.userId.readOnly = true;
+            if (opener != null) {
+                opener.chkForm = null;
+                self.close();
+            }    
+        }   
+    	}
         
-        if (opener != null) {
-            opener.chkForm = null;
-            self.close();
-        }    
-    }    
+        // 회원가입 화면의 ID입력란에 값을 전달
+        
 
 
 
@@ -128,18 +157,28 @@
 <body onload="pValue();">
 <div id="wrap">
     <br>
-    <b><font size="4" color="gray">아이디 중복체크</font></b>
+    <b><font size="4" id="title" style="font-size: 1.6em;" color="gray">아이디 중복체크</font></b>
     <hr size="1" width="460">
     <br>
     <div id="chk">
-        <form id="checkForm">
-            <input type="text" name="idinput" id="driverId">
-            <input type="button" value="중복확인" onclick="idCheck()">
+        <form id="checkForm" class="form-inline">
+        	<table style="width: 100%;">
+        		<tr>
+        			<td width="150">
+        				<input type="text" name="idinput" class="form-control" id="driverId"  style="width: 70%; margin: 0 auto; float: right;">     				
+        			</td>
+        			<td width="60">
+        				&nbsp;<input type="button" class="btn btn-default" value="중복확인" onclick="idCheck()" style="margin-left: -20px; width: 55%;">
+        			</td>
+        		</tr>
+           
+            
+            </table>
         </form>
         <div id="msg"></div>
         <br>
-        <input id="cancelBtn" type="button" value="취소" onclick="window.close()"><br>
-        <input id="useBtn" type="button" value="사용하기" onclick="sendCheckValue()">
+        <input id="cancelBtn" type="button" value="취소" class="btn btn-danger"  onclick="window.close()"><br>
+        <input id="useBtn" type="button" value="사용하기" class= "btn btn-info" onclick="sendCheckValue()">
     </div>
 </div>    
 </body>
