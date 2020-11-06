@@ -508,9 +508,7 @@ section {
 				</section>
 			</section>
 
-			<footer>
-				<span id="copyright">Copyright 2020 CLOUD All rights reserved</span>
-			</footer>
+			
 
 			<c:forEach items="${tdList }" var="travel">
 				<script>
