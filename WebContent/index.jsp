@@ -46,10 +46,12 @@
         <!-- -->
         *{margin:0;padding:0;}
 	    ul,li{list-style:none;}
-	    .slide{height:300px;overflow:hidden;}
+	    .slide{width:500px;height:300px;overflow:hidden;float:left}
 	    .slide ul{width:calc(100% * 4);display:flex;animation:slide 8s infinite;} /* slide를 8초동안 진행하며 무한반복 함 */
 	    .slide li{width:calc(100% / 4);height:300px;}
-	    
+	    #right {
+	    	width:30%; padding-left:70px; float:left; text-align : center;
+	    }
 	    @keyframes slide {
 	      0% {margin-left:0;} /* 0 ~ 10  : 정지 */
 	      10% {margin-left:0;} /* 10 ~ 25 : 변이 */
