@@ -118,6 +118,7 @@
                       }
                    }
                 </script>
+                &nbsp;&nbsp; <img src="../assets/img/happy.png" style="height: 40px">
          </c:if>
             
             <c:if test="${sessionScope.driver ne null}">
@@ -159,7 +160,7 @@
                 <input type="hidden" name="qnaNo" value="${qna.qnaNoticeNo }">
                 <br><br>
        		    <input type="submit" id="upload" class="get-started-btn" style="border:none" value="수정하기" name="수정하기;">
-            	<input type="button" class="get-started-btn" style="border:none; margin-left:10px" onclick="javascript:history.back();" value="취소">
+            	<input type="button" class="get-started-btn" style="border:none; background-color:#d8d8d8; margin-left:10px" onclick="javascript:history.back();" value="취소">
             </form>
         </article>
         <br>

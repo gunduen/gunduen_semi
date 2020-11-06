@@ -37,10 +37,10 @@
 	 	<td>${ travelList.package_Pickup }</td>
 	 	<td>${ travelList.package_Date }</td>
 	 	<td>${ travelList.package_TravelDate }</td>
-	 	<c:if  test="${ travelList.pakcage_Confirm == 0}">
+	 	<c:if  test="${ travelList.package_Confirm == 1}">
 	 	<td> 미완료 </td>
 	 	</c:if>
-	 	<c:if  test="${ travelList.pakcage_Confirm > 0}">
+	 	<c:if  test="${ travelList.package_Confirm > 1}">
 	 	<td> 완료 </td>
 	 	</c:if>
 	 	<td>${ travelList.customer_Id }</td>

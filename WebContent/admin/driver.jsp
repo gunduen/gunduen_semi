@@ -35,7 +35,7 @@
 	<li onClick="location.href='/admin/driverList'">기사 회원 관리</li>
 	<li onClick="location.href='/admin/customerList'">고객 회원 관리</li>
 	<li onClick="location.href='/admin/travelList'">여행 예약 관리</li>
-	<li onClick="location.href='/message/list'">쪽지 관리</li>
+	<li onClick="location.href='/message/receiverList?receiver=${sessionScope.customer.customer_Id}'">쪽지 관리</li>
 </ul>
 <table border="1px solid black">
 	<tr>
