@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form id="reservationForm" name="form" action="/travel/insert" method="post">
+	<form name="sub" id="reservationForm" name="form" action="/travel/insert" method="post">
 	<% request.setCharacterEncoding("utf-8"); %>
 	<input type="hidden" name="sido" value="${param.sido }">
 	<input type="hidden" name="roadAddr" value="${param.roadAddr }">
@@ -20,7 +20,7 @@
 	<input type="hidden" name="driverId" value="${param.driverId }">
 	<input type="hidden" name = "coordx" value="${param.coordx }">
 	<input type="hidden" name = "coordy" value="${param.coordy }">
-	<input id="submit" type="submit" value="예약완료">
+	<!-- <input id="submit" type="submit" value="예약완료"> -->
 	</form>
 <script>
 	var IMP = window.IMP;
@@ -47,7 +47,8 @@
 			msg += '카드 승인번호 : ' + rsp.apply_num;
 
 			alert(msg);
-			$("#submit").last().trigger('click');
+			document.sub.submit();
+			/* $("#submit").last().trigger('click'); */
 	    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
 	    	/* jQuery.ajax({
 	    		url: "/payments/complete", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송

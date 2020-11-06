@@ -163,7 +163,7 @@ public class TravelDAO {
 				travel.setDriver_Id(rset.getString("DRIVER_ID"));
 				travel.setCoordx(rset.getString("COORDX"));
 				travel.setCoordy(rset.getString("COORDY"));
-				travel.setReview_Check(rset.getString("REVIEWYN"));
+				travel.setReview_Check(rset.getString("REVIEW_CHECK"));
 				rList.add(travel);
 			}
 		}catch(SQLException e) {
@@ -179,7 +179,7 @@ public class TravelDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Travel> TList = null;
-		String query = "SELECT * FROM (SELECT TRAVEL.*, ROW_NUMBER() OVER(ORDER BY PACKAGE_CODE DESC) AS NUM FROM TRAVEL WHERE PACKAGE_CONFIRM = '0') WHERE NUM BETWEEN ? AND ?";
+		String query = "SELECT * FROM (SELECT TRAVEL.*, ROW_NUMBER() OVER(ORDER BY PACKAGE_CODE DESC) AS NUM FROM TRAVEL WHERE PACKAGE_CONFIRM = '1') WHERE NUM BETWEEN ? AND ?";
 		int start = currentPage*recordCountPerPage - (recordCountPerPage -1);
 		int end = currentPage*recordCountPerPage;
 		try {
@@ -202,7 +202,7 @@ public class TravelDAO {
 				travelOne.setDriver_Id(rset.getString("DRIVER_ID"));
 				travelOne.setCoordx(rset.getString("COORDX"));
 				travelOne.setCoordy(rset.getString("COORDY"));
-				travelOne.setReview_Check(rset.getString("REVIEWYN"));
+				travelOne.setReview_Check(rset.getString("REVIEW_CHECK"));
 				TList.add(travelOne);
 			}
 		} catch (SQLException e) {

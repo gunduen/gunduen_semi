@@ -54,7 +54,7 @@ public class AdminTravelListServlet extends HttpServlet {
 			RequestDispatcher view = request.getRequestDispatcher("/admin/travel.jsp");
 			view.forward(request, response);
 		} else {
-			response.sendRedirect("/admin/driver.jsp");
+			response.sendRedirect("/admin/travel.jsp");
 		}
 	}
 
