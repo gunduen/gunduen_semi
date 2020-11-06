@@ -118,6 +118,7 @@
                       }
                    }
                 </script>
+                &nbsp;&nbsp; <img src="../assets/img/happy.png" style="height: 40px">
          </c:if>
             
             <c:if test="${sessionScope.driver ne null}">
@@ -158,7 +159,7 @@
                 <textarea name="content" style="resize:none" cols="130" rows="15" placeholder="답변내용을 입력하세요">${answer.answerContents }</textarea>
                 <br><br>
        		    <input type="submit" class="get-started-btn" style="border:none; align:center;" id="upload" value="답변수정" name="답변수정">
-            	<input class="get-started-btn" style="border:none; margin-left:10px" type="button" onclick="javascript:history.back();" value="취소">
+            	<input class="get-started-btn" style="border:none; background-color:#d8d8d8; margin-left:10px" type="button" onclick="javascript:history.back();" value="취소">
             </form>
         </article>
         <br>

@@ -99,7 +99,6 @@ public class TravelDAO {
 	}
 	
 	
-	//jimin
 	public ArrayList<Travel> selectTravelList(Connection conn,String customerId) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -179,7 +178,11 @@ public class TravelDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Travel> TList = null;
+<<<<<<< HEAD
 		String query = "SELECT * FROM (SELECT TRAVEL.*, ROW_NUMBER() OVER(ORDER BY PACKAGE_CODE DESC) AS NUM FROM TRAVEL WHERE PACKAGE_CONFIRM = '1') WHERE NUM BETWEEN ? AND ?";
+=======
+		String query = "SELECT * FROM (SELECT TRAVEL.*, ROW_NUMBER() OVER(ORDER BY PACKAGE_CODE DESC) AS NUM FROM TRAVEL WHERE PACKAGE_CONFIRM = '2') WHERE NUM BETWEEN ? AND ?";
+>>>>>>> refs/remotes/origin/1106hanhyeon
 		int start = currentPage*recordCountPerPage - (recordCountPerPage -1);
 		int end = currentPage*recordCountPerPage;
 		try {

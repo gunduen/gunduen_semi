@@ -119,6 +119,7 @@
                       }
                    }
                 </script>
+                &nbsp;&nbsp; <img src="../assets/img/happy.png" style="height: 40px">
          </c:if>
             
             <c:if test="${sessionScope.driver ne null}">
@@ -157,7 +158,7 @@
                 <textarea name="content" style="resize:none" cols="130" rows="15" placeholder="질문내용을 입력하세요" required></textarea>
                 <br><br>
        		    <input type="submit" id="upload" value="등록" name="등록" class="get-started-btn" style="border:none">
-            	<a href="/qna/list"><input type="button" id="list" value="목록으로" name="목록으로" class="get-started-btn" style="border:none; margin-left:10px"></a>
+            	<a href="/qna/list"><input type="button" id="list" value="목록으로" name="목록으로" class="get-started-btn" style="border:none; margin-left:10px; background-color:#d8d8d8;"></a>
             </form>
         </article>
         <br>

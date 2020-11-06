@@ -119,6 +119,7 @@
                       }
                    }
                 </script>
+                &nbsp;&nbsp; <img src="../assets/img/happy.png" style="height: 40px">
          </c:if>
             
             <c:if test="${sessionScope.driver ne null}">
@@ -174,8 +175,8 @@
         
 	        <!-- 로그인 아이디와 게시글 아이디 확인  -->
         	<c:if test="${ sessionScope.customer.customer_Id == content.customerId }">
-        		<a href="/qna/updateform?qnaNo=${content.qnaNoticeNo }"><input class="get-started-btn" style="border:none" type="button" value="수정"></a>
-        		<a href="/qna/delete?qnaNo=${content.qnaNoticeNo }"><input class="get-started-btn" style="border:none; margin-left:10px" type="button" value="삭제" onclick="return del();"></a>
+        		<a href="/qna/updateform?qnaNo=${content.qnaNoticeNo }"><input class="get-started-btn" style="border:none; width:106px;" type="button" value="수정"></a>
+        		<a href="/qna/delete?qnaNo=${content.qnaNoticeNo }"><input class="logout-btn" style="border:none; width:106px; margin-left:10px" type="button" value="삭제" onclick="return del();"></a>
         		
         	</c:if>
         	<!-- 관리자인지 확인  -->
@@ -196,10 +197,10 @@
         		<input name ="replyCheck" type="hidden" value="wait">
         		<input type="submit" class="get-started-btn" style="border:none; margin-left:10px" value="답변삭제" >
         		</form><br><br>
-        		<a href="/qna/updateform?qnaNo=${content.qnaNoticeNo }"><input class="get-started-btn" style="border:none" type="button" value="수정"></a>
-        		<a href="/qna/delete?qnaNo=${content.qnaNoticeNo }"><input class="get-started-btn" style="border:none; margin-left:10px;" type="button" value="삭제" onclick="return del();"></a>
+        		<a href="/qna/updateform?qnaNo=${content.qnaNoticeNo }"><input class="get-started-btn" style="border:none; width:106px;" type="button" value="수정"></a>
+        		<a href="/qna/delete?qnaNo=${content.qnaNoticeNo }"><input class="logout-btn" style="border:none; width:106px; margin-left:10px;" type="button" value="삭제" onclick="return del();"></a>
         	</c:if>
-            <a href="/qna/list"><input class="get-started-btn" style="border:none; margin-left:10px;" type="button" value="목록으로"></a>
+            <a href="/qna/list"><input class="get-started-btn" style="border:none; background-color:#d8d8d8; margin-left:10px;" type="button" value="목록으로"></a>
         </article>
     </section>
     <aside>
