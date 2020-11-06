@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,9 +59,16 @@
 		padding : 0px;
 	}
 	#btn1 {
-		border : 1px solid black;
+		border : 1px solid white;
+		float : right;
 	}
 </style>
+<script>
+	function delfunc() {
+		var con = confirm( "정말로 삭제하시겠습니까?");
+		if (con){location.href="/message/delete?messageNo="+ ${detail.message_No}};
+	}
+</script>
 </head>
 <body>
 	<!-- ======= Header ======= -->
@@ -148,7 +156,7 @@
 		<section class="main"class="row">
 			<section id="detail-top">
 				<div id="title">${ detail.message_Subject }</div>
-				<div id="subtext">보낸이 ${ detail.sender } / 받는이 ${detail.receiver}
+				<div id="subtext">보낸이 ${ detail.sender } / 받는이 ${detail.receiver} / ${detail.message_No}
 			/ 보낸 날짜 ${ detail.message_Date }</div>
 			</section>
 			<hr>
@@ -156,23 +164,24 @@
 			<div>${ detail.message_Contents }</div>
 			</section>
 			<section id="return">
-				<a href="/review/list?reviewArea=서울" class="get-started-btn-gray">게시판으로</a>
-				<c:choose test="${ sessionScope.customer ne null &&(detail.receiver eq sessionScope.customer.customer_Id)}">
-					<button type="button" id="btn1" class="logout-btn" onclick="delfunc(${detail.receiver});">삭제</button>
-					<script>
-						function delfunc(userid) {
-							location.href="/message/delete?userId="+userid;
-						}
-					</script>
+				<a href="/message/receiverList?receiver=${sessionScope.customer.customer_Id} " class="get-started-btn-gray">게시판으로</a>
+				<c:if test="${sessionScope.customer ne null && sessionScope.driver eq null}">
+					<!-- 받은 쪽 -->
+					<c:if test="${sessionScope.customer.customer_Id eq detail.receiver}">
+							<button type="button" id="btn1" class="logout-btn" onclick="delfunc();">삭제</button>
+					</c:if>
+					
+					
 				</c:if>
-				<c:if test="${ sessionScope.driver ne null && (detail.receiver eq sessionScope.driver.driverId )}">
-					<button type="button" id="btn1" class="logout-btn" onclick="delfunc(${detail.receiver});">삭제</button>
-					<script>
-						function delfunc(userid) {
-							location.href="/message/delete?userId="+userid;
-						}
-					</script>
+				<c:if test="${sessionScope.customer eq null && sessionScope.driver ne null}">
+					<!-- 받은 쪽 -->
+					<c:if test="${sessionScope.driver.driverId eq detail.receiver}">
+							<button type="button" id="btn1" class="logout-btn" onClick="delfunc();">삭제</button>
+							
+					</c:if>
+					
 				</c:if>
+				
 			</section>
 		</section>
 	</section>

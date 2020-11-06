@@ -33,8 +33,7 @@ public class MessageDeleteServlet extends HttpServlet {
 		int messageNo = Integer.parseInt(request.getParameter("messageNo"));
 		System.out.println(messageNo);
 		HttpSession session = request.getSession();
-//		String  userId = ((Customer)session.getAttribute("customer")).getCustomer_Id();
-		String userId = request.getParameter("userId");
+		String  userId = ((Customer)session.getAttribute("customer")).getCustomer_Id();
 		System.out.println(userId);
 		int result = new MessageService().deleteMessage(messageNo);
 		if( result > 0) {
