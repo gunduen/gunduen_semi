@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -154,10 +156,6 @@ footer {
 			alert('내용을 입력해주세요.');
 			return false;
 		}
-		if (mInfo.userId.value == ) {
-			alert('나에게로 보내시겠습니까?');
-			return false;
-		}
 	}
 	//아이디 중복확인 클릭시 창을 띄우는 fucntion
 	function openIdChk() {
@@ -188,8 +186,14 @@ footer {
 				<ul>
 					<li><a href="messageForm.html"><input type="submit"
 							value="쪽지 쓰기" class="btn1"></a></li>
+					<c:if test="${sessionScope.customer ne null && (sessionScope.driver eq null) }">
 					<li><a href="/message/receiverList?receiver=${ sessionScope.customer.customer_Id}">받은 쪽지함</a></li>
 					<li><a href="/message/senderList?sender=${ sessionScope.customer.customer_Id }">보낸 쪽지함</a></li>
+					</c:if>
+					<c:if test="${sessionScope.customer eq null  && (sessionScope.driver ne null) }">
+					<li><a href="/message/receiverList?receiver=${ sessionScope.driver.driverId}">받은 쪽지함</a></li>
+					<li><a href="/message/senderList?sender=${ sessionScope.driver.driverId }">보낸 쪽지함</a></li>
+					</c:if>
 				</ul>
 			</div>
 		</article>
@@ -201,9 +205,6 @@ footer {
 				<div class="message title">
 					제목 <input type="text" placeholder="쪽지 제목" style="width: 850px;" id="title" name="title">
 				</div>
-				<div class="message title">
-					보낸 사람 <input type="text" placeholder="받는 사람" style="width: 800px;" name="sender">
-				</div> 
 				<div class="message title">
 					받는 사람 <input type="text" placeholder="받는 사람" style="width: 800px;" id="userId" name="userId"><input type="button" value="받는이찾기 " onclick="openIdChk();">
 					<input type="hidden" name="idCheck" value="idUncheck">

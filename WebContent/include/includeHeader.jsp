@@ -65,6 +65,7 @@
             <a href="/login/DriverLogin.jsp" class="get-started-btn">기사로그인</a>
             &nbsp;&nbsp;
             <img src="../assets/img/smile.png" style="height: 40px">
+
          </div>
       </header><!-- End Header -->
 </body>

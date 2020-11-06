@@ -124,10 +124,10 @@
 
 
 <!--  ======= Main ========= -->
-<section id="wrap">
+<section id="wrap"  class="container-fluid" style="padding-left:150px; padding-right:150px;">
 <!-- 고객 -->
 <c:if test="${sessionScope.customer ne null && sessionScope.driver eq null }">
-<div class="side">
+	<section id="semiwrap">
 			<ul>
 				<li><a href="/message/sendform"><input type="submit"
 						value="쪽지 쓰기" class="btn1"></a></li>
@@ -140,13 +140,14 @@
 		<div class="title">[${ sessionScope.customer.customer_Id }]님의
 				 쪽지함입니다.</div>
 				<hr>
-	<table border="1">
-		<tr>
+	<table class="table table-hover">
+		<thead>
 			<th>보낸 이</th>
 			<th>제목</th>
 			<th>보낸 날짜</th>
 			<th>받는 이</th>
-		</tr>
+		</thead>
+		<tbody>
 		<c:forEach items="${ receiverList }" var="Rmessage" varStatus="index">
 			<tr onClick="location.href='/message/select?messageNo=${Rmessage.message_No}'">
 				<td>${ Rmessage.sender }</td>
@@ -155,16 +156,17 @@
 				<td>${ Rmessage.receiver }</td>
 			</tr>
 		</c:forEach>
+		</tbody>
 		<tr>
 			<td colspan="5" align="center">${ pageNavi }
 		</tr>
 	</table>
 </c:if>
-
+</section>
 
 <!-- 기사 -->
-	<c:if
-		test="${sessionScope.customer eq null && sessionScope.driver ne null}">
+<section>
+	<c:if test="${sessionScope.customer eq null && sessionScope.driver ne null}">
 		<div class="side">
 			<ul>
 				<li><a href="/message/sendform"><input type="submit"
@@ -200,5 +202,11 @@
 	</table>
 </c:if>
 </section>
+</section>
+
+	<!-- footer -->
+    <%@include file="../include/includeFooter.jsp" %>
+   
+   <div id="preloader"></div>
 </body>
 </html>
