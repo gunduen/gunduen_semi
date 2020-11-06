@@ -6,23 +6,20 @@ public class PageData {
 	//생성자 
 	public PageData() {}
 
-	private ArrayList<Review> pageList;
-	private String pageNavi;
-	
-	public ArrayList<Review> getPageList() {
-		return pageList;
+	private ArrayList<Review> pageReviewList;
+	private String pageReviewNavi;
+	public ArrayList<Review> getPageReviewList() {
+		return pageReviewList;
 	}
-	public void setPageList(ArrayList<Review> pageList) {
-		this.pageList = pageList;
+	public void setPageReviewList(ArrayList<Review> pageReviewList) {
+		this.pageReviewList = pageReviewList;
 	}
-	public String getPageNavi() {
-		return pageNavi;
+	public String getPageReviewNavi() {
+		return pageReviewNavi;
 	}
-	public void setPageNavi(String pageNavi) {
-		this.pageNavi = pageNavi;
+	public void setPageReviewNavi(String pageReviewNavi) {
+		this.pageReviewNavi = pageReviewNavi;
 	}
-	
-	
 	
 	
 }

@@ -71,13 +71,15 @@ public class ReviewListServlet extends HttpServlet {
       }
       
       int currentPage = 0;
-         if(request.getParameter("currnetPage") == null) {
-            currentPage = 1;
-         } else {
-            currentPage = Integer.parseInt(request.getParameter("currentPage"));
-         }
+      if(request.getParameter("currentPage") == null) {
+         currentPage = 1;
+      } else {
+         currentPage = Integer.parseInt(request.getParameter("currentPage"));
+      }
+         System.out.println(currentPage);
          PageData pageData = new ReviewService().reviewList(currentPage, area);
-         ArrayList<Review> RList = pageData.getPageList();
+         ArrayList<Review> RList = pageData.getPageReviewList();
+         
          System.out.println(customerId);
          ArrayList<Travel> TList = new TravelService().selectTravelList(customerId);
          response.setContentType("text/html; charset=utf-8");
@@ -85,17 +87,19 @@ public class ReviewListServlet extends HttpServlet {
 //         System.out.println(RList.size());
 
          if(!RList.isEmpty()) {
+        	 System.out.println(currentPage); System.out.println(pageData);
             request.setAttribute("RList", RList);
-            request.setAttribute("pageNavi", pageData.getPageNavi()); 
-            if (!TList.isEmpty()) {
-            request.setAttribute("rTravel", TList);
-            }
+            request.setAttribute("reviewpageNavi", pageData.getPageReviewNavi()); 
+	            if (!TList.isEmpty()) {
+	            request.setAttribute("rTravel", TList);
+	            }
+	            System.out.println(currentPage); System.out.println(pageData);
             RequestDispatcher view = request.getRequestDispatcher("/review/reviewList.jsp");
             view.forward(request, response);
          } else {
-            if (!TList.isEmpty()) {
-               request.setAttribute("rTravel", TList);
-            }System.out.println(TList);
+	            if (!TList.isEmpty()) {
+	               request.setAttribute("rTravel", TList);
+	            }System.out.println(TList);
             RequestDispatcher view = request.getRequestDispatcher("/review/reviewList.jsp");
             view.forward(request, response);
          }   

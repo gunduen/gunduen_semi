@@ -16,9 +16,13 @@ public class ReviewDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Review> RList = null;
+		//row_number() 함수는 순번 매기는 함
 		String query = "SELECT * FROM (SELECT REVIEW.*, ROW_NUMBER() OVER(ORDER BY REVIEW_NO DESC) AS NUM FROM REVIEW WHERE REVIEW_AREA =?) WHERE NUM BETWEEN ? AND ?";
+		//start : 1, end : 10 //만일 start 2, 
 		int start = currentPage*recordCountPerPage - (recordCountPerPage -1);
 		int end = currentPage*recordCountPerPage;
+		System.out.println(start);
+		System.out.println(end);
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, area);
@@ -46,15 +50,15 @@ public class ReviewDAO {
 		return RList;
 	}
 	
-	public String getPageNavi(Connection conn, int currentPage, int recordCountPerPage, int naviCountPerPage, String area) {
-	      int recordTotalCount = totalCount(conn, area);
+	public String getReviewPageNavi(Connection conn, int currentPage, int recordCountPerPage, int naviCountPerPage, String area) {
+	      int recordTotalCount = reviewtotalCount(conn, area);
 	      int pageTotalCount = 0;
 	      if(recordTotalCount % recordCountPerPage > 0) {
 	         pageTotalCount = recordTotalCount / recordCountPerPage + 1;
 	      } else {
 	         pageTotalCount = recordTotalCount / recordCountPerPage;
 	      }
-	      
+	      System.out.println(recordTotalCount);
 	      //#오류 방지 코드 
 	      if (currentPage < 1) {
 	         currentPage = 1;
@@ -103,7 +107,7 @@ public class ReviewDAO {
 	      return sb.toString();
 	   };
 	   
-	   public int totalCount(Connection conn, String area) {
+	   public int reviewtotalCount(Connection conn, String area) {
 	      PreparedStatement pstmt = null;
 	      ResultSet rset = null;
 	      String query = "SELECT COUNT(*) AS TOTALCOUNT FROM REVIEW WHERE REVIEW_AREA = ?";
@@ -123,6 +127,7 @@ public class ReviewDAO {
 	      }
 	      return recordTotalCount;
 	   }
+	   
 	   
 	   public Review selectReview(Connection conn, int reviewNo) {
 		   PreparedStatement pstmt = null;

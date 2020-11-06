@@ -40,7 +40,7 @@ public class ReviewDetailServlet extends HttpServlet {
 //		System.out.println(review);
 		int currentPage = 0;
 		
-		if(request.getParameter("currnetPage") == null) {
+		if(request.getParameter("currentPage") == null) {
 			currentPage = 1;
 		} else {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));

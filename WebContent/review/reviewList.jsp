@@ -255,10 +255,11 @@
 						</script>
 							</c:forEach>
 						</tbody>
-						<tr>
-							<td colspan="4" align="center">${ pageNavi }
-						</tr>
+						
 					</table>
+					<tr>
+							<td colspan="4" align="center">${ reviewpageNavi }
+						</tr>
 				</c:if>
 			</section>
 			<section id="button" style="padding: 0px; float: right;">

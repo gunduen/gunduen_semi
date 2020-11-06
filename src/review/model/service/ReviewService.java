@@ -25,8 +25,10 @@ public class ReviewService {
 		PageData pd = new PageData();
 		try {
 			conn = factory.createConnection();
-			pd.setPageList(new ReviewDAO().reviewList(conn, currentPage, recordCountPerPage, area));
-			pd.setPageNavi(new ReviewDAO().getPageNavi(conn, currentPage, recordCountPerPage, naviCountPerPage, area));
+			//setPageList()메소드는 10개의 게시물을 저장
+			pd.setPageReviewList(new ReviewDAO().reviewList(conn, currentPage, recordCountPerPage, area));
+			//setPageNavi()메소드는 a링크 10개를 저장 
+			pd.setPageReviewNavi(new ReviewDAO().getReviewPageNavi(conn, currentPage, recordCountPerPage, naviCountPerPage, area));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

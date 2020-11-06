@@ -36,7 +36,7 @@ public class MessageSenderListServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		int currentPage = 0;
 		String sender = request.getParameter("sender");;
-		if(request.getParameter("currnetPage") == null) {
+		if(request.getParameter("currentPage") == null) {
 			currentPage = 1;
 		} else {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
