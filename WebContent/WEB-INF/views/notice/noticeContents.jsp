@@ -185,9 +185,9 @@
             <article id="bottom">
             	<c:if test="${ sessionScope.customer.adminCheck == 1 }">
                 	<a href="/notice/updateform?notice_No=${ content.notice_No }"><input class="get-started-btn" style="border:none;" type="button" value="수정"></a>
-                	<a href="/notice/delete?notice_No=${ content.notice_No }" onclick="return question();"><input class="get-started-btn" style="border:none;" type="button" value="삭제"></a>
+                	<a href="/notice/delete?notice_No=${ content.notice_No }" onclick="return question();"><input class="logout-btn" style="border:none;" type="button" value="삭제"></a>
                 </c:if>
-                <input class="get-started-btn" style="border:none;" type="button" value="목록으로" onClick="location.href='/notice/list'">  <!-- onclick="location.href='/notice/select'" -->
+                <input class="get-started-btn" style="background:#D8D8D8;border:none;" type="button" value="목록으로" onClick="location.href='/notice/list'">  <!-- onclick="location.href='/notice/select'" -->
             </article>
         </section>
         <%@include file="/include/includeFooter.jsp" %>   
