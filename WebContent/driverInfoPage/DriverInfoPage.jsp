@@ -178,7 +178,7 @@
         				<c:forEach items="${dList}" var="list">
         					<div id="driverInfo">
         						<div id="infoImage">
-        							<img src="/driverInfoPage/Img/conan.png" style="width: 100px; height: 100px;">
+        							<img src="../img/driverImage/${list.driverInfoImage}" style="width: 100px; height: 100px;">
         						</div>
         						<div id="driverMyInfo">
         							<p>${list.driverName} 기사님</p>
