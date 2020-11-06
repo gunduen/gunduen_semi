@@ -103,32 +103,32 @@
 <body>
 
 <!-- ======= Header ======= -->
-	<header id="header" class="fixed-top">
-		<div class="container d-flex align-items-center">
-			<h1 class="logo mr-auto">
-				<a href="/index.jsp">GUNDUEN</a>
-			</h1>
-			<!-- Uncomment below if you prefer to use an image logo -->
-			<!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-			<nav class="nav-menu d-none d-lg-block">
-				<ul>
-					<li class="active"><a href="index.jsp">Home</a></li>
-					<li><a href="/notice/list">Notice</a></li>
-					<li><a href="/driverInfoPage/DriverInfoPage.jsp">Driver</a></li>
-					<li><a href="/qna/list">Q&A</a></li>
-					<li><a href="/review/list?reviewArea=서울">Review</a></li>
-					<li></li>
-				</ul>
-			</nav>
-			<!-- .nav-menu -->
+		<header id="header" class="fixed-top">
+			<div class="container d-flex align-items-center">
 
-			<!-- admin 로그인시 header -->
-			<c:if test="${sessionScope.customer.adminCheck == 1 }">
+				<h1 class="logo mr-auto">
+					<a href="index.jsp">GUNDUEN</a>
+				</h1>
+				<!-- Uncomment below if you prefer to use an image logo -->
+				<!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+				<nav class="nav-menu d-none d-lg-block">
+					<ul>
+						<li class="active"><a href="index.jsp">Home</a></li>
+						<li><a href="/notice/list">Notice</a></li>
+						<li><a href="/driverInfoPage/DriverInfoPage.jsp">Driver</a></li>
+						<li><a href="/qna/list">Q&A</a></li>
+						<li><a href="/review/list?reviewArea=서울">Review</a></li>
+						<li></li>
+					</ul>
+				</nav><!-- .nav-menu -->
+				
+				<!-- admin 로그인시 header -->
+				<c:if
+				test="${sessionScope.customer.adminCheck == 1 }">
 				<a href="/admin/driverList" class="get-started-btn">마이페이지</a>
-				<a href="/member/logout" class="logout-btn"
-					onclick="return warning();">로그아웃</a>
-				<script>
-              	function warning(){
+				<a href="/member/logout" class="logout-btn" onclick="return warning();">로그아웃</a>
+                <script>
+                	function warning(){
                 		var question = confirm('정말 로그아웃하시겠어요?');
                 		if(question){
                 			return true;
@@ -137,16 +137,14 @@
                 		}
                 	}
                 </script>
-			</c:if>
-
+				</c:if>
+			
 			<!-- 고객/기사 로그인시 header -->
-			<c:if test="${sessionScope.customer.adminCheck < 1 }">
-				<a
-					href="/mypage/travel?customerId=${sessionScope.customer.customer_Id }"
-					class="get-started-btn">마이페이지</a>
-				<a href="/member/logout" class="logout-btn"
-					onclick="return warning();">로그아웃</a>
-				<script>
+			<c:if
+				test="${sessionScope.customer.adminCheck < 1 }">
+				<a href="/mypage/travel?customerId=${sessionScope.customer.customer_Id }" class="get-started-btn">마이페이지</a>
+				<a href="/member/logout" class="logout-btn" onclick="return warning();">로그아웃</a>
+                <script>
                 	function warning(){
                 		var question = confirm('정말 로그아웃하시겠어요?');
                 		if(question){
@@ -157,14 +155,11 @@
                 	}
                 </script>
 			</c:if>
-
-			<c:if test="${sessionScope.driver ne null}">
-				<a
-					href="DriverTravel/List?driverId=${sessionScope.driver.driverId }"
-					class="get-started-btn">마이페이지</a>
-				<a href="/member/logout" class="logout-btn"
-					onclick="return warning();">로그아웃</a>
-				<script>
+				
+				<c:if test="${sessionScope.driver ne null}">
+            	<a href="/DriverTravel/List?driverId=${sessionScope.driver.driverId }" class="get-started-btn">마이페이지</a>
+				<a href="/member/logout" class="logout-btn" onclick="return warning();">로그아웃</a>
+                <script>
                 	function warning(){
                 		var question = confirm('정말 로그아웃하시겠어요?');
                 		if(question){
@@ -174,13 +169,13 @@
                 		}
                 	}
                 </script>
-			</c:if>
+            </c:if>
+				
+				&nbsp;&nbsp;
+				<img src="../assets/img/happy.png" style="height: 40px">
 
-			&nbsp;&nbsp; <img src="../assets/img/happy.png" style="height: 40px">
-
-		</div>
-	</header>
-	<!-- End Header -->
+			</div>
+		</header><!-- End Header -->
 	
 	
 	<!-- 후기 상세 -->
