@@ -156,7 +156,7 @@
                     <div align="center">
 	                    <input class="get-started-btn" style="border:none;" type="submit" value="업로드">
 	                    <input class="get-started-btn" style="border:none;" type="reset" value="취소">
-	                    <a href="/notice/list"><input class="get-started-btn" style="border:none;" type="button" value="목록으로"></a>
+	                    <a href="/notice/list"><input class="get-started-btn" style="background:#D8D8D8;border:none;" type="button" value="목록으로"></a>
                     </div>
 	            </form>
         </section>
