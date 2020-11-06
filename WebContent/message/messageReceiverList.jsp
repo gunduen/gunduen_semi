@@ -40,6 +40,35 @@
   ======================================================== -->
 <title>받는 쪽지함</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+	<style>
+		#main-top {
+			padding-bottom:0px;
+		}
+		.title {width : 50%; float:left; font-family : 'Do Hyeon', sans-serif; font-size : 1.2em;}
+		.side { width : 250px;float: right;}
+		#main-top ul {
+		width : 100%;
+			list-style : none;
+			padding-left : 0px;
+			margin-bottom:0px;
+		}
+		#main-top ul li {width : 48%; float : left; margin-right : 0px; text-align : center;}
+		#main-bottom {
+			height L 500px;
+			padding-top : 0px;
+		}
+		.get-started-btn {
+			border : 1px solid white;
+			float:right;
+		}
+		.table-hover tbody tr:hover td {
+  		background-color : #a3d4f7;
+  		color : white;
+  	}
+  	#main-btn {
+  		padding-top : 0px;
+  	}
+	</style>
 </head>
 <body>
 <!-- ======= Header ======= -->
@@ -52,7 +81,7 @@
 			<!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 			<nav class="nav-menu d-none d-lg-block">
 				<ul>
-					<li class="active"><a href="index.jsp">Home</a></li>
+					<li><a href="index.jsp">Home</a></li>
 					<li><a href="/notice/list">Notice</a></li>
 					<li><a href="/driverInfoPage/DriverInfoPage.jsp">Driver</a></li>
 					<li><a href="/qna/list">Q&A</a></li>
@@ -126,20 +155,36 @@
 <!--  ======= Main ========= -->
 <section id="wrap"  class="container-fluid" style="padding-left:150px; padding-right:150px;">
 <!-- 고객 -->
+
 <c:if test="${sessionScope.customer ne null && sessionScope.driver eq null }">
-	<section id="semiwrap">
+<section id="main-top">
+		<div class="title">[${ sessionScope.customer.customer_Id }]님의 쪽지함</div>
+		<div class="side">
 			<ul>
-				<li><a href="/message/sendform"><input type="submit"
-						value="쪽지 쓰기" class="btn1"></a></li>
 				<li><a href="/message/receiverList?receiver=${ sessionScope.customer.customer_Id }">받은
 						쪽지함</a></li>
 				<li><a href="/message/senderList?sender=${ sessionScope.customer.customer_Id }">보낸
 						쪽지함</a></li>
 			</ul>
 		</div>
-		<div class="title">[${ sessionScope.customer.customer_Id }]님의
-				 쪽지함입니다.</div>
-				<hr>
+</section>
+</c:if>
+<!-- 기사 -->
+<c:if test="${sessionScope.customer eq null && sessionScope.driver ne null}">
+<section id="main-top">
+		<div class="title">[${ sessionScope.driver.driverId }]님의 쪽지함입니다.</div>
+		<div class="side">
+			<ul>
+				<li><a href="/message/receiverList?receiver=${ sessionScope.driver.driverId }">받은
+						쪽지함</a></li>
+				<li><a href="/message/senderList?sender=${ sessionScope.driver.driverId }">보낸
+						쪽지함</a></li>
+			</ul>
+		</div>
+</section>
+</c:if>
+<hr>
+<section id="main-bottom">
 	<table class="table table-hover">
 		<thead>
 			<th>보낸 이</th>
@@ -156,53 +201,18 @@
 				<td>${ Rmessage.receiver }</td>
 			</tr>
 		</c:forEach>
-		</tbody>
+		
 		<tr>
 			<td colspan="5" align="center">${ pageNavi }
 		</tr>
+		</tbody>
 	</table>
-</c:if>
+</section>
+<section id="main-btn">
+	<a href="/message/sendform"><input type="submit" value="쪽지 쓰기" class="get-started-btn"></a>
+</section>
 </section>
 
-<!-- 기사 -->
-<section>
-	<c:if test="${sessionScope.customer eq null && sessionScope.driver ne null}">
-		<div class="side">
-			<ul>
-				<li><a href="/message/sendform"><input type="submit"
-						value="쪽지 쓰기" class="btn1"></a></li>
-				<li><a href="/message/receiverList?receiver=${ sessionScope.driver.driverId }">받은
-						쪽지함</a></li>
-				<li><a href="/message/senderList?sender=${ sessionScope.driver.driverId }">보낸
-						쪽지함</a></li>
-			</ul>
-		</div>
-		<div class="title">[${ sessionScope.driver.driverId }]님의
-				 쪽지함입니다.</div>
-				<hr>
-	<table border="1">
-		<tr>
-			<th>보낸 이</th>
-			<th>제목</th>
-			<th>보낸 날짜</th>
-			<th>받는 이</th>
-		</tr>
-		<c:forEach items="${ receiverList }" var="Rmessage" varStatus="index">
-			<tr onClick="location.href='/message/select?messageNo=${Rmessage.message_No}'">
-				<td>${ Rmessage.sender }</td>
-				<td>${ Rmessage.message_Subject}</td>
-				<td>${ Rmessage.message_Date }</td>
-				<td>${ Rmessage.receiver }</td>
-				
-			</tr>
-		</c:forEach>
-		<tr>
-			<td colspan="5" align="center">${ pageNavi }
-		</tr>
-	</table>
-</c:if>
-</section>
-</section>
 
 	<!-- footer -->
     <%@include file="../include/includeFooter.jsp" %>

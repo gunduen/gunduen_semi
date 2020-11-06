@@ -94,6 +94,11 @@ function callback(){
     }    
  }  
 </script>
+<style>
+	calcelBtn {
+		margin-right : 20px;
+	}
+</style>
 </head>
 <body onload="pValue();">
 <div id="wrap">
@@ -108,11 +113,11 @@ function callback(){
 	        	<option value="driver">기사</option>
 	        </select>
             <input type="text" name="userId" id="userId">
-            <input type="button" value="찾기" onclick="idCheck()">
+            <input type="button" class="get-started-btn" value="찾기" onclick="idCheck()">
         </form>
         <div id="msg"></div>
         <br>
-        <input id="cancelBtn" type="button" value="취소" onclick="window.close()"><br>
+        <input id="cancelBtn" type="button" value="취소" onclick="window.close()">
         <input id="useBtn" type="button" value="사용하기" onclick="sendCheckValue()">
     </div>
 </div>    

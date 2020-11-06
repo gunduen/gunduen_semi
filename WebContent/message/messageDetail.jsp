@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -37,145 +37,36 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 <title>메세지 디테일</title>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <style>
-	/* div {
-		border: 1px solid none;
-		box-sizing: border-box;
+	#detail-top {
+		padding-bottom : 0px;
 	}
-
-	body {
-		width: 1800px;
-		height: 1080px;
+	#detail-bottom {
+		padding-top : 0px;
 	}
-	
-	header {
-		width: 100%;
-		height: 10%;
-		border: 1px solid black;
-		text-align: center;
-		box-sizing: border-box;
-	}
-	
-	section {
-		width: 100%;
-		height: 50%;
-		border: 1px solid black;
-		box-sizing: border-box;
-		text-align: center;
-	}
-	
-	nav {
-		border: 1px solid black;
-		height: 50px;
-		background-color: skyblue;
-	}
-	
-	nav a {
-		color: white;
-		font-size: 1.2em;
-		text-decoration: none;
-	}
-	
-	#menu {
-		margin: 0;
-		padding: 0;
-		height: 100%;
-		overflow: hidden;
-		border: 1px solid black;
-		width: 1600px;
-		margin: 0 auto;
-	}
-	
-	#menu li {
-		width: 25%;
-		height: 100%;
-		float: left;
-		text-align: center;
-		list-style: none;
-		line-height: 50px;
-		vertical-align: middle;
-	}
-	
-	#menu li:hover {
-		background-color: steelblue;
-	}
-	
-	.article:first-of-type {
-		float: left;
-		background-color: lightblue;
-		height: 90%;
-	}
-	
-	.article:last-of-type {
-		width: 80%;
-		float: left;
-		margin: 20px 50px;
-		text-align: left;
-	}
-	
-	.side ul {
-		padding: 0 30px;
-	}
-	
-	.side ul li {
-		list-style: none;
-		height: 40px;
-		font-size: 1.2em;
-		margin: 15% 0;
-	}
-	
-	.side ul li>a {
-		color: white;
-	}
-	
-	.side ul li>a:hover {
-		color: blue;
-		text-decoration: none;
-	}
-	
-	.btn1 {
-		background-color: cornflowerblue;
-		border: none;
-		color: white;
-		padding: 0 20px;
-		text-align: center;
-	}
-	
 	#title {
-		font-size: 2em;
-		text-align: left;
+		font-family : 'Do Hyeon', sans-serif; font-size : 1.2em;
 	}
-	
-	.send {
-		width: 1030px;
-		text-align: right;
+	#detail-bottom {
+		height : 200px;
 	}
-	
-	.contents {
-		height: 230px;
-		font-size: 1.2em;
+	#return {
+		padding : 0px;
 	}
-	
-	#btn2, #btn3 {
-		background-color: cornflowerblue;
-		border: none;
-		color: white;
-		padding: 0 20px;
-		text-align: center;
+	#btn1 {
+		border : 1px solid white;
+		float : right;
 	}
-	
-	footer {
-		width: 100%;
-		height: 10%;
-		border: 1px solid black;
-		text-align: center;
-		line-height: 100px;
-	} */
 </style>
+<script>
+	function delfunc(id) {
+		var con = confirm( '정말로 삭제하시겠습니까?');
+		if (con){
+			location.href="/message/delete?messageNo="+ ${detail.message_No} + "&userId=" + id;
+		}
+	} 
+</script>
 </head>
 <body>
 	<!-- ======= Header ======= -->
@@ -188,7 +79,7 @@
 			<!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 			<nav class="nav-menu d-none d-lg-block">
 				<ul>
-					<li class="active"><a href="index.jsp">Home</a></li>
+					<li><a href="index.jsp">Home</a></li>
 					<li><a href="/notice/list">Notice</a></li>
 					<li><a href="/driverInfoPage/DriverInfoPage.jsp">Driver</a></li>
 					<li><a href="/qna/list">Q&A</a></li>
@@ -258,40 +149,44 @@
 	</header>
 	<!-- End Header -->
 	
-	<!-- ====== Main ====== -->
-	<section>
-		<nav>
-			<ul id="menu">
-				<li><a href="/noticeList.html">공지사항</a></li>
-				<li><a href="/driverList.html">기사소개</a></li>
-				<li><a href="/reviewList.html">사용자 후기</a></li>
-				<li><a href="/qnaList.html">Q&A</a></li>
-			</ul>
-		</nav>
-		<section class="article ">
-			<div class="side">
-				<ul>
-					<li><a href="messageForm.html"><input type="submit"
-							value="쪽지 쓰기" class="btn1"></a></li>
-					<li><a href="#">받은 쪽지함</a></li>
-					<li><a href="#">보낸 쪽지함</a></li>
-				</ul>
-			</div>
+	<!--======= Main ======== -->
+	<section id="wrap"  class="container-fluid" style="padding-left:150px; padding-right:150px;">
+		<section class="main"class="row">
+			<section id="detail-top">
+				<div id="title">${ detail.message_Subject }</div>
+				<div id="subtext">보낸이 ${ detail.sender } / 받는이 ${detail.receiver} / ${detail.message_No}
+			/ 보낸 날짜 ${ detail.message_Date } ${sessionScope.driver.driverId}</div>
+			</section>
+			<hr>
+			<section id="detail-bottom">
+			<div>${ detail.message_Contents }</div>
+			</section>
+			<section id="return">
+				<a href="/message/receiverList?receiver=${sessionScope.customer.customer_Id} " class="get-started-btn-gray">게시판으로</a>
+				<!-- 고객 로그인 -->
+				<c:if test="${sessionScope.customer ne null && sessionScope.driver eq null}">
+					<!-- 받은 쪽 -->
+					<c:if test="${sessionScope.customer.customer_Id eq detail.receiver}">
+							<input type="button" value="삭제" id="btn1" class="logout-btn" onclick="delfunc('${sessionScope.customer.customer_Id}');" />
+					</c:if>
+					
+					
+				</c:if>
+				
+				<!-- 기사 로그인 -->
+				<c:if test="${sessionScope.customer eq null && sessionScope.driver ne null}">
+					<!-- 받은 쪽 -->
+					<c:if test="${sessionScope.driver.driverId eq detail.receiver}">
+							<input type="button" value="삭제" id="btn1" class="logout-btn" onclick="delfunc('${sessionScope.driver.driverId}');" />
+					</c:if>
+					
+				</c:if>
+				
+			</section>
 		</section>
-		<section class="article">
-			<h2>제목 : ${ detail.message_Subject }</h2>
-			<h6>글번호 : ${ detail.message_No } / 보낸 이 : ${ detail.sender } / 받는 이 : ${detail.receiver}
-				작성일 : ${ detail.message_Date }</h6>
-			<h3>${ detail.message_Contents }</h3>
-		</section>
-		<br><br><br><br><br>
-		<c:if test="${ detail.receiver eq sessionScope.customer.customer_Id }">
-		<div><button id="btn1" onclick="location.href='/message/delete?messageNo=${detail.message_No}'">삭제</button></div>
-		</c:if>
 	</section>
-	<!-- END MAIN -->
 
-	<!-- footer -->
+		<!-- footer -->
     <%@include file="../include/includeFooter.jsp" %>
    
    <div id="preloader"></div>
