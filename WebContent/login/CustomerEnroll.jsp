@@ -188,6 +188,7 @@
 		section{
      	   width : 100%;
      	   	height: 900px;
+     	   	padding-top:100px;
      	   }
      	table tr td:nth-child(2) {
 			float: left;
@@ -281,16 +282,13 @@
          </c:if>
       </div>
    </header>
-   <!-- End Header -->
+   <!-- End Header --><br><br>
 	<!--  -->
 	<section>
 		<article style="text-align: center; margin-left: 200px;">
 			<form action="/customer/enroll" name = "userInfo" class="form-inline" method="post" onsubmit="return checkValue();">
 				<table style="margin: 0 auto;">
-				<tr >
-					<td style="text-align : center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<img src="../img/MainPageImg/gunduen.png" style="width: 150px; height: 150px;"></td>
-				</tr>
+				
 				<tr>
 					<td width="100">아이디</td>
 				</tr>

@@ -40,6 +40,7 @@ request.setCharacterEncoding("utf-8");
 		if(!dList.isEmpty()) {
 			request.setAttribute("dList", dList);
 			request.setAttribute("driverId", driverId);
+			System.out.println(dList);
 			RequestDispatcher travel = request.getRequestDispatcher("/myPage/DriverMyPage.jsp");
 			travel.forward(request, response);
 		}if(dList.isEmpty()){

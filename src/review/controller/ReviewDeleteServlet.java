@@ -37,7 +37,9 @@ public class ReviewDeleteServlet extends HttpServlet {
 		int result = new ReviewService().deleteReview(reviewNo);
 //		int resulta = new ReviewService().updateReviewCheck(package_Code);
 		if (result > 0) {
+			if(resultcomment>0) {
 			response.sendRedirect("/review/list?reviewArea=" + area);
+			}
 		} else {
 			request.getRequestDispatcher("/review/reviewError.html");
 		}

@@ -360,9 +360,6 @@ p {
 		</form>
 
 	</section>
-
-
-
 	<script>
 		var date = new Date(); 
 		var year = date.getFullYear(); 

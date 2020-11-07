@@ -65,6 +65,9 @@
   		background-color : #a3d4f7;
   		color : white;
   	}
+  	.table-hover tbody tr:hover td:last-child {
+  		background-color : white;
+  	}
   	#main-btn {
   		padding-top : 0px;
   	}

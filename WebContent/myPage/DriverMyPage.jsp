@@ -65,7 +65,7 @@
 
 section {
 	width: 90%;
-	height: 75%;
+	height: 100%;
 	border: 1px solid white;
 	box-sizing: border-box;
 }
@@ -74,10 +74,11 @@ section {
 
 #navi {
 	width: 15%;
-	height: 40%;
+	height: 100%;
 	border: 1px solid white;
 	box-sizing: border-box;
 	float: left;
+	
 }
 
 #contents {
@@ -123,6 +124,7 @@ section {
 	border: 1px solid white;
 	width: 100%;
 	height: 90%;
+	padding-top:20px;
 }
 
 #mybooking p {
@@ -166,10 +168,13 @@ section {
 	height: 100%;
 	line-height: 30px;
 }
-
-
-
-
+#wrap {
+	 width:100%;margin:0px;padding-right:20px;padding-left:20px;
+}
+h1 {
+	padding-left : 50px;
+	padding-bottom :10px;
+}
 </style>
 </head>
 <body>
@@ -230,8 +235,9 @@ section {
          </c:if>
 
          <c:if test="${sessionScope.driver ne null}">
-            	<a href="/DriverTravel/List?driverId=${sessionScope.driver.driverId }" class="get-started-btn">마이페이지</a>
-				<a href="/member/logout" class="logout-btn" onclick="return warning();">로그아웃</a>
+            <a href="/DriverTravel/List?driverId=${sessionScope.driver.driverId }" class="get-started-btn">마이페이지</a>
+            <a href="/member/logout" class="logout-btn"
+               onclick="return warning();">로그아웃</a>
             <script>
                function warning() {
                   var question = confirm('정말 로그아웃하시겠어요?');
@@ -255,17 +261,17 @@ section {
    <!-- End Header -->
 	</header>
 	<br><br>
-	<section>
+	<section id="wrap">
 		<section id="navi">
 		<nav class="nav-menu d-none d-lg-block">
 			<nav id="navigator">
 				<ul>
 				<!-- if문으로 li 개수 조절 -->
-				<li class="active"><a href="/DriverTravel/List?driverId=${sessionScope.driver.driverId }">예약확인/ 예약취소</a></li>
-                <li><a href="/message/receiverList?receiver=${sessionScope.driver.driverId }">쪽지함</a></li>
-                <li><a href="/login/driverMyInfo.jsp">회원정보 수정</a></li> 
-                <li><a href="/base/delete?driverId=${sessionScope.driver.driverId }" onclick="return delete1();">회원 탈퇴</a></li>		
-                    </ul>
+				<li class="active"><a href="/mypage/travel?customerId=${sessionScope.customer.customer_Id }">예약확인/ 예약취소</a></li>
+				<li><a href="/message/receiverList?receiver=${sessionScope.customer.customer_Id }">쪽지함</a></li>
+				<li><a href="/customer/myInfo?customerId=${sessionScope.customer.customer_Id }">회원정보 수정</a></li>
+				<li><a href="/customer/delete?customerId=${sessionScope.customer.customer_Id }" onclick="return delete1();">회원 탈퇴</a></li>
+				</ul>
 			</nav>
 			</nav>
 
@@ -288,7 +294,7 @@ section {
 						</tr>
 					
 					<c:forEach items="${dList }" var="travel">
-						<tr id="travel" onClick="location.href='/select/DriverTravel?packageCode=${travel.package_Code}&driverId=${sessionScope.driver.driverId }'">
+						<tr id="travel" onClick="location.href='/select/DriverTravel?packageCode=${travel.package_Code}&driverId=${sessionScope.driver.driverId}'">
 							<td>${travel.package_TravelDate }</td>
 							<td>${travel.package_Area }</td>
 							<td>${travel.package_Utilization }</td>
