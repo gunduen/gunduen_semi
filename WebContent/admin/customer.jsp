@@ -90,20 +90,22 @@ section {
 }
 
 #navi {
-	width: 15%;
+	width: 100%;
 	height: 100%;
 	border: 1px solid white;
 	box-sizing: border-box;
 	float: left;
+	padding-top : 20px; padding-left:70px;
+	padding-bottom:0px;
 }
 
 #contents {
-	width: 85%;
+	width: 100%;
 	height: 100%;
 	border: 1px solid white;
 	box-sizing: border-box;
 	float: left;
-	padding: 15px;
+	padding: 0px;
 }
 
 #mypageList {
@@ -114,6 +116,7 @@ section {
 #navi #navigator a {
 	text-decoration: none;
 	display: white;
+	margin-right : 20px;
 }
 
 #navigator {
@@ -128,6 +131,7 @@ section {
 	border: 1px solid white;
 	height: 20%;
 	box-sizing: border-box;
+	float : left;
 }
 
 #mybooking {
@@ -185,6 +189,16 @@ section {
 	width: 20%;
 	height: 100%;
 	line-height: 30px;
+}
+.table tr th {
+	 padding:0px;
+	 font-size : 1.2em;
+	 text-align:center;
+}
+.table tr td {
+	padding:0px;
+	text-align:center;
+	font-size:1.2em;
 }
 </style>
 </head>
@@ -286,7 +300,7 @@ section {
 						<li><a href="/admin/driverList">기사 회원 관리</a></li>
 						<li class="active"><a href="/admin/customerList">고객 회원 관리</a></li>
 						<li><a href="/admin/travelList">여행 예약 관리</a></li>
-						<li><a href="/message/list">쪽지 관리</a></li>
+						<li><a href="/message/receiverList?receiver=${sessionScope.customer.customer_Id }">쪽지 관리</a></li>
 					</ul>
 				</nav>
 			</nav>
@@ -295,7 +309,6 @@ section {
 		<section id="contents">
 
 			<section id="mybookinglist">
-				<br> <br>
 				<table class="table" style="width: 90%; height: 30px;">
 
 					<tr>
@@ -319,7 +332,7 @@ section {
 								<td><form
 										action="/customer/kickout?customer_Id=${customerList.customer_Id}"
 										method="post" onsubmit="return kickOutChk();">
-										<input type="submit" value="회원 탈퇴">
+										<input type="submit" value="회원 탈퇴" class="get-started-btn-small">
 									</form></td>
 						</c:if>
 					</c:forEach>

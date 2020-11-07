@@ -143,8 +143,6 @@
 			</div>
 		</header><!-- End Header -->
         
-        
-        
         <!-- ======= Hero Section ======= -->
 		<section id="hero"
 			class="d-flex justify-content-center align-items-center">
@@ -173,7 +171,7 @@
 					<div class="slide">
 						<ul>
 							<li><img
-								src="https://t1.daumcdn.net/cfile/blog/216CB83A54295C1C0E?original"
+								src="../img/index/img1.jpg"
 								width="500px;" height="300px;"></li>
 							<li><img
 								src="https://i.pinimg.com/originals/b7/2f/0b/b72f0b16f4a84cc8e649f6bce9048bc8.jpg"
@@ -287,32 +285,31 @@
         
         <!-- ======= Main ======= -->
 		<section id="main"
-			class="d-flex justify-content-center align-items-center">
+			class="d-flex justify-content-center align-items-center" style="padding-left:80px;">
 			<div class="container position-relative" data-aos="zoom-in"
-				data-aos-delay="100"
-				style="border: 1px solid black; ">
-				<div class="slide" style="border: 1px solid black; float : left;">
+				data-aos-delay="100" style="margin:0 auto;">
+				<div class="slide" style="float : left;">
 					<ul>
 						<li><img
-							src="https://t1.daumcdn.net/cfile/blog/216CB83A54295C1C0E?original"
+							src="../img/index/img1.jpg"
 							width="500px;" height="300px;"></li>
 						<li><img
-							src="https://i.pinimg.com/originals/b7/2f/0b/b72f0b16f4a84cc8e649f6bce9048bc8.jpg"
+							src="../img/index/img2.jpg"
 							width="500px;" height="300px;"></li>
 						<li><img
-							src="https://dispatch.cdnser.be/cms-content/uploads/2019/09/09/50e20ad4-f940-4f93-830b-8501146b4488.jpg"
+							src="../img/index/img3.jpg"
 							width="500px;" height="300px;"></li>
 						<li><img
-							src="https://dispatch.cdnser.be/cms-content/uploads/2019/09/09/4657b750-ce06-4136-91af-40d922a327c6.jpg"
+							src="../img/index/img4.jpg"
 							width="500px;" height="300px;"></li>
 					</ul>
 
 				</div>
-				<div id="right" style="border: 1px solid black; height:300px; float : left; text-align:center;">
-					<div id ="intro"style="border: 1px solid black;  width : 100%; float : left;">
-					<div id="right_top">행복한 택시여행 떠나 보실라우?</div>
-					<div id="right_bottom">근두운: 손오공이 근두운을 타고 팔도유람하듯 택시를 타고<br> 자유롭게
-						여행할 수 있게 해주는 서비스, <br>어디든 떠날 수 있는 국내 자유여행</div>
+				<div id="right" style="height:300px; float : left; text-align:center; padding-left:100px; padding-top:100px;">
+					<div id ="intro"style=" width : 100%; float : left;">
+					<div id="right_top"><b>행복한 택시여행</b> 떠나 보실라우?</div>
+					<div id="right_bottom">근두운: 손오공이 근두운을 타고 <b>팔도유람하듯 택시를 타고</b><br> 자유롭게
+						여행할 수 있게 해주는 서비스, <br><p style="color:#0f9aff;font-weight:bold;">어디든 떠날 수 있는 국내 자유여행 근두운</p></div>
 					</div>
 				</div>
 			</div>

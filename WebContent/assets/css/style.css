@@ -325,6 +325,25 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
 }
 
+.get-started-btn-small {
+  margin-left: 22px;
+  background: #a3d4f7;
+  color: #fff;
+  border-radius: 50px;
+  border  :1px solid white;
+  padding: 4px 10px;
+  white-space: nowrap;
+  transition: 0.3s;
+  font-size: 12px;
+  display: inline-block;
+  margin-left : 0px;
+}
+
+.get-started-btn-small:hover {
+  background: #0f9aff;
+  color: #fff;
+}
+
 @media (max-width: 768px) {
   .get-started-btn {
     margin: 0 48px 0 0;
