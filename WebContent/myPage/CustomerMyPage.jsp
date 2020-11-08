@@ -78,6 +78,7 @@ section {
 	border: 1px solid white;
 	box-sizing: border-box;
 	float: left;
+	
 }
 
 #contents {
@@ -123,6 +124,7 @@ section {
 	border: 1px solid white;
 	width: 100%;
 	height: 90%;
+	padding-top:20px;
 }
 
 #mybooking p {
@@ -166,10 +168,13 @@ section {
 	height: 100%;
 	line-height: 30px;
 }
-
-
-
-
+#wrap {
+	 width:100%;margin:0px;padding-right:20px;padding-left:20px;
+}
+h1 {
+	padding-left : 50px;
+	padding-bottom :10px;
+}
 </style>
 </head>
 <body>
@@ -256,7 +261,7 @@ section {
    <!-- End Header -->
 	</header>
 	<br><br>
-	<section>
+	<section id="wrap">
 		<section id="navi">
 		<nav class="nav-menu d-none d-lg-block">
 			<nav id="navigator">

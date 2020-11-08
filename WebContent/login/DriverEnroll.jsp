@@ -240,10 +240,6 @@
 		width: 100%;
 		height: 100%;
 	}
-	header{
-		width: 100%;
-		height: 7%;
-	}
 	section{
 		width: 100%;
 		height: 1300px;
@@ -256,10 +252,15 @@
 	table tr td:nth-child(2) {
 		float: left;
 	}
+	.get-started-btn:last-child {
+		border : 1px solid white;
+		margin-left :0px;
+		font-size : 1.2em;
+	}
 </style>
 </head>
 <body>
-	<header id="header" class="fixed-top">
+<header id="header" class="fixed-top">
          <div class="container d-flex align-items-center">
 
             <h1 class="logo mr-auto">
@@ -525,7 +526,7 @@
 					<td><input type="file" name="DriverInfoFile" onchange="checkSize(this)"></td>
 				</tr>
 				<tr>
-					<td><input type="submit" value="회원가입하기" class="btn btn-success btn-lg" style="width: 100%;"></td>
+					<td><input type="submit" value="회원가입하기" class="get-started-btn" style="width: 100%;"></td>
 				</tr>
 				
 	        

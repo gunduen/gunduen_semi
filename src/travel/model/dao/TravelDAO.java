@@ -103,7 +103,7 @@ public class TravelDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Travel> rList = null;
-		String query = "SELECT * FROM TRAVEL WHERE CUSTOMER_ID = ? AND REVIEW_CHECK = 'N' AND PACKAGE_AREA!='1' ORDER BY PACKAGE_CODE";
+		String query = "SELECT * FROM TRAVEL WHERE CUSTOMER_ID = ? AND REVIEW_CHECK = 'N' AND PACKAGE_CONFIRM = '2' ORDER BY PACKAGE_CODE";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -325,6 +325,7 @@ public class TravelDAO {
 				travel.setDriver_Id(rset.getString("driver_Id"));
 				travel.setCoordx(rset.getString("coordx"));
 				travel.setCoordy(rset.getString("coordy"));
+				travel.setReview_Check(rset.getString("review_Check"));
 				tdList.add(travel);
 			}
 		}catch(SQLException e) {
@@ -390,6 +391,7 @@ public class TravelDAO {
 				travel.setDriver_Id(rset.getString("driver_Id"));
 				travel.setCoordx(rset.getString("coordx"));
 				travel.setCoordy(rset.getString("coordy"));
+				travel.setReview_Check(rset.getString("REVIEW_CHECK"));
 				dList.add(travel);
 			}
 		}catch(SQLException e) {

@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page import="review.model.vo.Review"%>
-<%@page import="comment.model.vo.Comment"%>
+	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,43 +36,39 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-<title>보낸 쪽지함</title>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-	<style>
-		#main-top {
-			padding-bottom:0px;
+<title>쪽지 답장하기</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<style>
+ #title {
+		font-family : 'Do Hyeon', sans-serif; font-size : 1.2em;
+	}
+	.get-started-btn {
+		border : 1px solid white;
+		float : right;
+	}
+</style>
+<script>
+	function checkValue(){
+		var mInfo = document.resendMessageForm;
+		
+		if(mInfo.title.value==""){
+			alert('제목을 입력해주세요');
+			return false;
 		}
-		.title {width : 50%; float:left; font-family : 'Do Hyeon', sans-serif; font-size : 1.2em;}
-		.side { width : 250px;float: right;}
-		#main-top ul {
-		width : 100%;
-			list-style : none;
-			padding-left : 0px;
-			margin-bottom:0px;
+		if (mInfo.contents.value =="") {
+			alert('내용을 입력해주세요.');
+			return false;
 		}
-		#main-top ul li {width : 48%; float : left; margin-right : 0px; text-align : center;}
-		#main-bottom {
-			height L 500px;
-			padding-top : 0px;
-		}
-		.get-started-btn {
-			border : 1px solid white;
-			float:right;
-		}
-		.table-hover tbody tr:hover td {
-  		background-color : #a3d4f7;
-  		color : white;
-  	}
-  	#main-btn {
-  		padding-top : 0px;
-  	}
-  	.table-hover tbody tr:hover #pagenavi {
-  		background-color : white;
-  	}
-	</style>
+	}
+	
+</script>
 </head>
 <body>
-<!-- ======= Header ======= -->
+	<!-- ======= Header ======= -->
 	<header id="header" class="fixed-top">
 		<div class="container d-flex align-items-center">
 			<h1 class="logo mr-auto">
@@ -153,69 +147,38 @@
 		</div>
 	</header>
 	<!-- End Header -->
+	
+	<!--======= Main ======== -->
+	<section id="wrap"  class="container-fluid" style="padding-left:150px; padding-right:150px;">
+		<section class="main"class="row">
+			<section id="detail-top">
+		<article class="article">
+		<div id="title">답장하기</div>
+				<hr>
+			<form action="/message/resend" name ="resendMessageForm" method="post" onsubmit="return checkValue();">
+				
+				<div class="message-title">
+					<input type="text" id="subject" style="width : 100%;" placeholder="쪽지 제목" id="title" name="title">
+				</div>
+				<div class="message-title">
+					<input type="text" id="receiver"style="width : 250px;" value="${sender }" id="userId" name="userId" readonly>
+				</div>
+				<div class="message contents">
+					<br>
+					<textarea id="contents" style="width: 100%; height: 200px; resize:none; color:gray;" placeholder="쪽지 내용"
+						name="contents" id="contents"></textarea>
+				</div>
+				<br>
+				<div class="message send">
+					<input type="submit" class="get-started-btn" value="쪽지전송" id="btn2">
+				</div>
+			</form>
+		</article>
+			</section>
+		</section>
+	</section>
 
-
-<!--  ======= Main ========= -->
-<section id="wrap"  class="container-fluid" style="padding-left:150px; padding-right:150px;">
-<!-- 고객 -->
-
-<c:if test="${sessionScope.customer ne null && sessionScope.driver eq null }">
-<section id="main-top">
-		<div class="title">[${ sessionScope.customer.customer_Id }]님의 쪽지함</div>
-		<div class="side">
-			<ul>
-				<li><a href="/message/receiverList?receiver=${ sessionScope.customer.customer_Id }">받은
-						쪽지함</a></li>
-				<li><a href="/message/senderList?sender=${ sessionScope.customer.customer_Id }">보낸
-						쪽지함</a></li>
-			</ul>
-		</div>
-</section>
-</c:if>
-<!-- 기사 -->
-<c:if test="${sessionScope.customer eq null && sessionScope.driver ne null}">
-<section id="main-top">
-		<div class="title">[${ sessionScope.driver.driverId }]님의 쪽지함입니다.</div>
-		<div class="side">
-			<ul>
-				<li><a href="/message/receiverList?receiver=${ sessionScope.driver.driverId }">받은
-						쪽지함</a></li>
-				<li><a href="/message/senderList?sender=${ sessionScope.driver.driverId }">보낸
-						쪽지함</a></li>
-			</ul>
-		</div>
-</section>
-</c:if>
-<hr>
-	<table class="table table-hover">
-		<thead>
-			<th>보낸 이</th>
-			<th>제목</th>
-			<th>보낸 날짜</th>
-			<th>받는 이</th>
-		</thead>
-		<tbody>
-		<c:forEach items="${ senderList }" var="Smessage" varStatus="index">
-			<tr onClick="location.href='/message/select?messageNo=${Smessage.message_No}'">
-				<td>${ Smessage.sender }</td>
-				<td>${ Smessage.message_Subject}</td>
-				<td>${ Smessage.message_Date }</td>
-				<td>${ Smessage.receiver }</td>
-			</tr>
-		</c:forEach>
-		<tr>
-			<td colspan="5" align="center" id="pagenavi">${ pageNavi }
-		</tr>
-		</tbody>
-	</table>
-
-<section id="main-btn">
-	<a href="/message/sendform"><input type="submit" value="쪽지 쓰기" class="get-started-btn"></a>
-</section>
-</section>
-
-
-	<!-- footer -->
+		<!-- footer -->
     <%@include file="../include/includeFooter.jsp" %>
    
    <div id="preloader"></div>

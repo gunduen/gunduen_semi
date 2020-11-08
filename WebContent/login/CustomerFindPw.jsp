@@ -77,11 +77,17 @@
 		width: 100%;
 		height: 50%;
 	}
-	table td{
+	#title, .get-started-btn:last-child{
 		font-family: 'Do Hyeon', sans-serif;
 		font-size: 1.6em;
 	}
-	
+	h2 {
+		margin-top : 0px;
+		font-family: 'Do Hyeon', sans-serif;
+	}
+	#table {
+		margin : 0 auto;
+	}
 </style>
 </head>
 
@@ -165,15 +171,15 @@
    <section>
    		<article style="text-align: center; margin-top: 50px;">
         <form action="/customer/findpw" name="userPwFindInfo" method="post" onsubmit="return subChk();"style="width: 400px; margin: 0 auto;">
-			 <table>
+			 <table id="table">
             	<tr>
-            		<td><a href="/index.jsp"><img src="../img/MainPageImg/gunduen.png" style="width: 250px; height: 150px;"></a></td>
+            		<td><a href="/index.jsp"><img src="../img/MainPageImg/gunduen.png" style="width: 150px; height: 150px;"></a></td>
             	</tr>
             	<tr>
             		<td><h2>고객 비밀번호 찾기</h2></td>
             	</tr>
             	<tr>
-            		<td style="font-size: 1.4em;">정보가 일치하면 가입할 때 작성한 이메일로 새 비밀번호를 보내드립니다.</td>
+            		<td style="font-size: 1.2em;">정보가 일치하면 가입할 때 작성한 이메일로<br> 새 비밀번호를 보내드립니다.</td>
             	</tr>
             	<tr><td>    </td></tr>
             	<tr>
@@ -200,7 +206,7 @@
             		<td>&nbsp;</td>
             	</tr>
             	<tr>
-            		<td><button type="submit" class="btn btn-info btn-lg" style="width: 100%;">아이디찾기</button></td>
+            		<td><button type="submit" class="get-started-btn" style="width: 100%;border:1px solid white;margin-left:0px;">아이디찾기</button></td>
             	</tr>
             </table>
         </form>

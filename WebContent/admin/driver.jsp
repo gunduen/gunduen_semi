@@ -90,20 +90,22 @@ section {
 }
 
 #navi {
-	width: 15%;
+	width: 100%;
 	height: 100%;
 	border: 1px solid white;
 	box-sizing: border-box;
 	float: left;
+	padding-top : 20px; padding-left:70px;
+	padding-bottom:0px;
 }
 
 #contents {
-	width: 85%;
+	width: 100%;
 	height: 100%;
 	border: 1px solid white;
 	box-sizing: border-box;
 	float: left;
-	padding: 15px;
+	padding: 0px;
 }
 
 #mypageList {
@@ -114,6 +116,7 @@ section {
 #navi #navigator a {
 	text-decoration: none;
 	display: white;
+	margin-right : 20px;
 }
 
 #navigator {
@@ -128,6 +131,7 @@ section {
 	border: 1px solid white;
 	height: 20%;
 	box-sizing: border-box;
+	float : left;
 }
 
 #mybooking {
@@ -186,10 +190,18 @@ section {
 	height: 100%;
 	line-height: 30px;
 }
+.table tr th {
+	 padding:0px;
+	 font-size : 1.2em;
+	 text-align:center;
+}
+.table tr td {
+	padding:0px;
+	font-size : 1.2em;
+}
 </style>
 </head>
 <body>
-<<<<<<< HEAD
 	<header>
 		<header id="header" class="fixed-top">
 			<div class="container d-flex align-items-center">
@@ -287,31 +299,29 @@ section {
 						<li class="active"><a href="/admin/driverList">기사 회원 관리</a></li>
 						<li><a href="/admin/customerList">고객 회원 관리</a></li>
 						<li><a href="/admin/travelList">여행 예약 관리</a></li>
-						<li><a href="/message/list">쪽지 관리</a></li>
+						<li><a href="/message/receiverList?receiver=${sessionScope.customer.customer_Id }">쪽지 관리</a></li>
 					</ul>
 				</nav>
 			</nav>
 
 		</section>
 		<section id="contents">
-
 			<section id="mybookinglist">
-				<br> <br>
 				<table class="table" style="width: 90%; height: 30px;">
 					<tr>
 						<th>아이디</th>
 						<th>이름</th>
 						<th>이메일</th>
 						<th>주소</th>
-						<th>주민등록번호</th>
+						<th>주민등록<br>번호</th>
 						<th>승인여부</th>
 						<th>자기소개</th>
 						<th>담당지역</th>
-						<th>택시운전 자격증</th>
-						<th>사업자 등록증</th>
-						<th>소개용 사진</th>
-						<th>Button</th>
-						<th>강제 탈퇴</th>
+						<th>택시운전<br>자격증</th>
+						<th>사업자<br>등록증</th>
+						<th>소개용<br>사진</th>
+						<th>인증</th>
+						<th>탈퇴</th>
 					</tr>
 					<c:forEach items="${ DList }" var="driverList">
 						<tr>
@@ -321,10 +331,10 @@ section {
 							<td>${ driverList.driverHome }</td>
 							<td>${ driverList.driverRrn }</td>
 							<c:if test="${ driverList.driverCheck eq 1}">
-								<td>승인완료</td>
+								<td>승인</td>
 							</c:if>
 							<c:if test="${ driverList.driverCheck eq 0}">
-								<td>승인미완료</td>
+								<td>미승인</td>
 							</c:if>
 							<td>${ driverList.driverSelfInfo }</td>
 							<td>${ driverList.driverArea }</td>
@@ -332,19 +342,19 @@ section {
 							<td onClick="location.href='#'" class="image">${ driverList.driverBLicense }</td>
 							<td onClick="location.href='#'" class="image">${ driverList.driverInfoImage }</td>
 							<c:if test="${driverList.driverCheck eq 1 }">
-								<td><button type="button">승인 완료됨</button></td>
+								<td><button type="button" class="get-started-btn-small">승인됨</button></td>
 							</c:if>
 							<c:if test="${driverList.driverCheck eq 0 }">
 								<td><form
 										action="/driver/approve?driverId=${driverList.driverId}"
 										method="post" onsubmit="return approveChk();">
-										<input type="submit" value="승인 하기">
+										<input type="submit" value="승인하기" class="get-started-btn-small">
 									</form></td>
 							</c:if>
 							<td><form
 									action="/driver/kickout?driverId=${driverList.driverId}"
 									method="post" onsubmit="return kickOutChk();">
-									<input type="submit" value="회원 탈퇴">
+									<input type="submit" value="회원탈퇴" class="get-started-btn-small">
 								</form></td>
 						</tr>
 						<script>

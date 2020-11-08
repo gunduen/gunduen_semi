@@ -77,11 +77,13 @@
 		width: 100%;
 		height: 50%;
 	}
-	table td{
-		font-family: 'Do Hyeon', sans-serif;
+	#title, .get-started-btn:last-child{
+		font-family:'Do Hyeon', sans-serif;
 		font-size: 1.6em;
 	}
-	
+	h2 {
+		margin-top : 0px;
+	}
 	
 	
 </style>
@@ -169,13 +171,13 @@
         <form action="/customer/findid" name="userIdFindInfo" method="post" onsubmit="return subChk();" style="width: 400px; margin: 0 auto;">
            <table>
             	<tr>
-            		<td><a href="/index.jsp"><img src="../img/MainPageImg/gunduen.png" style="width: 250px; height: 150px;"></a></td>
+            		<td><a href="/index.jsp"><img src="../img/MainPageImg/gunduen.png" style="width: 150px; height: 150px;"></a></td>
             	</tr>
             	<tr>
-            		<td><h2>고객 아이디 찾기</h2></td>
+            		<td id="title"><h2>고객 아이디 찾기</h2></td>
             	</tr>
-            	<tr>
-            		 <td style="font-size: 1.4em;">아래 정보를 입력하시면 아이디를 찾을 수 있습니다.</td>
+            	<tr id="subtitle">
+            		 <td style="font-size: 1.2em;">아래 정보를 입력하시면 아이디를 찾을 수 있습니다.</td>
             	</tr>
             	<tr><td>    </td></tr>
             	<tr>
@@ -203,7 +205,7 @@
             		<td>&nbsp;</td>
             	</tr>
             	<tr>
-            		<td><button type="submit" class="btn btn-info btn-lg" style="width: 100%;">아이디찾기</button></td>
+            		<td><button type="submit" class="get-started-btn" style="width: 100%;border:1px solid white;margin-left:0px;">아이디찾기</button></td>
             	</tr>
             </table>
         </form>

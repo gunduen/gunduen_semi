@@ -72,8 +72,6 @@ public class TravelListServlet extends HttpServlet {
 			request.setAttribute("coords", coords);
 			RequestDispatcher view = request.getRequestDispatcher("/travel/Travel.jsp");
 			view.forward(request, response);
-		}if(tList.isEmpty()) {
-			out.println("<script>alert('입력하신 예약일정에 예약가능한 기사가 없습니다.'); document.location.href='/travel/Travel.jsp';</script>");
 		}
 		else {
 			request.getRequestDispatcher("error");

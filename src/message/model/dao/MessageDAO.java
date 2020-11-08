@@ -386,4 +386,38 @@ public class MessageDAO {
 		   }
 		   return result;
 	   }
+	   
+	   public int insertWelcomeCusMessage(Connection conn, String customerId) {
+		   PreparedStatement pstmt = null;
+		   int result = 0;
+		   String query = "INSERT INTO MESSAGE VALUES(MESSAGE_NUM.NEXTVAL,SYSDATE,'예약이 확정되었습니다','예약이 확정되었습니다. 즐거운 여행되시길 바랍니다.','admin',?)";
+		   try {
+			   pstmt = conn.prepareStatement(query);
+			   pstmt.setString(1, customerId);
+			   result = pstmt.executeUpdate();
+			   System.out.println(result);
+		   } catch (Exception e) {
+			   e.printStackTrace();
+		   } finally {
+			   JDBCTemplate.close(pstmt);
+		   }
+		   return result;
+	   }
+	   
+	   public int insertWelcomeDriMessage(Connection conn, String driverId) {
+		   PreparedStatement pstmt = null;
+		   int result = 0;
+		   String query = "INSERT INTO MESSAGE VALUES(MESSAGE_NUM.NEXTVAL,SYSDATE,'예약이 확정되었습니다','예약이 확정되었습니다. 안전한 여행되시길 바랍니다.','admin',?)";
+		   try {
+			   pstmt = conn.prepareStatement(query);
+			   pstmt.setString(1, driverId);
+			   result = pstmt.executeUpdate();
+			   System.out.println(result);
+		   } catch (Exception e) {
+			   e.printStackTrace();
+		   } finally {
+			   JDBCTemplate.close(pstmt);
+		   }
+		   return result;
+	   }
 }

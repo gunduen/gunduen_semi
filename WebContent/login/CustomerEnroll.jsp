@@ -188,6 +188,7 @@
 		section{
      	   width : 100%;
      	   	height: 900px;
+     	   	padding-top:100px;
      	   }
      	table tr td:nth-child(2) {
 			float: left;
@@ -199,6 +200,9 @@
 		}
 		.btn-outline-primary{
 			font-family: 'Do Hyeon', sans-serif;
+		}
+		.get-started-btn:last-child {
+			width: 400px; border:1px solid white;font-size:1.2em; margin-left:0px;
 		}
 	</style>
 </head>
@@ -216,7 +220,7 @@
                   <li><a href="/index.jsp">Home</a></li>
                   <li><a href="/notice/list">Notice</a></li>
                   <li><a href="/driverInfoPage/DriverInfoPage.jsp">Driver</a></li>
-                  <li class="active"><a href="/qna/list">Q&A</a></li>
+                  <li><a href="/qna/list">Q&A</a></li>
                   <li><a href="/review/list?reviewArea=서울">Review</a></li>
                   <li></li>
                </ul>
@@ -278,16 +282,13 @@
          </c:if>
       </div>
    </header>
-   <!-- End Header -->
+   <!-- End Header --><br><br>
 	<!--  -->
 	<section>
-		<article style="text-align: center; margin-left: 250px;">
+		<article style="text-align: center; margin-left: 200px;">
 			<form action="/customer/enroll" name = "userInfo" class="form-inline" method="post" onsubmit="return checkValue();">
 				<table style="margin: 0 auto;">
-				<tr>
-					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<img src="../img/MainPageImg/gunduen.png" style="width: 250px; height: 220px;"></td>
-				</tr>
+				
 				<tr>
 					<td width="100">아이디</td>
 				</tr>
@@ -374,7 +375,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="3"><br><input type="submit" class="btn btn-success btn-lg" value="회원가입하기" style="width: 400px;"></td>
+					<td colspan="3"><br><input type="submit" class="get-started-btn" value="회원가입하기"></td>
 				</tr>
 			
 				</table>

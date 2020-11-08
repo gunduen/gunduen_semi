@@ -80,7 +80,6 @@ public class DriverUpdateServlet extends HttpServlet {
 	      driver.setDriverName(multi.getParameter("userName"));
 	      driver.setDriverPhone(multi.getParameter("firstPhone")+"-"+multi.getParameter("secondPhone")+"-"+multi.getParameter("thirdPhone"));
 	      driver.setDriverEmail(multi.getParameter("emailId")+multi.getParameter("emailTag"));
-	      driver.setDriverHome(multi.getParameter("roadAddress")+" "+multi.getParameter("dAddress"));
 	      driver.setDriverArea(multi.getParameter("area"));
 	      driver.setDriverRrn(multi.getParameter("userRrnFirst")+"-"+multi.getParameter("userRrnSecond"));
 	      driver.setDriverSelfInfo(multi.getParameter("driverInfo"));
@@ -91,7 +90,7 @@ public class DriverUpdateServlet extends HttpServlet {
 	      driver.setDriverInfoImage(DriverInfoFileName);
 	      driver.setDriverInfoImage_path(DriverInfoFilePath);
 	      System.out.println(driver.toString());
-	      result = new DriverService().updateDriver(driver);
+	      result = new DriverService().updateDriverInfo(driver);
 		
 		if(result >0) {
 			response.sendRedirect("/index.jsp");

@@ -36,7 +36,7 @@ public class DriverMyinfoServlet extends HttpServlet {
 		
 		if (driver != null) {
 			request.setAttribute("driver", driver);
-			request.getRequestDispatcher("/login/driverMyifo.jsp").forward(request, response);
+			request.getRequestDispatcher("/login/driverMyInfo.jsp").forward(request, response);
 			
 		} else {
 			request.getRequestDispatcher("/login/driverError.jsp");

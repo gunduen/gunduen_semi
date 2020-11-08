@@ -1,4 +1,4 @@
-package review.controller;
+package message.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import comment.model.service.CommentService;
-import review.model.service.ReviewService;
-
 /**
- * Servlet implementation class ReviewDeleteServlet
+ * Servlet implementation class MessageResendFormServlet
  */
-@WebServlet("/review/delete")
-public class ReviewDeleteServlet extends HttpServlet {
+@WebServlet("/message/resendForm")
+public class MessageResendFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewDeleteServlet() {
+    public MessageResendFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,19 +27,11 @@ public class ReviewDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-		String area = request.getParameter("reviewArea");
-		int package_Code = Integer.parseInt(request.getParameter("package_Code"));
-		int resultcomment = new CommentService().deleteAllComment(reviewNo);
-		int result = new ReviewService().deleteReview(reviewNo);
-//		int resulta = new ReviewService().updateReviewCheck(package_Code);
-		if (result > 0) {
-			if(resultcomment>0) {
-			response.sendRedirect("/review/list?reviewArea=" + area);
-			}
-		} else {
-			request.getRequestDispatcher("/review/reviewError.html");
-		}
+		String sender = request.getParameter("sender");
+		String receiver = request.getParameter("receiver");
+		request.setAttribute("sender", sender);
+		request.setAttribute("receiver",receiver);
+		request.getRequestDispatcher("/message/messageResendForm.jsp").forward(request, response);
 	}
 
 	/**

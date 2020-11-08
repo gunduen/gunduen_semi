@@ -48,30 +48,18 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <style>
-
-
-
-
-
 #mypage {
 	width: 35%;
 	height: 100%;
 	float: left;
 	line-height: 250px;
 }
-
-
-
-
 section {
 	width: 90%;
 	height: 75%;
 	border: 1px solid white;
 	box-sizing: border-box;
 }
-
-
-
 #navi {
 	width: 15%;
 	height: 40%;
@@ -79,7 +67,6 @@ section {
 	box-sizing: border-box;
 	float: left;
 }
-
 #contents {
 	width: 85%;
 	height: 100%;
@@ -87,23 +74,18 @@ section {
 	box-sizing: border-box;
 	float: left;
 }
-
-
 #mypageList {
 	width: 100%;
 	height: 100%;
 }
-
 #navi #navigator a {
 	text-decoration: none;
 	display: white;
 }
-
 #navigator {
 	width: 100%;
 	height: 100%;
 }
-
 #navigator li {
 	text-align: center;
 	line-height: 70px;
@@ -112,28 +94,23 @@ section {
 	height: 20%;
 	box-sizing: border-box;
 }
-
 #mybooking {
 	border: 1px solid white;
 	width: 100%;
 	height: 10%;
 }
-
 #mybookinglist {
 	border: 1px solid white;
 	width: 100%;
 	height: 90%;
 }
-
 #mybooking p {
 	font-size: 1.6em;
 	font-weight: bold;
 }
-
 #mybookinglist table {
 	margin: 0 auto;
 }
-
 #mybookinglist table thead tr th {
 	text-align: center;
 	font-size: 19px;
@@ -145,19 +122,16 @@ section {
 #travel:hover {
 	background : #d9efff;
 }
-
 #main {
 	width: 100%;
 	height: 80%;
 	border: 1px solid black;
 }
-
 #mainNav {
 	width: 100%;
 	height: 20%;
 	border: 1px solid black;
 }
-
 #mainNav li {
 	border: 1px solid white;
 	float: left;
@@ -166,10 +140,6 @@ section {
 	height: 100%;
 	line-height: 30px;
 }
-
-
-
-
 </style>
 </head>
 <body>
