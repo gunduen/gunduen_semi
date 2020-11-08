@@ -218,7 +218,7 @@ section {
                <ul>
                   <li><a href="/index.jsp">Home</a></li>
                   <li><a href="/notice/list">Notice</a></li>
-                  <li><a href="/driverInfoPage/DriverInfoPage.jsp">Driver</a></li>
+                  <li><a href="/driver/autoMyinfo?area=서울">Driver</a></li>
                   <li><a href="/qna/list">Q&A</a></li>
                   <li><a href="/review/list?reviewArea=서울">Review</a></li>
                   <li></li>
@@ -294,7 +294,7 @@ section {
    </header>
    <br>
    <br>
-   <section style="padding:0px;">
+   <section>
       <section id="navi">
          <nav class="nav-menu d-none d-lg-block">
             <nav id="navigator">
@@ -395,6 +395,9 @@ section {
                      }
                   </script>
                </c:forEach>
+              		 <tr>
+						<td colspan="13" align="center">${ pageNavi }
+					</tr>
             </table>
          </section>
       </section>

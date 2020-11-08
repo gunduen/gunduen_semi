@@ -501,7 +501,7 @@ public class DriverDAO {
 		   Driver driver = null;
 		   PreparedStatement pstmt = null;
 		   ResultSet rset = null;
-		   String query = "SELECT * FROM (SELECT DRIVER.*, ROW_NUMBER() OVER(ORDER BY DRIVER_ID ASC) AS NUM FROM DRIVER) WHERE DRIVER_AREA=? AND DRIVER_CHECK='1' AND NUM BETWEEN ? AND ?";
+		   String query = "SELECT * FROM (SELECT DRIVER.*, ROW_NUMBER() OVER(ORDER BY DRIVER_ID ASC) AS NUM FROM DRIVER WHERE DRIVER_AREA=? AND DRIVER_CHECK=1)WHERE NUM BETWEEN ? AND ?";
 		   
 		   int start = currentPage*recordCountPerPage-(recordCountPerPage-1);
 		   int end = currentPage*recordCountPerPage;
@@ -600,7 +600,7 @@ public class DriverDAO {
 	   public int totalCount(Connection conn, String area) {
 		   PreparedStatement pstmt = null;
 		   ResultSet rset = null;
-		   String query = "SELECT COUNT(*) TOTALCOUNT FROM DRIVER WHERE DRIVER_AREA=?";
+		   String query = "SELECT COUNT(*) TOTALCOUNT FROM DRIVER WHERE DRIVER_AREA=? AND DRIVER_CHECK=1";
 		   int recordTotalCount = 0;
 		   
 		   try {

@@ -189,7 +189,7 @@
                <ul>
                   <li><a href="/index.jsp">Home</a></li>
                   <li><a href="/notice/list">Notice</a></li>
-                  <li><a href="/driverInfoPage/DriverInfoPage.jsp">Driver</a></li>
+                  <li><a href="/driver/autoMyinfo?area=서울">Driver</a></li>
                   <li><a href="/qna/list">Q&A</a></li>
                   <li><a href="/review/list?reviewArea=서울">Review</a></li>
                   <li></li>
@@ -292,7 +292,7 @@
 				<c:set var = "secondNumber" value="${fn:substring(string1, 4, 8) }" />
 				<c:set var = "thirdNumber" value="${fn:substring(string1, 9, 13) }" />
 					<td width="300">
-						<select name="firstPhone"  style="width: 70px;" class="form-control">
+						<select name="firstPhone"  style="width: 80px;" class="form-control">
 							<option value="010">010</option>
 							<option value="010">016</option>
 							<option value="010">017</option>

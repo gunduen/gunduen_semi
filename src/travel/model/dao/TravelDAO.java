@@ -103,7 +103,7 @@ public class TravelDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Travel> rList = null;
-		String query = "SELECT * FROM TRAVEL WHERE CUSTOMER_ID = ? AND REVIEW_CHECK = 'N' AND PACKAGE_CONFIRM = '2' ORDER BY PACKAGE_CODE";
+		String query = "SELECT * FROM TRAVEL WHERE CUSTOMER_ID = ? AND REVIEW_CHECK = 'N' ORDER BY PACKAGE_CODE";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -281,7 +281,7 @@ public class TravelDAO {
 	   public int totalCount(Connection conn) {
 	      PreparedStatement pstmt = null;
 	      ResultSet rset = null;
-	      String query = "SELECT COUNT(*) AS TOTALCOUNT FROM TRAVEL";
+	      String query = "SELECT COUNT(*) AS TOTALCOUNT FROM TRAVEL WHERE PACKAGE_AREA != '1'";
 	      int recordTotalCount = 0;
 	      try {
 	         pstmt = conn.prepareStatement(query);

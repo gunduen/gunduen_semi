@@ -115,7 +115,7 @@
                <ul>
                   <li><a href="/index.jsp">Home</a></li>
                   <li><a href="/notice/list">Notice</a></li>
-                  <li><a href="/driverInfoPage/DriverInfoPage.jsp">Driver</a></li>
+                  <li><a href="/driver/autoMyinfo?area=서울">Driver</a></li>
                   <li><a href="/qna/list">Q&A</a></li>
                   <li class="active"><a href="/review/list?reviewArea=서울">Review</a></li>
                   <li></li>
@@ -309,7 +309,7 @@
 		</section>
 	</section>
 	
-	<!-- footer -->
+	<!— footer —>
     <%@include file="../include/includeFooter.jsp" %>
    
    <div id="preloader"></div>

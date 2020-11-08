@@ -47,7 +47,7 @@ public class DriverDeleteServlet extends HttpServlet {
 		if (result >0) {
 			// session.invalidate();
 			
-			out.println("<script>alert('회원탈퇴가 완료되었습니다.'); document.location.href='/index.jsp';</script>");
+			out.println("<script>alert('회원탈퇴가 완료되었습니다.'); document.location.href='/admin/driverList';</script>");
 			
 		}else {
 			out.println("<script>alert('회원가입에 실패하셨어요');");
