@@ -19,13 +19,13 @@ import qna.model.vo.QnaNotice;
  * Servlet implementation class QnaReplyServlet
  */
 @WebServlet("/qna/reply")
-public class QnaReplyServlet extends HttpServlet {
+public class QnaReplyWriteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QnaReplyServlet() {
+    public QnaReplyWriteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
