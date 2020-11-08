@@ -76,12 +76,12 @@ public class ReviewListServlet extends HttpServlet {
       } else {
          currentPage = Integer.parseInt(request.getParameter("currentPage"));
       }
-         System.out.println(currentPage);
+//         System.out.println(currentPage);
          PageData pageData = new ReviewService().reviewList(currentPage, area);
          ArrayList<Review> RList = pageData.getPageReviewList();
          
-         System.out.println(customerId);
-         ArrayList<Travel> TList = new TravelService().selectTravelList(customerId);
+//         System.out.println(customerId);
+         ArrayList<Travel> TList = new TravelService().getTravelList(customerId);
          response.setContentType("text/html; charset=utf-8");
          System.out.println(TList.size());
 //         System.out.println(RList.size());

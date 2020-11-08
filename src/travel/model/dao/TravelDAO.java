@@ -417,4 +417,41 @@ public class TravelDAO {
 		}
 		return result;
 	}
+	
+	public ArrayList<Travel> getTravelList(Connection conn,String customerId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Travel> rList = null;
+		String query = "SELECT * FROM TRAVEL WHERE CUSTOMER_ID = ? AND PACKAGE_Confirm >1 AND REVIEW_CHECK = 'N' ORDER BY PACKAGE_CODE";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, customerId);
+			rset= pstmt.executeQuery();
+			rList = new ArrayList<Travel>();
+			while(rset.next()) {
+				Travel travel = new Travel();
+				travel.setPackage_Code(rset.getInt("PACKAGE_CODE"));
+				travel.setPackage_Area(rset.getString("PACKAGE_AREA"));
+				travel.setPackage_Utilization(rset.getString("PACKAGE_UTILIZATION"));
+				travel.setPackage_Pickup(rset.getString("PACKAGE_PICKUP"));
+				travel.setPackage_Date(rset.getDate("PACKAGE_DATE"));
+				travel.setPackage_TravelDate(rset.getString("PACKAGE_TRAVELDATE"));
+				travel.setPackage_Confirm(rset.getInt("PACKAGE_CONFIRM"));
+				travel.setCustomer_Id(rset.getString("CUSTOMER_ID"));
+				travel.setDriver_Name(rset.getString("DRIVER_NAME"));
+				travel.setDriver_Id(rset.getString("DRIVER_ID"));
+				travel.setCoordx(rset.getString("COORDX"));
+				travel.setCoordy(rset.getString("COORDY"));
+				travel.setReview_Check(rset.getString("REVIEW_CHECK"));
+				rList.add(travel);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return rList;
+	}
 }

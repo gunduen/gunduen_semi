@@ -221,6 +221,20 @@ public class TravelService {
 		}
 		return result;
 	}
+	
+	public ArrayList<Travel> getTravelList(String customerId) {
+		Connection conn = null;
+		ArrayList<Travel> rList = null;
+		try {
+			conn = factory.createConnection();
+			rList = new TravelDAO().getTravelList(conn,customerId);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(conn);
+		}
+		return rList;
+	}
 
 
 }

@@ -206,7 +206,7 @@
             		<td>&nbsp;</td>
             	</tr>
             	<tr>
-            		<td><button type="submit" class="get-started-btn" style="width: 100%;border:1px solid white;margin-left:0px;">아이디찾기</button></td>
+            		<td><button type="submit" class="get-started-btn" style="width: 100%;border:1px solid white;margin-left:0px;">비밀번호 찾기</button></td>
             	</tr>
             </table>
         </form>
