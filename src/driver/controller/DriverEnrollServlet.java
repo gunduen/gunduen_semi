@@ -44,9 +44,9 @@ public class DriverEnrollServlet extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		String encType="UTF-8";
-		File newFile = new File("C:\\Users\\allll\\git\\gunduen_semi\\WebContent\\img\\driverImage");
+		File newFile = new File("D:\\KH교육원\\디지털컨버전스_07월\\webworkspace\\gunduen_semi\\WebContent\\img\\driverImage");
 		newFile.mkdirs();
-		String uploadFilePath = "C:\\Users\\allll\\git\\gunduen_semi\\WebContent\\img\\driverImage";
+		String uploadFilePath = "D:\\KH교육원\\디지털컨버전스_07월\\webworkspace\\gunduen_semi\\WebContent\\img\\driverImage";
 		MultipartRequest multi = new MultipartRequest(
 	            request,
 	            uploadFilePath,

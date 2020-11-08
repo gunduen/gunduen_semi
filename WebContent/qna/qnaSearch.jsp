@@ -247,5 +247,6 @@
     <footer>
     	 <%@include file="../include/includeFooter.jsp" %>
     </footer>
+    <div id="preloader"></div>
 	</body>
 </html>

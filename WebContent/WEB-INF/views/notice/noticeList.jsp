@@ -252,6 +252,7 @@
 	            </article>
 	        </section><!-- End Main -->
 	        
-	        <%@include file="/include/includeFooter.jsp" %>        
+	        <%@include file="/include/includeFooter.jsp" %>      
+	        <div id="preloader"></div>  
     </body>
 </html>

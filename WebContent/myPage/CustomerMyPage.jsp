@@ -316,7 +316,7 @@ h1 {
 	<footer>
 		<%@include file="../include/includeFooter.jsp" %>
 	</footer>
-
+<div id="preloader"></div>
 	<script>
 	function delete1() {
 		 return confirm("정말로 탈퇴하시겠습니까?");

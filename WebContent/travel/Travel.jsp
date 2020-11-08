@@ -507,6 +507,7 @@ p {
 			}
 		}
 	</script>
+	<div id="preloader"></div>
 </body>
 <footer></footer>
 </html>

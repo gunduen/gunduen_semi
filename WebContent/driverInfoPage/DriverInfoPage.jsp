@@ -134,8 +134,8 @@
   		height : 30px;
   	}
   	#nav-menu li:hover{
-  		background : #a3d4f7;
-  		color : white;
+  		/* background : #a3d4f7; */
+  		color : #a3d4f7;
   	}
   	.table-hover tbody tr:hover td {
   		background-color : #a3d4f7;
@@ -178,9 +178,9 @@
                <ul>
                   <li><a href="/index.jsp">Home</a></li>
                   <li><a href="/notice/list">Notice</a></li>
-                  <li><a href="/driverInfoPage/DriverInfoPage.jsp">Driver</a></li>
+                  <li class="active"><a href="/driverInfoPage/DriverInfoPage.jsp">Driver</a></li>
                   <li><a href="/qna/list">Q&A</a></li>
-                  <li class="active"><a href="/review/list?reviewArea=서울">Review</a></li>
+                  <li><a href="/review/list?reviewArea=서울">Review</a></li>
                   <li></li>
                </ul>
             </nav><!-- .nav-menu -->
@@ -248,7 +248,7 @@
 			<%-- <c:if  test="${ sessionScope.review ne null}"> --%>
 			<section id="left" class="col-sm-auto"
 				style="width: 100px; border: 1px solid white; float: left; padding-left:0px; padding-right:0px; padding-bottom:0px;">
-				<nav id="nav-menu">
+				<nav id="nav-menu" style="font-size:16px;">
 					<ul id="navi">
 						<li>지역</li>
 						<li class="tablinks">서울</li>
@@ -272,17 +272,9 @@
 				</nav>
 			</section>
 
-			
-						
-						
-						
-						
-						
 					
-						
-						
 			<section id="right"
-				style="margin: border: 1px solid white; width: 1300px;  height: 650px; text-align:center; padding-left : 200px;padding-top : 25px;">
+				style="margin: border: 1px solid white; width: 80%;  height: 650px; text-align:center; padding-left : 200px;padding-top : 25px;">
 				<div id="title"  style="font-family: 'Do Hyeon', sans-serif; font-size:1.9em; width: 100%; height: 7%; box-sizing: border-box;">기사 소개 게시판</div>
 				<div id="contents" style="font-family: 'Do Hyeon', sans-serif; width: 100%; height: 86%; box-sizing: border-box;" >
 				<br>
@@ -297,6 +289,7 @@
         							<div style="width: 100%; height : 70%;  margin: 0 auto;" id="tableDriver">
         								<table id="driver" style="width: 95%; height:100%; margin: 0 auto;">
         									<tr>
+        									
         										<td><img src="../img/driverImage/${list.driverInfoImage}" class="img-circle" style="width: 100px; height: 100px;"></td>
         											<td style="width: 800px;font-size: 1.7em;"><p>${list.driverName} 기사님</p>
         												<p>${list.driverSelfInfo} </p><p><p>담당 지역 : ${list.driverArea }</p></td>

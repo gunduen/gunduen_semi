@@ -161,5 +161,6 @@
 	            </form>
         </section>
         <%@include file="/include/includeFooter.jsp" %>
+        <div id="preloader"></div>
     </body>
 </html>

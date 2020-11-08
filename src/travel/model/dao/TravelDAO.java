@@ -58,7 +58,7 @@ public class TravelDAO {
 	public int deleteBaseTravel(Connection conn,String Driver_Id) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "DELETE FROM TRAVEL WHERE DRIVER_ID= ? ";
+		String query = "DELETE FROM TRAVEL WHERE DRIVER_ID= ? AND PACKAGE_AREA='1'";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, Driver_Id);

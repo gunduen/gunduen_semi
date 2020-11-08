@@ -197,6 +197,7 @@ section {
 }
 .table tr td {
 	padding:0px;
+	text-align:center;
 }
 </style>
 </head>
@@ -309,9 +310,7 @@ section {
 
 			<section id="mybookinglist">
 				<table class="table" style="width: 90%; height: 30px;">
-
 					<tr>
-
 						<th>여행예약코드</th>
 						<th>지역</th>
 						<th>이용권</th>
@@ -339,6 +338,9 @@ section {
 							<td>${ travelList.customer_Id }</td>
 							<td>${ travelList.driver_Name }</td>
 					</c:forEach>
+					<tr>
+						<td colspan="13" align="center">${ pageNavi }
+					</tr>
 				</table>
 			</section>
 		</section>
@@ -347,6 +349,6 @@ section {
 	<footer>
 		<%@include file="../include/includeFooter.jsp"%>
 	</footer>
-
+	<div id="preloader"></div>
 </body>
 </html>

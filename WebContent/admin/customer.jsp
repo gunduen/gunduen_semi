@@ -344,6 +344,9 @@ section {
 	 		} 
 	 	}
 	 </script> -->
+	 				<tr>
+						<td colspan="13" align="center">${ pageNavi }
+					</tr>
 				</table>
 			</section>
 		</section>
@@ -352,5 +355,6 @@ section {
 	<footer>
 		<%@include file="../include/includeFooter.jsp"%>
 	</footer>
+	<div id="preloader"></div>
 </body>
 </html>

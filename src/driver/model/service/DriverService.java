@@ -251,8 +251,8 @@ public class DriverService {
 	public DriverPageData autoMyInfo(int currentPage, String area){
 		ArrayList<Driver> list = null;
 		Connection conn = null;
-		int recordCountPerPage =2;
-		int naviCountPerPage = 2;
+		int recordCountPerPage =4;
+		int naviCountPerPage = 5;
 		
 		DriverPageData pd = new DriverPageData();
 		
