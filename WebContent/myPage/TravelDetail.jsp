@@ -423,6 +423,10 @@ section {
                         <th id="jh9">담당 기사 이름</th>
                         <td id="jh10">${travel.driver_Name }</td>
                      </tr>
+                     <tr>
+                     	<th id="jh10">담당 기사 아이디</th>
+                     	<td id="jh10">${travel.driver_Id }</td>
+                     </tr>
                   </c:forEach>
                </table>
                <section id="contents">
