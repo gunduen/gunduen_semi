@@ -152,7 +152,7 @@
         <article>
         <br>
             <h2>질문등록</h2>
-            <form action="/qna/write" method="post">
+            <form action="/qna/write" method="get">
                 <textarea name="subject" style="resize:none" cols="130" rows="1" placeholder="제목을 입력하세요" required></textarea>
                 <br>
                 <textarea name="content" style="resize:none" cols="130" rows="15" placeholder="질문내용을 입력하세요" required></textarea>
