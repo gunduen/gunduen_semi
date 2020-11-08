@@ -39,9 +39,12 @@ public class ReviewInsertServlet extends HttpServlet {
 		System.out.println(subject);
 		String contents = request.getParameter("contents");
 		System.out.println(contents);
-		String area = request.getParameter("area");
+		String ar = request.getParameter("area");
+		System.out.println(ar);
+		String area = ar.substring(ar.indexOf("+")+1,ar.length());
 		System.out.println(area);
-		int packageCode = Integer.parseInt(request.getParameter("packageCode"));
+		int packageCode = Integer.parseInt(ar.substring(0,ar.indexOf("+")));
+		/* int packageCode = Integer.parseInt(request.getParameter("packageCode")); */
 		System.out.println(packageCode);
 		
 		

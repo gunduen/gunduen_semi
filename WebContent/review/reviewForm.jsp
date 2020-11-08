@@ -191,19 +191,19 @@
 						${review.reviewNo } <input type="text" style="width: 100%;"
 							name="subject" placeholder="제목을 입력해주세요">
 					</div>
-					지역과 여행예약번호를 선택해주세요 : <select name="area">
+					여행지역과 여행날짜를 선택해주세요 : <select name="area">
 						<c:forEach items="${ travelList }" var="travel">
-							<option value="${travel.package_Area }" selected>${travel.package_Area }
-								- '날짜 : ${ travel.package_TravelDate }'/ ${travel.package_Code }</option>
+							<option value="${travel.package_Code}+${travel.package_Area }">${travel.package_Area }
+								- 날짜 : ${ travel.package_TravelDate }</option>
 
 						</c:forEach>
-					</select> <select name="packageCode">
+					</select> <%-- <select name="packageCode">
 						<c:forEach items="${ travelList }" var="travel">
 							<option value="${travel.package_Code }" selected>예약번호 :
 								${travel.package_Code }</option>
 
 						</c:forEach>
-					</select>
+					</select> --%>
 
 
 					<div class="message contents">
