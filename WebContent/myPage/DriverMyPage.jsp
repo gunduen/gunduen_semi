@@ -48,39 +48,25 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <style>
-
-
-
-
-
 #mypage {
 	width: 35%;
 	height: 100%;
 	float: left;
 	line-height: 250px;
 }
-
-
-
-
 section {
 	width: 90%;
-	height: 100%;
+	height: 75%;
 	border: 1px solid white;
 	box-sizing: border-box;
 }
-
-
-
 #navi {
 	width: 15%;
-	height: 100%;
+	height: 40%;
 	border: 1px solid white;
 	box-sizing: border-box;
 	float: left;
-	
 }
-
 #contents {
 	width: 85%;
 	height: 100%;
@@ -88,23 +74,18 @@ section {
 	box-sizing: border-box;
 	float: left;
 }
-
-
 #mypageList {
 	width: 100%;
 	height: 100%;
 }
-
 #navi #navigator a {
 	text-decoration: none;
 	display: white;
 }
-
 #navigator {
 	width: 100%;
 	height: 100%;
 }
-
 #navigator li {
 	text-align: center;
 	line-height: 70px;
@@ -113,29 +94,23 @@ section {
 	height: 20%;
 	box-sizing: border-box;
 }
-
 #mybooking {
 	border: 1px solid white;
 	width: 100%;
 	height: 10%;
 }
-
 #mybookinglist {
 	border: 1px solid white;
 	width: 100%;
 	height: 90%;
-	padding-top:20px;
 }
-
 #mybooking p {
 	font-size: 1.6em;
 	font-weight: bold;
 }
-
 #mybookinglist table {
 	margin: 0 auto;
 }
-
 #mybookinglist table thead tr th {
 	text-align: center;
 	font-size: 19px;
@@ -147,19 +122,16 @@ section {
 #travel:hover {
 	background : #d9efff;
 }
-
 #main {
 	width: 100%;
 	height: 80%;
 	border: 1px solid black;
 }
-
 #mainNav {
 	width: 100%;
 	height: 20%;
 	border: 1px solid black;
 }
-
 #mainNav li {
 	border: 1px solid white;
 	float: left;
@@ -167,13 +139,6 @@ section {
 	width: 20%;
 	height: 100%;
 	line-height: 30px;
-}
-#wrap {
-	 width:100%;margin:0px;padding-right:20px;padding-left:20px;
-}
-h1 {
-	padding-left : 50px;
-	padding-bottom :10px;
 }
 </style>
 </head>
@@ -235,9 +200,8 @@ h1 {
          </c:if>
 
          <c:if test="${sessionScope.driver ne null}">
-            <a href="/DriverTravel/List?driverId=${sessionScope.driver.driverId }" class="get-started-btn">마이페이지</a>
-            <a href="/member/logout" class="logout-btn"
-               onclick="return warning();">로그아웃</a>
+            	<a href="/DriverTravel/List?driverId=${sessionScope.driver.driverId }" class="get-started-btn">마이페이지</a>
+				<a href="/member/logout" class="logout-btn" onclick="return warning();">로그아웃</a>
             <script>
                function warning() {
                   var question = confirm('정말 로그아웃하시겠어요?');
@@ -261,17 +225,17 @@ h1 {
    <!-- End Header -->
 	</header>
 	<br><br>
-	<section id="wrap">
+	<section>
 		<section id="navi">
 		<nav class="nav-menu d-none d-lg-block">
 			<nav id="navigator">
 				<ul>
 				<!-- if문으로 li 개수 조절 -->
-				<li class="active"><a href="/mypage/travel?customerId=${sessionScope.customer.customer_Id }">예약확인/ 예약취소</a></li>
-				<li><a href="/message/receiverList?receiver=${sessionScope.customer.customer_Id }">쪽지함</a></li>
-				<li><a href="/customer/myInfo?customerId=${sessionScope.customer.customer_Id }">회원정보 수정</a></li>
-				<li><a href="/customer/delete?customerId=${sessionScope.customer.customer_Id }" onclick="return delete1();">회원 탈퇴</a></li>
-				</ul>
+				<li class="active"><a href="/DriverTravel/List?driverId=${sessionScope.driver.driverId }">예약확인/ 예약취소</a></li>
+                <li><a href="/message/receiverList?receiver=${sessionScope.driver.driverId }">쪽지함</a></li>
+                <li><a href="/login/driverMyInfo.jsp">회원정보 수정</a></li> 
+                <li><a href="/base/delete?driverId=${sessionScope.driver.driverId }" onclick="return delete1();">회원 탈퇴</a></li>		
+                    </ul>
 			</nav>
 			</nav>
 
@@ -294,7 +258,7 @@ h1 {
 						</tr>
 					
 					<c:forEach items="${dList }" var="travel">
-						<tr id="travel" onClick="location.href='/select/DriverTravel?packageCode=${travel.package_Code}&driverId=${sessionScope.driver.driverId}'">
+						<tr id="travel" onClick="location.href='/select/DriverTravel?packageCode=${travel.package_Code}&driverId=${sessionScope.driver.driverId }'">
 							<td>${travel.package_TravelDate }</td>
 							<td>${travel.package_Area }</td>
 							<td>${travel.package_Utilization }</td>

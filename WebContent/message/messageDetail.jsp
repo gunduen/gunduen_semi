@@ -58,6 +58,9 @@
 		border : 1px solid white;
 		float : right;
 	}
+	.get-started-btn {
+		border : 1px solid white;
+	}
 </style>
 <script>
 	function delfunc(id) {
@@ -66,6 +69,7 @@
 			location.href="/message/delete?messageNo="+ ${detail.message_No} + "&userId=" + id;
 		}
 	} 
+	
 </script>
 </head>
 <body>
@@ -154,8 +158,8 @@
 		<section class="main"class="row">
 			<section id="detail-top">
 				<div id="title">${ detail.message_Subject }</div>
-				<div id="subtext">보낸이 ${ detail.sender } / 받는이 ${detail.receiver} / ${detail.message_No}
-			/ 보낸 날짜 ${ detail.message_Date } ${sessionScope.driver.driverId}</div>
+				<div id="subtext">보낸이 : ${ detail.sender } / 받는이 : ${detail.receiver} 
+			/ 보낸 날짜 : ${ detail.message_Date }</div>
 			</section>
 			<hr>
 			<section id="detail-bottom">
@@ -167,6 +171,7 @@
 				<c:if test="${sessionScope.customer ne null && sessionScope.driver eq null}">
 					<!-- 받은 쪽 -->
 					<c:if test="${sessionScope.customer.customer_Id eq detail.receiver}">
+							<input type="button" value="답장하기" class="get-started-btn" onclick="location.href='/message/resendForm?receiver=${sessionScope.customer.customer_Id}&sender=${detail.sender}'" />
 							<input type="button" value="삭제" id="btn1" class="logout-btn" onclick="delfunc('${sessionScope.customer.customer_Id}');" />
 					</c:if>
 					
@@ -177,6 +182,7 @@
 				<c:if test="${sessionScope.customer eq null && sessionScope.driver ne null}">
 					<!-- 받은 쪽 -->
 					<c:if test="${sessionScope.driver.driverId eq detail.receiver}">
+							<input type="button" value="답장하기" class="get-started-btn" onclick="location.href='/message/resendForm?receiver=${sessionScope.customer.customer_Id}&sender=${detail.sender}'" />
 							<input type="button" value="삭제" id="btn1" class="logout-btn" onclick="delfunc('${sessionScope.driver.driverId}');" />
 					</c:if>
 					

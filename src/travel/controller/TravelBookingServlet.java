@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 
 import customer.model.vo.Customer;
+import message.model.service.MessageService;
 import travel.model.service.TravelService;
 import travel.model.vo.Travel;
 
@@ -48,15 +49,20 @@ public class TravelBookingServlet extends HttpServlet {
 		travel.setCoordx(request.getParameter("coordx"));
 		travel.setCoordy(request.getParameter("coordy"));
 		
-		
+		String driverId = request.getParameter("driverId");
 		
 		HttpSession session = request.getSession();
 		if( session != null && ( session.getAttribute("customer")!=null)) {
 			String customerId = ((Customer)session.getAttribute("customer")).getCustomer_Id();
 
 			int result = new TravelService().insertTravel(travel,customerId);
+			int sendToCustomer = new MessageService().insertWelcomeCusMessage(customerId);
+			int sendToDriver = new MessageService().insertWelcomeDriMessage(driverId);
 
-			if ( result > 0) { response.sendRedirect("/index.jsp"); 
+			if ( result > 0) { 
+				if ( sendToCustomer >0 || sendToDriver >0) {
+					response.sendRedirect("/index.jsp");
+				}
 			}else {
 				response.sendRedirect("error"); 
 			}

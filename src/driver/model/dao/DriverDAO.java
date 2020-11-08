@@ -281,19 +281,22 @@ public class DriverDAO {
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
 				driver = new Driver();
-				driver.setDriverId(rset.getString("driverId"));
-				driver.setDriverPwd(rset.getString("driverPwd"));
-				driver.setDriverName(rset.getString("driverName"));
-				driver.setDriverPhone(rset.getString("driverPhone"));
-				driver.setDriverEmail(rset.getString("driverEmail"));
-				driver.setDriverHome(rset.getString("driverHome"));
-				driver.setDriverArea(rset.getString("driverArea"));
-				driver.setDriverRrn(rset.getString("driverRrn"));
-				driver.setDriverCheck (rset.getInt("driverCheck"));
-				driver.setDriverSelfInfo(rset.getString("driverSelfIntro"));
-				driver.setDriverLicense(rset.getString("driverLicense"));
-				driver.setDriverBLicense(rset.getString("driverBlicense"));
-				driver.setDriverInfoImage(rset.getString("driverInfoImage"));
+				driver.setDriverId(rset.getString("driver_Id"));
+				driver.setDriverPwd(rset.getString("driver_Pwd"));
+				driver.setDriverName(rset.getString("driver_Name"));
+				driver.setDriverPhone(rset.getString("driver_Phone"));
+				driver.setDriverEmail(rset.getString("driver_Email"));
+				driver.setDriverHome(rset.getString("driver_Home"));
+				driver.setDriverArea(rset.getString("driver_Area"));
+				driver.setDriverRrn(rset.getString("driver_Rrn"));
+				driver.setDriverCheck (rset.getInt("driver_Check"));
+				driver.setDriverSelfInfo(rset.getString("driver_SelfIntro"));
+				driver.setDriverLicense(rset.getString("driver_License"));
+				driver.setDriverLicense(rset.getString("driver_License_path"));
+				driver.setDriverBLicense(rset.getString("driver_Blicense"));
+				driver.setDriverBLicense(rset.getString("driver_Blicense_path"));
+				driver.setDriverInfoImage(rset.getString("driver_InfoImage"));
+				driver.setDriverInfoImage(rset.getString("driver_InfoImage_path"));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -615,4 +618,37 @@ public class DriverDAO {
 		   return recordTotalCount;
 	   }
 	
+	   
+	   public int updateDriverInfo(Connection conn, Driver driver) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			String query = "UPDATE DRIVER SET DRIVER_PWD=?, DRIVER_NAME=?, DRIVER_PHONE = ?, DRIVER_EMAIL=?, DRIVER_RRN=?, "
+					+ "DRIVER_SELFINTRO = ?, DRIVER_LICENSE = ?,DRIVER_LICENSE_PATH=? , DRIVER_BLICENSE = ?, DRIVER_BLICENSE_PATH=?, DRIVER_INFOIMAGE = ?, "
+					+ "DRIVER_INFOIMAGE_PATH=?, DRIVER_AREA = ? WHERE DRIVER_ID = ? ";
+		    try {
+		    	pstmt = conn.prepareStatement(query);
+				
+				pstmt.setString(1, driver.getDriverPwd());
+				pstmt.setString(2, driver.getDriverName());
+				pstmt.setString(3, driver.getDriverPhone());
+				pstmt.setString(4, driver.getDriverEmail());
+				pstmt.setString(5, driver.getDriverRrn());
+				pstmt.setString(6, driver.getDriverSelfInfo());
+				pstmt.setString(7, driver.getDriverLicense());
+				pstmt.setString(8, driver.getDriverLicense_path());
+				pstmt.setString(9, driver.getDriverBLicense());
+				pstmt.setString(10, driver.getDriverBLicense_path());
+				pstmt.setString(11, driver.getDriverInfoImage());
+				pstmt.setString(12, driver.getDriverInfoImage_path());
+				pstmt.setString(13, driver.getDriverArea());
+				pstmt.setString(14, driver.getDriverId());
+				result = pstmt.executeUpdate();
+		    	
+		    } catch (SQLException e) {
+		    	e.printStackTrace();
+		    }finally {
+		    	JDBCTemplate.close(pstmt);
+		    }
+		    return result;
+		}
 }

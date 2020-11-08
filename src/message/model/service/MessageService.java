@@ -130,5 +130,41 @@ public class MessageService {
 		}
 		return result;
 	}
+	
+	//5. WelcomeMessage
+	public int insertWelcomeCusMessage(String customerId) {
+		Connection conn = null;
+		int result = 0;
+		try {
+			conn = factory.createConnection();
+			result = new MessageDAO().insertWelcomeCusMessage(conn, customerId);
+			JDBCTemplate.close(conn);
+			if (result > 0) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	public int insertWelcomeDriMessage(String driverId) {
+		Connection conn = null;
+		int result = 0;
+		try {
+			conn = factory.createConnection();
+			result = new MessageDAO().insertWelcomeCusMessage(conn, driverId);
+			JDBCTemplate.close(conn);
+			if (result > 0) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 
 }

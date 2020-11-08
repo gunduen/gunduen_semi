@@ -1,4 +1,3 @@
-
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.ResultSet"%>
@@ -76,7 +75,6 @@ section {
 	width: 100%;
 	height: 1000px;
 }
-
 .btn {
 	box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
 	color: #fff;
@@ -88,73 +86,57 @@ section {
 	text-align: center;
 	border: 1px solid gray;
 }
-
 #article0 {
 	text-align: center;
 }
-
 #article1 {
 	text-align: center;
 }
-
 #article2 {
 	text-align: center;
 }
-
 form {
 	text-align: center;
 }
-
 h1 {
 	font-family: 'Do Hyeon', sans-serif;
 }
-
 h2 {
 	font-family: 'Do Hyeon', sans-serif;
 }
-
 #package_Date {
 	padding-left: 20px;
 }
-
 .hawi {
 	float: left;
 	text-align: center;
 	border: 1px solid white;
 }
-
 #sido {
 	height: 35px;
 }
-
 #roadAddr {
 	height: 35px;
 }
-
 .wrap1 {
 	display: table;
 	margin: 0 auto;
 	vertical-align: middle;
 }
-
 p {
 	font-family: 'Do Hyeon', sans-serif;
 }
-
 #aa {
 	width: 200px;
 }
-
 #addrSearchBtn {
 	color: #fff;
 	background-color: #a3d4f7;
 }
-
 #logo {
 	width: 100px;
 	height: 130px;
 }
-
 #btnqq {
 	height: 55px;
 	width: 972px;
@@ -360,6 +342,9 @@ p {
 		</form>
 
 	</section>
+
+
+
 	<script>
 		var date = new Date(); 
 		var year = date.getFullYear(); 
@@ -404,9 +389,7 @@ p {
 							status) {
 						// 정상적으로 검색이 완료됐으면
 						if (status === daum.maps.services.Status.OK) {
-
 							var result = results[0]; //첫번째 결과의 값을 활용
-
 							// 해당 주소에 대한 좌표를 받아서
 							coords = new daum.maps.LatLng(result.y, result.x);
 							// 지도를 보여준다.
@@ -436,14 +419,11 @@ p {
 			position : new daum.maps.LatLng('${coordx}', '${coordy}'),
 			map : map
 		});
-
 		var geocoder = new kakao.maps.services.Geocoder();
-
 		var marker = new kakao.maps.Marker(), // 클릭한 위치를 표시할 마커입니다
 		infowindow = new kakao.maps.InfoWindow({
 			zindex : 1
 		}); // 클릭한 위치에 대한 주소를 표시할 인포윈도우입니다
-
 		kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 			coords = mouseEvent.latLng;
 			searchDetailAddrFromCoords(mouseEvent.latLng, function(result,
@@ -454,47 +434,37 @@ p {
 							: '';
 					detailAddr += '<div>지번 주소 : '
 							+ result[0].address.address_name + '</div>';
-
 					var content = '<div class="bAddr">'
 							+ '<span class="title">법정동 주소정보</span>'
 							+ detailAddr + '</div>';
-
 					// 마커를 클릭한 위치에 표시합니다 
 					marker.setPosition(mouseEvent.latLng);
 					marker.setMap(map);
-
 					// 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
 					infowindow.setContent(content);
 					infowindow.open(map, marker);
 					$("#roadAddr").val(result[0].road_address.address_name);
-
 					// 해당 주소에 대한 좌표를 받아서
-
 				}
 			});
 		});
-
 		// 중심 좌표나 확대 수준이 변경됐을 때 지도 중심 좌표에 대한 주소 정보를 표시하도록 이벤트를 등록합니다
 		kakao.maps.event.addListener(map, 'idle', function() {
 			searchAddrFromCoords(map.getCenter(), displayCenterInfo);
 		});
-
 		function searchAddrFromCoords(coords, callback) {
 			// 좌표로 행정동 주소 정보를 요청합니다
 			geocoder.coord2RegionCode(coords.getLng(), coords.getLat(),
 					callback);
 		}
-
 		function searchDetailAddrFromCoords(coords, callback) {
 			// 좌표로 법정동 상세 주소 정보를 요청합니다
 			geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
 		}
-
 		// 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
 		function displayCenterInfo(result, status) {
 			if (status === kakao.maps.services.Status.OK) {
 				var infoDiv = document.getElementById('centerAddr');
-
 				for (var i = 0; i < result.length; i++) {
 					// 행정동의 region_type 값은 'H' 이므로
 					if (result[i].region_type === 'H') {
@@ -504,24 +474,19 @@ p {
 				}
 			}
 		}
-
 		$("#package_Date").on(
 				"change keyup paste",
 				function() {
 					packageDate = $("#package_Date").val();
-
 					if (roadAddr != 0 && sido != 0 && coords != 0
 							&& packageDate != 0) {
-
 						location.href = "/travel/travelList?package_Date="
 								+ packageDate + "&address=" + roadAddr
 								+ "&sido=" + sido + "&coords=" + coords;
-
 					} else {
 						alert("주소 검색을 해주세요");
 					}
 				});
-
 		function question() {
 			if (roadAddr != 0 && sido != 0 && coords != 0 && packageDate != 0
 					&& roadAddr != null && sido != null && coords != null
@@ -540,7 +505,6 @@ p {
 					return false;
 				}
 			}
-
 		}
 	</script>
 </body>

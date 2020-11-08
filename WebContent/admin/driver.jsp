@@ -348,7 +348,7 @@ section {
 								<td><form
 										action="/driver/approve?driverId=${driverList.driverId}"
 										method="post" onsubmit="return approveChk();">
-										<input type="submit" value="승인하기">
+										<input type="submit" value="승인하기" class="get-started-btn-small">
 									</form></td>
 							</c:if>
 							<td><form

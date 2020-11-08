@@ -65,11 +65,11 @@
   		background-color : #a3d4f7;
   		color : white;
   	}
-  	.table-hover tbody tr:hover td:last-child {
-  		background-color : white;
-  	}
   	#main-btn {
   		padding-top : 0px;
+  	}
+  	.table-hover tbody tr:hover #pagenavi {
+  		background-color : white;
   	}
 	</style>
 </head>
@@ -206,7 +206,7 @@
 		</c:forEach>
 		
 		<tr>
-			<td colspan="5" align="center">${ pageNavi }
+			<td colspan="5" align="center"  id="pagenavi">${ pageNavi }
 		</tr>
 		</tbody>
 	</table>

@@ -194,10 +194,104 @@
 	}
 	
 </script>
+<style>
+	#btn {
+		margin:0 auto;
+		text-align : center;
+	}
+	#formtable {
+		margin-top : 150px; margin-bottom : 150px;
+	}
+	#table {
+		margin:0 auto; width:300px;
+	}
+	#title {
+		text-align : center;
+		font-family : 'Do Hyeon', sans-serif;
+		font-size : 1.4em;
+		margin-bottom:10px;
+	}
+</style>
 </head>
 <body>
+<!--  -->
+	<header id="header" class="fixed-top">
+         <div class="container d-flex align-items-center">
 
-	<form action="/driver/update" name="driverEnrollForm" method="post" enctype="multipart/form-data" onsubmit="return checkValue();">
+            <h1 class="logo mr-auto">
+               <a href="/index.jsp">GUNDUEN</a>
+            </h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+            <nav class="nav-menu d-none d-lg-block">
+               <ul>
+                  <li><a href="/index.jsp">Home</a></li>
+                  <li><a href="/notice/list">Notice</a></li>
+                  <li><a href="/driverInfoPage/DriverInfoPage.jsp">Driver</a></li>
+                  <li><a href="/qna/list">Q&A</a></li>
+                  <li><a href="/review/list?reviewArea=서울">Review</a></li>
+                  <li></li>
+               </ul>
+            </nav><!-- .nav-menu -->
+            
+            <!-- admin 로그인시 header -->
+            <c:if
+            test="${sessionScope.customer.adminCheck == 1 }">
+            <a href="/admin/driverList" class="get-started-btn">마이페이지</a>
+            <a href="/member/logout" class="logout-btn" onclick="return warning();">로그아웃</a>
+                <script>
+                   function warning(){
+                      var question = confirm('정말 로그아웃하시겠어요?');
+                      if(question){
+                         return true;
+                      }else{
+                      return false;
+                      }
+                   }
+                </script>
+                &nbsp;&nbsp; <img src="../assets/img/happy.png" style="height: 40px">
+         </c:if>
+         
+         <!-- 고객/기사 로그인시 header -->
+         <c:if
+            test="${sessionScope.customer.adminCheck < 1 }">
+            <a href="/mypage/travel?customerId=${sessionScope.customer.customer_Id }" class="get-started-btn">마이페이지</a>
+            <a href="/member/logout" class="logout-btn" onclick="return warning();">로그아웃</a>
+                <script>
+                   function warning(){
+                      var question = confirm('정말 로그아웃하시겠어요?');
+                      if(question){
+                         return true;
+                      }else{
+                      return false;
+                      }
+                   }
+                </script>
+         </c:if>
+            
+            <c:if test="${sessionScope.driver ne null}">
+               <a href="/DriverTravel/List?driverId=${sessionScope.driver.driverId }" class="get-started-btn">마이페이지</a>
+            <a href="/member/logout" class="logout-btn" onclick="return warning();">로그아웃</a>
+                <script>
+                   function warning(){
+                      var question = confirm('정말 로그아웃하시겠어요?');
+                      if(question){
+                         return true;
+                      }else{
+                      return false;
+                      }
+                   }
+                </script>
+            </c:if>
+         <c:if test="${sessionScope.driver eq null && sessionScope.customer eq null}">
+            <a href="/login/Customerlogin.jsp" class="get-started-btn">고객로그인</a>
+            <a href="/login/DriverLogin.jsp" class="get-started-btn">기사로그인</a>
+            &nbsp;&nbsp; <img src="../assets/img/smile.png" style="height: 40px">
+         </c:if>
+      </div>
+   </header>
+   <!-- End Header -->
+	<%-- <form action="/driver/update" name="driverEnrollForm" method="post" enctype="multipart/form-data" onsubmit="return checkValue();">
 	ID : <input type="text" name="userId" onkeydown="inputIdChk();" value="${sessionScope.driver.driverId }"> <input type="button" value="중복확인" onclick="openIdChk();">
 	<input type="hidden" name="idCheck" value="idUncheck"><br>
 	PW : <input type="password" name="userPwd" onkeyup="pwChk();" value="${driver.driverPwd }"><span id="pw_chk"></span><br>
@@ -271,87 +365,165 @@
 
 	<input type="submit" value="회원정보수정"><br>
 
-	</form>
+	</form> --%>
 
 
-	<%-- <form action="/driver/update" method="post">
+	<form action="/driver/update"  name="driverEnrollForm" method="post" enctype="multipart/form-data" onsubmit="return checkValue();" id="formtable">
 		<div id="title">기사회원정보 수정</div>
-		<table border="1px">
+		<table id="table" >
+			<tr><td>아이디</td>
+			</tr>
 			<tr>
-				<th>ID</th>
-				<td><input type="text" value="${sessionScope.driver.driverId }" name="driverId" maxlength="20" readonly></td>
+				<td><input type="text" name="userId"value="${sessionScope.driver.driverId }"  class="form-control" onkeydown="inputIdChk();" style="width: 255px;"readonly></td>
 				<td></td>
 			</tr>
 			<tr>
-				<th>비밀번호</th>
-				<td><input type="password" placeholder="내용을 입력해주세요" name="driverPwd" maxlength="15" onkeydown="pwdChk();"></td>
+					<td width="100">비밀번호</td>				
+				</tr>
+				<tr>
+					<td width="150"><input type="password" class="form-control" style="width: 255px;" name="userPwd" onkeyup="pwChk();" value="${driver.driverPwd }"></td>
+					<td width="250px"><span id="pw_chk" style="font-family: 'Do Hyeon', sans-serif; font-size: 1.1em; float: left;"></span></td>
+				</tr>
+				<tr>
+					<td width="150">비밀번호 확인</td>
+				</tr>
+				<tr>
+					<td width="150"><input type="password" class="form-control" name="userPwdChk" onkeyup="pwChk();" style="width: 255px;"></td>
+				</tr>
+				
+			
+			<tr><td>이름</td>
+			</tr>
+			<tr>
+				<td><input type="text"  class="form-control" name="userName"  maxlength="10" value="${driver.driverName }" style="width:255px;"></td>
 				<td></td>
 			</tr>
+			<tr><td>핸드폰 번호</td>
+			</tr>
+			<tr>
+			<c:set var="string1" value="${driver.driverPhone }"/>
+			<c:set var="driverPhone1" value="${fn:substring(string1, 4, 8) }" />
+			<c:set var="driverPhone2" value="${fn:substring(string1, 9, 13) }" />
+				<td width="300">
+						<div class="form-group">
+							<div class="input-group">
+								<select name="firstPhone" style="width: 80px;" class="form-control">
+							<option value="010">010</option>
+							<option value="010">016</option>
+							<option value="010">017</option>
+							<option value="010">019</option>
+						</select>-<input type="text" size="4" name="secondPhone" class="form-control" value="${driverPhone1 }" style="width: 80px;" id="secondPhone" onkeypress="javascript:checkInputNum();" onkeydown="inputPhoneChk();" maxlength="4">
+						-<input type="text" size="4" name="thirdPhone" class="form-control"value="${driverPhone2 }"  style="width: 80px;" id="thirdPhone" onkeypress="javascript:checkInputNum();" onkeydown="inputPhoneChk();" maxlength="4">
+							</div>
+							
+						</div>
+						
+					</td>
+				<td><!-- <div class="input-group">
+								<input type="button" value="중복확인" onclick="openPhoneChk();"class="btn btn-outline-primary btn-lg btn-block" style="width: 90px; height: 40px; font-size: 0.9em; text-align: center; margin-left: 5px;"><input type="hidden" name="phoneCheck" value="phoneUncheck">
+							</div> --></td>
+			</tr>
+			<tr><td>이메일 </td>
+			</tr>
+			<tr>
+				<td width="300">
+						<div class="form-group">
+							<div class="input-group" style="width: 120px;float:left;" >
+								<input type="text" name="emailId" class="form-control" value="${fn:substringBefore( driver.driverEmail, '@') }">
+							</div><div style="float:left;">@</div>
+							<div class="input-group"style="width: 120px;float:left;">
+								<select name="emailTag" onkeydown="inputEmailChk();" class="form-control">
+									<option value="@naver.com">네이버</option>
+									<option value="@daum.net">다음</option>
+									<option value="@google.com">구글</option>
+									<option value="@iei.or.kr">kh정보교육원</option>
+								</select>
+							</div>
+						</div>
+					</td>
+					<td><!-- <div class="input-group">
+								<input type="button" value="중복확인" onclick="openEmailChk();" class="btn btn-outline-primary btn-md btn-block" style="width: 90px; height: 40px; font-size: 0.9em; margin-left:5px; text-align: center;"><input type="hidden" name="emailCheck" value="emailUncheck">
+							</div> --></td>
+			</tr>
 			
 			<tr>
-				<th>비밀번호 확인</th>
-				<td><input type="password" placeholder="내용을 입력해주세요" maxlength="15" name="driverPwdChk" onkeydown="pwdChk();" id="pwChk"></td>
+					<td width="150">담당 지역</td>
+				</tr>
+				<tr>
+					<td>
+					<select name="area" class="form-control" style="width: 100px;" value="${driver.driverArea}">
+						<option value="서울">서울</option>
+						<option value="부산">부산</option>
+						<option value="대구">대구</option>
+						<option value="인천">인천</option>
+						<option value="광주">광주</option>
+						<option value="대전">대전</option>
+						<option value="울산">울산</option>
+						<option value="세종">세종</option>
+						<option value="경기">경기</option>
+						<option value="강원">강원</option>
+						<option value="충남">충남</option>
+						<option value="전북">전북</option>
+						<option value="전남">전남</option>
+						<option value="경북">경북</option>
+						<option value="경남">경남</option>
+						<option value="제주">제주</option>
+					</select>
+					</td>
+				</tr>
+			<tr>
+					<td width="150">주민등록번호</td>
+				</tr>
+			<tr>
+				<td>
+						<div class="form-group">
+							<div class="input-group" style="width:122px;float:left;">
+								<input type="text" id= "userRrnFirst" class="form-control" value="${fn:substringBefore( driver.driverRrn, '-') }"name="userRrnFirst" maxlength="6" style="width: 120px;">
+							</div>
+							<div style="float:left;">-</div>
+							<div class="input-group" style="width:122px;float:left;">
+								<input type="password" id="userRrnSecond" class="form-control"value="${fn:substringAfter( driver.driverRrn, '-') }" name="userRrnSecond" maxlength="7" style="width: 120px;">
+							</div>
+							
+						</div>
+					</td>
+				<td><div class="input-group">
+								<input type="button" name="chk" class="btn btn-outline-primary btn-md btn-block" style="margin-left: 5px;"  value="검사" onclick="RrnValCheck();">
+								<input type="hidden"  id="RrnCheck" name="RrnCheck" value="RrnUncheck">
+							</div></td>
+			</tr>
+			<tr>
+					<td width="150">자기소개</td>
+				</tr>
+			<tr>
+				<td><textarea type="text"  name="driverInfo" value="${driver.driverSelfInfo }" class="form-control"style="width:255px;height:150px;resize:none;">${driver.driverSelfInfo }</textarea></td>
 				<td></td>
 			</tr>
-			
 			<tr>
-				<th>이름</th>
-				<td><input type="text" placeholder="내용을 입력해주세요" name="driverName"  maxlength="10" value="${driver.driverName }"></td>
-				<td></td>
-			</tr>
-			
+					<td>택시 운전 자격증(3MB 제한)</td>
+				</tr>
 			<tr>
-				<th>핸드폰</th>
-				<td><input type="text" placeholder="내용을 입력해주세요" name="driverPhone" value="${driver.driverPhone }"></td>
-				<td></td>
-			</tr>
-			
-			
-			<tr>
-				<th>E-mail</th>
-				<td><input type="text" placeholder="내용을 입력해주세요" name="driverEmail" value="${driver.driverEmail }"></td>
-				<td><input type="button" value="인증" class="btn"></td>
-			</tr>
-			
-			
-			<tr>
-				<th>자택주소</th>
-				<td><input type="text" placeholder="내용을 입력해주세요" name="driverHome" value="${driver.driverHome }"></td>
-				<td></td>
-			</tr>
-			
-			<tr>
-				<th>지역선택</th>
-				<td><input type="text" placeholder="내용을 입력해주세요" name="driverArea" value="${driver.driverArea }"></td>
+				<td><input type="file" name="LicenseFile" onchange="checkSize(this)" style="width:50px;float:left;font-family:'Do Hyeon', sans-serif;"></td>
 				<td></td>
 			</tr>
 			<tr>
-				<th>자기소개</th>
-				<td><input type="text" placeholder="내용을 입력해주세요" name="driverSelfIntro" value="${driver.driverSelfInfo }"></td>
+					<td>사업자등록증 자격증(3MB 제한)</td>
+				</tr>
+			<tr>
+				<td><input type="file" name="BLicenseFile" onchange="checkSize(this)" style="width:50px;float:left;font-family:'Do Hyeon', sans-serif;"></td>
 				<td></td>
 			</tr>
-			
 			<tr>
-				<th>운전면허증</th>
-				<td><input type="text" placeholder="내용을 입력해주세요" name="driverLicense" value="${driver.driverLicense}"></td>
-				<td></td>
+			<td> 소개용 사진(3MB 제한)</td>
 			</tr>
-			
 			<tr>
-				<th>사업자등록증</th>
-				<td><input type="text" placeholder="내용을 입력해주세요" name="driverBlicense" value="${driver.driverBLicense}"></td>
-				<td></td>
-			</tr>
-			
-			<tr>
-				<th>개인 사진</th>
-				<td><input type="text" placeholder="내용을 입력해주세요" name="driverInfoImage" value="${driver.driverInfoImage}"></td>
+				<td><input type="file" name="DriverInfoFile" onchange="checkSize(this)" style="width:50px;float:left;font-family:'Do Hyeon', sans-serif;"></td>
 				<td></td>
 			</tr>
 		</table>
 		<div id="btn">
-			<input type="submit" value="수정완료" class="btn"> <input
-				type="reset" value="수정취소" class="btn">
+			<input type="submit" value="수정하기" class="get-started-btn" style="border : 1px solid white; font-family:'Do Hyeon', sans-serif;"> <input
+				type="reset" value="취소" class="get-started-btn" style="border : 1px solid white; font-family:'Do Hyeon', sans-serif;">
 		</div>
 		<script>
 			function pwdChk() {
@@ -369,6 +541,10 @@
 				}
 			}
 		</script>
-	</form> --%>
+	</form>
+	
+		<div id="preloader"></div>
+	<script src="assets/js/main.js"></script>
+	
 </body>
 </html>

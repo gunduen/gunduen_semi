@@ -268,4 +268,18 @@ public class DriverService {
 		}
 		return pd;
 	}
+	
+	public int updateDriverInfo(Driver driver) {
+		int result = 0;
+		Connection conn = null;
+		try {
+			conn = factory.createConnection();
+			result = new DriverDAO().updateDriverInfo(conn, driver);
+			JDBCTemplate.close(conn);
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }
