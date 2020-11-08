@@ -35,7 +35,7 @@ public class DriverService {
 	public int insertDriver(Driver driver) {
 		int result = 0;
 		Connection conn = null;
-		System.out.println(driver.getDriverEmail());
+		System.out.println(driver.toString());
 		try {
 			conn = factory.createConnection();
 			result = new DriverDAO().insertDriver(conn, driver);
@@ -251,8 +251,8 @@ public class DriverService {
 	public DriverPageData autoMyInfo(int currentPage, String area){
 		ArrayList<Driver> list = null;
 		Connection conn = null;
-		int recordCountPerPage = 4;
-		int naviCountPerPage = 5;
+		int recordCountPerPage =2;
+		int naviCountPerPage = 2;
 		
 		DriverPageData pd = new DriverPageData();
 		

@@ -498,7 +498,7 @@ public class DriverDAO {
 		   Driver driver = null;
 		   PreparedStatement pstmt = null;
 		   ResultSet rset = null;
-		   String query = "SELECT * FROM (SELECT DRIVER.*, ROW_NUMBER() OVER(ORDER BY DRIVER_ID ASC) AS NUM FROM DRIVER) WHERE DRIVER_AREA=? AND NUM BETWEEN ? AND ?";
+		   String query = "SELECT * FROM (SELECT DRIVER.*, ROW_NUMBER() OVER(ORDER BY DRIVER_ID ASC) AS NUM FROM DRIVER) WHERE DRIVER_AREA=? AND DRIVER_CHECK='1' AND NUM BETWEEN ? AND ?";
 		   
 		   int start = currentPage*recordCountPerPage-(recordCountPerPage-1);
 		   int end = currentPage*recordCountPerPage;
@@ -576,20 +576,22 @@ public class DriverDAO {
 				needNext=false;
 			}
 		   StringBuilder sb = new StringBuilder();
+		   sb.append("<ul class='pagination' style='width: 250px; margin: 0 auto;'>");
 		   if(needPrev) {
-			   sb.append("<a href='/driver/autoMyinfo?currentPage="+(startNavi-1)+"&area="+area+"'>prev</a>");
+			   sb.append("<li class='page-item'><a class='page-link' href='/driver/autoMyinfo?currentPage="+(startNavi-1)+"&area="+area+"'>prev</a></li>");
 			   
 		   }
 		   for(int i=startNavi; i<=endNavi; i++) {
 			   if(i==currentPage) {
-				   sb.append("<a href='/driver/autoMyinfo?currentPage="+i+"&area="+area+"'><b>"+i+"</b></a>");
+				   sb.append("<li class='page-item'><a class='page-link' href='/driver/autoMyinfo?currentPage="+i+"&area="+area+"'><b>"+i+"</b></a></li>");
 			   }else {
-				   sb.append("<a href='/driver/autoMyinfo?currentPage="+i+"&area="+area+"'>"+i+"</a>");
+				   sb.append("<li class='page-item'><a class='page-link' href='/driver/autoMyinfo?currentPage="+i+"&area="+area+"'>"+i+"</a></li>");
 			   }
 		   }
 		   if(needNext) {
-			   sb.append("<a href='/driver/autoMyinfo?currentPage="+(endNavi+1)+"&area="+area+"'>next</a>");
+			   sb.append("<li class='page-item'><a class='page-link'href='/driver/autoMyinfo?currentPage="+(endNavi+1)+"&area="+area+"'>next</a></li>");
 		   }
+		   sb.append("</ul>");
 		   return sb.toString();
 	   }
 	   public int totalCount(Connection conn, String area) {

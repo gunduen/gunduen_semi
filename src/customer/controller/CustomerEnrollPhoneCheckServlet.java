@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import customer.model.service.CustomerService;
-import oracle.net.aso.p;
-
 /**
  * Servlet implementation class CustomerEnrollPhoneCheckServlet
  */
