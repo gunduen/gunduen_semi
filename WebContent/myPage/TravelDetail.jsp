@@ -467,23 +467,23 @@ section {
                            </script>
                            </c:if>
                            <c:if test="${travel.package_Confirm > 1 }">
-                           <button id="btn1" class="btn btn-default" onclick="com();">확정된 예약입니다.</button>
+                           <button id="btn1" class="btn btn-default" onclick="com();">완료된 예약입니다.</button>
                            </c:if>
                            </c:if>
                         <c:if test="${sessionScope.driver ne null }">
                            <c:choose>
                               <c:when test="${travel.package_Confirm < 2 }">
                               <input id= "btn" type="button" value="예약취소" name="cancle" onClick="return cancle();" class="btn btn-default">
-                              <input id= "btn" type="button" value="예약확정" name="cancle" onclick="return quest();" class="btn btn-default">
+                              <input id= "btn" type="button" value="여행완료" name="cancle" onclick="return quest();" class="btn btn-default">
                               </c:when>
                               <c:otherwise>
-                              <button id="btn1" class="btn btn-default" onclick="com();">확정된 예약입니다.</button>
+                              <button id="btn1" class="btn btn-default" onclick="com();">완료된 예약입니다.</button>
                               </c:otherwise>
                      
                            </c:choose>
                            <script>
                            function quest() {
-                              var quest = confirm("예약확정을 하시겠습니까?");
+                              var quest = confirm("여행을 완료하셨습니까?");
                                if(quest){
                                   location.href="/travel/confirm?package_Code=${travel.package_Code}&driverId=${sessionScope.driver.driverId }"
                                }else{
@@ -499,7 +499,7 @@ section {
                               }
                            }
                            function com(){
-                              alert("확정된 예약입니다.");
+                              alert("완료된 예약입니다.");
                            }
                            </script>
                         </c:if>

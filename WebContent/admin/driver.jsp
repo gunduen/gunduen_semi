@@ -121,6 +121,7 @@ section {
 }
 
 #navigator {
+   text-decoration: none;
    width: 100%;
    height: 100%;
 }
@@ -223,74 +224,66 @@ section {
                   <li><a href="/review/list?reviewArea=서울">Review</a></li>
                   <li></li>
                </ul>
-            </nav>
-            <!-- .nav-menu -->
-
+            </nav><!-- .nav-menu -->
+            
             <!-- admin 로그인시 header -->
-            <c:if test="${sessionScope.customer.adminCheck == 1 }">
-               <a href="/admin/driverList" class="get-started-btn">마이페이지</a>
-               <a href="/member/logout" class="logout-btn"
-                  onclick="return warning();">로그아웃</a>
-               <script>
-                  function warning() {
-                     var question = confirm('정말 로그아웃하시겠어요?');
-                     if (question) {
-                        return true;
-                     } else {
-                        return false;
-                     }
-                  }
-               </script>
-                &nbsp;&nbsp; <img src="../assets/img/happy.png"
-                  style="height: 40px">
-            </c:if>
-
-            <!-- 고객/기사 로그인시 header -->
-            <c:if test="${sessionScope.customer.adminCheck < 1 }">
-               <a
-                  href="/mypage/travel?customerId=${sessionScope.customer.customer_Id }"
-                  class="get-started-btn">마이페이지</a>
-               <a href="/member/logout" class="logout-btn"
-                  onclick="return warning();">로그아웃</a>
-               <script>
-                  function warning() {
-                     var question = confirm('정말 로그아웃하시겠어요?');
-                     if (question) {
-                        return true;
-                     } else {
-                        return false;
-                     }
-                  }
-               </script>
-            </c:if>
-
-            <c:if test="${sessionScope.driver ne null}">
-               <a
-                  href="/DriverTravel/List?driverId=${sessionScope.driver.driverId }"
-                  class="get-started-btn">마이페이지</a>
-               <a href="/member/logout" class="logout-btn"
-                  onclick="return warning();">로그아웃</a>
-               <script>
-                  function warning() {
-                     var question = confirm('정말 로그아웃하시겠어요?');
-                     if (question) {
-                        return true;
-                     } else {
-                        return false;
-                     }
-                  }
-               </script>
-            </c:if>
             <c:if
-               test="${sessionScope.driver eq null && sessionScope.customer eq null}">
-               <a href="/login/Customerlogin.jsp" class="get-started-btn">고객로그인</a>
-               <a href="/login/DriverLogin.jsp" class="get-started-btn">기사로그인</a>
-            &nbsp;&nbsp; <img src="../assets/img/smile.png"
-                  style="height: 40px">
+            test="${sessionScope.customer.adminCheck == 1 }">
+            <a href="/admin/driverList" class="get-started-btn">마이페이지</a>
+            <a href="/member/logout" class="logout-btn" onclick="return warning();" style="text-decoration: none; color:white;">로그아웃</a>
+                <script>
+                   function warning(){
+                      var question = confirm('정말 로그아웃하시겠어요?');
+                      if(question){
+                         return true;
+                      }else{
+                      return false;
+                      }
+                   }
+                </script>
+                &nbsp;&nbsp; <img src="../assets/img/happy.png" style="height: 40px">
+         </c:if>
+         
+         <!-- 고객/기사 로그인시 header -->
+         <c:if
+            test="${sessionScope.customer.adminCheck < 1 }">
+            <a href="/mypage/travel?customerId=${sessionScope.customer.customer_Id }" class="get-started-btn">마이페이지</a>
+            <a href="/member/logout" class="logout-btn" onclick="return warning();" style="text-decoration: none; color:white;">로그아웃</a>
+                <script>
+                   function warning(){
+                      var question = confirm('정말 로그아웃하시겠어요?');
+                      if(question){
+                         return true;
+                      }else{
+                      return false;
+                      }
+                   }
+                </script>
+                &nbsp;&nbsp; <img src="../assets/img/happy.png" style="height: 40px">
+         </c:if>
+            
+            <c:if test="${sessionScope.driver ne null}">
+               <a href="/DriverTravel/List?driverId=${sessionScope.driver.driverId }" class="get-started-btn">마이페이지</a>
+            <a href="/member/logout" class="logout-btn" onclick="return warning();" style="text-decoration: none;">로그아웃</a>
+                <script>
+                   function warning(){
+                      var question = confirm('정말 로그아웃하시겠어요?');
+                      if(question){
+                         return true;
+                      }else{
+                      return false;
+                      }
+                   }
+                </script>
             </c:if>
-         </div>
-      </header>
-      <!-- End Header -->
+         <c:if test="${sessionScope.driver eq null && sessionScope.customer eq null}">
+            <a href="/login/Customerlogin.jsp" class="get-started-btn">고객로그인</a>
+            <a href="/login/DriverLogin.jsp" class="get-started-btn">기사로그인</a>
+            &nbsp;&nbsp; <img src="../assets/img/smile.png" style="height: 40px">
+         </c:if>
+      </div>
+   </header>
+   <!-- End Header -->
    </header>
    <br>
    <br>

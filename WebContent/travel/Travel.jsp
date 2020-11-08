@@ -304,18 +304,18 @@ p {
                   <select class="form-control" name="driverName" id="aa"
                      style="height: 35px">
                      <c:forEach items="${tList }" var="driver">
-                        <option value="${driver.driverName }">${driver.driverName }</option>
+                        <option value="${driver.driverName}+${driver.driverId}">${driver.driverName }</option>
                      </c:forEach>
-
                   </select>
                </div>
-
-               <div class="hawi">
+				
+               <%-- <div class="hawi">
+               <select class="form-control" name="driverId" id="aa" style="height: 35px">
                   <c:forEach items="${tList }" var="driver">
-                     <input type="hidden" id="driverId" name="driverId"
-                        value="${driver.driverId }">
+                     <option value="${driver.driverId}">${driver.driverName }</option>
                   </c:forEach>
-               </div>
+                  </select>
+               </div> --%>
 
 
 

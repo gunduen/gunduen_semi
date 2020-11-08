@@ -18,7 +18,7 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
   <!-- Vendor CSS Files -->
   <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="../assets/vendor/icofont/icofont.min.css" rel="stylesheet">
@@ -151,8 +151,8 @@
     </header>
     <br><br>
     <section>
-        <h1>Q&amp;A</h1>
-        <h5>빠른 시일내에 답변드리도록 노력하겠습니다.</h5>
+        <h1 style="font-family: 'Do Hyeon', sans-serif; font-size:2em;">Q&amp;A</h1>
+        <h5 style="font-size:1em;">빠른 시일내에 답변드리도록 노력하겠습니다.</h5>
         <article>
         <br>
             <h2>관리자 답변 등록</h2>

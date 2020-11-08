@@ -104,7 +104,7 @@
   	
   	#driver tr td:nth-child(2){
   		text-align: left;
-  		 font-family: 'Do Hyeon', sans-serif;
+  		 /* font-family: 'Do Hyeon', sans-serif; */
   		 font-size: 1.3em;
   	}
   	
@@ -275,8 +275,8 @@
 					
 			<section id="right"
 				style="margin: border: 1px solid white; width: 80%;  height: 650px; text-align:center; padding-left : 200px;padding-top : 25px;">
-				<div id="title"  style="font-family: 'Do Hyeon', sans-serif; font-size:1.9em; width: 100%; height: 7%; box-sizing: border-box;">기사 소개 게시판</div>
-				<div id="contents" style="font-family: 'Do Hyeon', sans-serif; width: 100%; height: 86%; box-sizing: border-box;" >
+				<div id="title"  style="font-family: 'Do Hyeon', sans-serif; font-size:2.2em; width: 100%; height: 7%; box-sizing: border-box;">기사 소개 게시판</div>
+				<div id="contents" style="width: 100%; height: 86%; box-sizing: border-box;" >
 				<br>
 				<div id="firstCol" style="width: 100%; height: 50%;">
 
@@ -291,7 +291,7 @@
         									<tr>
         									
         										<td><img src="../img/driverImage/${list.driverInfoImage}" class="img-circle" style="width: 100px; height: 100px;"></td>
-        											<td style="width: 800px;font-size: 1.7em;"><p>${list.driverName} 기사님</p>
+        											<td style="width: 800px;font-size: 1.7em"><b><p>${list.driverName} 기사님</p></b>
         												<p>${list.driverSelfInfo} </p><p><p>담당 지역 : ${list.driverArea }</p></td>
         							
         									</tr>

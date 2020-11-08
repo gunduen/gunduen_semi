@@ -177,8 +177,8 @@
     </header>
     <br><br>
     <section>
-        <h1>Q&amp;A</h1>
-        <h5>빠른 시일내에 답변드리도록 노력하겠습니다.</h5>
+        <h1 style="font-family: 'Do Hyeon', sans-serif; font-size:2em;">Q&amp;A</h1>
+        <h5 style="font-size:1em;">빠른 시일내에 답변드리도록 노력하겠습니다.</h5>
         <article>
         <br>
             <table class="table" style="width:60%;">

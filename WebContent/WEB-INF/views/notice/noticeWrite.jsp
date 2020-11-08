@@ -17,7 +17,7 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
   <!-- Vendor CSS Files -->
   <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="../assets/vendor/icofont/icofont.min.css" rel="stylesheet">
@@ -146,7 +146,7 @@
 	<!-- End Header -->
         <br><br>
         <section>
-            <article id="top">공지사항 작성</article>
+            <article id="top"><h1 onClick="location.href='/notice/list'" style="font-family: 'Do Hyeon', sans-serif; font-size:1em;">공지사항 작성</h1></article>
             	<br><br>
 	            <form action="/notice/write" method="post">
                     <input type="text" size="100" placeholder="제목을 작성하세요" required name="notice_Subject"><br><br>

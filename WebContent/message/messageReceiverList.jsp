@@ -132,7 +132,7 @@
 
 			<c:if test="${sessionScope.driver ne null}">
 				<a
-					href="DriverTravel/List?driverId=${sessionScope.driver.driverId }"
+					href="/DriverTravel/List?driverId=${sessionScope.driver.driverId }"
 					class="get-started-btn">마이페이지</a>
 				<a href="/member/logout" class="logout-btn"
 					onclick="return warning();">로그아웃</a>

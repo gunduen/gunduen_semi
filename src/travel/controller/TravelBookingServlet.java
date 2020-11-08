@@ -39,17 +39,28 @@ public class TravelBookingServlet extends HttpServlet {
 
 
 		request.setCharacterEncoding("utf-8");
+		
+		String driver = request.getParameter("driverName");
+		
+		String driverName = driver.substring(0,3);
+		String driverId = driver.substring(4,driver.length());
+		System.out.println(driverName);
+		System.out.println(driverId);
 		Travel travel = new Travel();
 		travel.setPackage_Area(request.getParameter("sido"));
 		travel.setPackage_Pickup(request.getParameter("roadAddr"));
 		travel.setPackage_TravelDate(request.getParameter("package_Date"));
 		travel.setPackage_Utilization(request.getParameter("package_Item"));
-		travel.setDriver_Name(request.getParameter("driverName"));
-		travel.setDriver_Id(request.getParameter("driverId"));
+		/*
+		 * travel.setDriver_Name(request.getParameter("driverName"));
+		 * travel.setDriver_Id(request.getParameter("driverId"));
+		 */
+		travel.setDriver_Name(driverName);
+		travel.setDriver_Id(driverId);
 		travel.setCoordx(request.getParameter("coordx"));
 		travel.setCoordy(request.getParameter("coordy"));
 		
-		String driverId = request.getParameter("driverId");
+		/*String driverId = request.getParameter("driverId");*/
 		
 		HttpSession session = request.getSession();
 		if( session != null && ( session.getAttribute("customer")!=null)) {
