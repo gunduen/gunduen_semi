@@ -36,6 +36,8 @@ public class ReviewDeleteServlet extends HttpServlet {
 		int resultcomment = new CommentService().deleteAllComment(reviewNo);
 		int result = new ReviewService().deleteReview(reviewNo);
 //		int resulta = new ReviewService().updateReviewCheck(package_Code);
+		System.out.println(result);
+		System.out.println(resultcomment);
 		if (result > 0) {
 			if(resultcomment>0) {
 			response.sendRedirect("/review/list?reviewArea=" + area);
