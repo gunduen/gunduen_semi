@@ -390,7 +390,7 @@ public class MessageDAO {
 	   public int insertWelcomeCusMessage(Connection conn, String customerId) {
 		   PreparedStatement pstmt = null;
 		   int result = 0;
-		   String query = "INSERT INTO MESSAGE VALUES(MESSAGE_NUM.NEXTVAL,SYSDATE,'예약이 확정되었습니다','예약이 확정되었습니다. 즐거운 여행되시길 바랍니다.','admin',?)";
+		   String query = "INSERT INTO MESSAGE VALUES(MESSAGE_NUM.NEXTVAL,SYSDATE,'예약이 완료되었습니다.','예약이 완료되었습니다. 기사님과 연락 후 즐거운 여행되세요','admin',?)";
 		   try {
 			   pstmt = conn.prepareStatement(query);
 			   pstmt.setString(1, customerId);
@@ -407,10 +407,27 @@ public class MessageDAO {
 	   public int insertWelcomeDriMessage(Connection conn, String driverId) {
 		   PreparedStatement pstmt = null;
 		   int result = 0;
-		   String query = "INSERT INTO MESSAGE VALUES(MESSAGE_NUM.NEXTVAL,SYSDATE,'예약이 확정되었습니다','예약이 확정되었습니다. 안전한 여행되시길 바랍니다.','admin',?)";
+		   String query = "INSERT INTO MESSAGE VALUES(MESSAGE_NUM.NEXTVAL,SYSDATE,'예약이 완료되었습니다.','예약이 완료되었습니다. 고객님과 연락 후 즐거운 여행되세요~','admin',?)";
 		   try {
 			   pstmt = conn.prepareStatement(query);
 			   pstmt.setString(1, driverId);
+			   result = pstmt.executeUpdate();
+			   System.out.println(result);
+		   } catch (Exception e) {
+			   e.printStackTrace();
+		   } finally {
+			   JDBCTemplate.close(pstmt);
+		   }
+		   return result;
+	   }
+	   
+	   public int insertConfirmCusMessage(Connection conn, String customerId) {
+		   PreparedStatement pstmt = null;
+		   int result = 0;
+		   String query = "INSERT INTO MESSAGE VALUES(MESSAGE_NUM.NEXTVAL,SYSDATE,'여행이 완료되었습니다','즐거운 여행 되셨나요? 즐거우셨다면 리뷰 작성 부탁드립니다~','admin',?)";
+		   try {
+			   pstmt = conn.prepareStatement(query);
+			   pstmt.setString(1, customerId);
 			   result = pstmt.executeUpdate();
 			   System.out.println(result);
 		   } catch (Exception e) {

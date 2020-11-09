@@ -166,5 +166,26 @@ public class MessageService {
 		}
 		return result;
 	}
-
+	
+	public int insertConfirmCusMessage(String customerId) {
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = factory.createConnection();
+			result = new MessageDAO().insertConfirmCusMessage(conn, customerId);
+			if(result>0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
+	}
 }

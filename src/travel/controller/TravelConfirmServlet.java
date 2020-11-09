@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import message.model.service.MessageService;
 import travel.model.service.TravelService;
 
 /**
@@ -34,11 +35,15 @@ public class TravelConfirmServlet extends HttpServlet {
 		
 		int packageCode = Integer.parseInt(request.getParameter("package_Code"));
 		String driverId = request.getParameter("driverId");
+		String customerId = request.getParameter("customerId");
 		System.out.println(driverId);
 		int result = new TravelService().confirmTravel(packageCode);
+		int sendToCustomer = new MessageService().insertConfirmCusMessage(customerId);
 		if(result > 0) {
+			
 			request.setAttribute("packageCode", packageCode);
 			request.setAttribute("driverId", driverId);
+			
 			RequestDispatcher travel = request.getRequestDispatcher("/DriverTravel/List");
 			travel.forward(request, response);
 			

@@ -273,13 +273,13 @@ section {
                <div class="container d-flex align-items-center">
 
                   <h1 class="logo mr-auto">
-                     <a href="index.jsp">GUNDUEN</a>
+                     <a href="/index.jsp">GUNDUEN</a>
                   </h1>
                   <!-- Uncomment below if you prefer to use an image logo -->
                   <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
                   <nav class="nav-menu d-none d-lg-block">
                      <ul>
-                        <li class="active"><a href="index.jsp">Home</a></li>
+                        <li class="active"><a href="/index.jsp">Home</a></li>
                         <li><a href="/notice/list">Notice</a></li>
                         <li><a href="/driverInfoPage/DriverInfoPage.jsp">Driver</a></li>
                         <li><a href="/qna/list">Q&A</a></li>
@@ -489,7 +489,7 @@ section {
                            function quest() {
                               var quest = confirm("여행을 완료하셨습니까?");
                                if(quest){
-                                  location.href="/travel/confirm?package_Code=${travel.package_Code}&driverId=${sessionScope.driver.driverId }"
+                                  location.href="/travel/confirm?package_Code=${travel.package_Code}&driverId=${sessionScope.driver.driverId}&customerId=${travel.customer_Id}";
                                }else{
                                   return false;
                                }

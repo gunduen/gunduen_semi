@@ -199,7 +199,7 @@
             		<td>&nbsp;</td>
             	</tr>
             	<tr>
-            		<td><button type="submit" class="btn btn-info btn-lg" style="width: 100%;">아이디찾기</button></td>
+            		<td><button type="submit" class="btn btn-info btn-lg" style="width: 100%;">비밀번호 찾기</button></td>
             	</tr>
             </table>
         </form>
