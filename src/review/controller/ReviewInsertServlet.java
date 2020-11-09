@@ -1,6 +1,7 @@
 package review.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -61,7 +62,10 @@ public class ReviewInsertServlet extends HttpServlet {
 				if (resulta >0) {
 					System.out.println(area);
 					response.setContentType("text/html; charset=utf-8");
-					response.sendRedirect("/review/list?reviewArea=서울");
+					PrintWriter out = response.getWriter();
+					out.println("<script>location.href='/review/list?reviewArea=서울'");
+					out.println("</script>");
+					
 				}
 			} else {
 				RequestDispatcher view = request.getRequestDispatcher("/review/reviewError.html");
