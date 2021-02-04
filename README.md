@@ -1,3 +1,3 @@
-![gunduen](./WebContent/img/MainPageImg/gunduen.png    width="300" height="370")
+<img src="./WebContent/img/MainPageImg/gunduen.png" width="300")
 # Gunduen Project
-## 여행  예약 서비스
+- 여행  예약 서비스
